@@ -1,0 +1,21 @@
+package testSelenium;
+//Davide
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class LibrarySearchTest {
+	
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver","C:\\Users/chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://localhost:8080/studioApp/");
+		driver.findElement(By.xpath("//*[@id=\"user\"]")).click();
+		driver.findElement(By.xpath("//*[@id=\"emailLogin\"]")).sendKeys("stu@live.it");
+		driver.findElement(By.xpath("//*[@id=\"passwordLogin\"]")).sendKeys("1234");
+		driver.findElement(By.xpath("//*[@id=\"loginBtn\"]")).click();
+		driver.findElement(By.xpath("//*[@id=\"searchField\"]")).sendKeys("roma");
+		driver.findElement(By.xpath("//*[@id=\"searchBtn\"]")).click();
+	}
+
+}
