@@ -27,11 +27,9 @@ public class LibrarianNoticeboardGUI extends LibrarianGUI {
 
 	public ObservableList<Post> getPost() {
 		ObservableList<Post> avvisi = FXCollections.observableArrayList();
-		avvisi.add(new Post("Chiusura", "bib1@live.it", "La biblioteca restera' chiusa il giorno 7/5/2020.",
-				"27 09 2016"));
-		avvisi.add(new Post("Bagno", "bib2@live.it", "Bagno piano terra inagibile.", "07 05 2016"));
-		avvisi.add(new Post("Servizi", "bib3@live.it", "Da oggi e' attivo il servizio bar.", "17 03 2016"));
-		avvisi.add(new Post("Prenotazioni", "bib4@live.it", "E' attivo il servizio prenotazioni.", "02 01 2016"));
+		avvisi.add(new Post("La biblioteca restera' chiusa il giorno 7/5/2020.", "bib1@live.it","27 09 2016","Chiusura"));
+		avvisi.add(new Post("Bagno piano terra inagibile.", "bib2@live.it",  "07 05 2016","Bagno"));
+		avvisi.add(new Post("Da oggi e' attivo il servizio bar.", "bib3@live.it", "17 03 2016","Servizi"));
 		return avvisi;
 	}
 

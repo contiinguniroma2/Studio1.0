@@ -16,7 +16,7 @@ import logic.application.Main;
 public class BehaviorCheckGUI extends LibrarianGUI {
 	List<Button> btnListUsers;
 	List<Button> btnListFeedback;
-	
+
 	public BehaviorCheckGUI() {
 		btnListUsers = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
 		btnListFeedback = new ArrayList<>(); //lista contenente tanti bottoni quanti sono i feedbacks
@@ -55,7 +55,7 @@ public class BehaviorCheckGUI extends LibrarianGUI {
 
 		ScrollPane spUsers = new ScrollPane();
 		ScrollPane spFeed = new ScrollPane();
-	
+
 
 		VBox vBoxUser = createPanel(createBtnCheckBehavior("user556"), createBtnCheckBehavior("user383"),
 				createBtnCheckBehavior("user202"), createBtnCheckBehavior("user35285"),
@@ -67,8 +67,8 @@ public class BehaviorCheckGUI extends LibrarianGUI {
 		vBoxUser.setAlignment(Pos.TOP_CENTER);
 		vBoxUser.setSpacing(0);
 
-		VBox vBoxFeed = createPanel(createBtnCheckBehaviorFeed("I cessi puzzano"),
-				createBtnCheckBehaviorFeed("Pagate la luce"), createBtnCheckBehaviorFeed("Spiegatele le cose!"),
+		VBox vBoxFeed = createPanel(createBtnCheckBehaviorFeed("Wifi ok"),
+				createBtnCheckBehaviorFeed("Pagate la luce"), createBtnCheckBehaviorFeed("Bagno fuori servizio"),
 				createBtnCheckBehaviorFeed("Non trovo parcheggio"), createBtnCheckBehaviorFeed("Prese guaste"),
 				createBtnCheckBehaviorFeed("Fermata autobus lontana"), createBtnCheckBehaviorFeed("Non ci sono bar"),
 				createBtnCheckBehaviorFeed("Wi fi ottimo"), createBtnCheckBehaviorFeed("Sala giochi al piano terra"),
