@@ -11,14 +11,16 @@ public class Student extends User {
 	private byte reportCounter;
 	private String surname;
 	private StateMachine stateMachine;
+	private Prenotazione prenotazione;
+	private Message message;
 
 	public Student() {
-		this.stateMachine = new StateMachine(NormalState.getInstance());
+		this.stateMachine = new StateMachine(new NormalState());
 
 	}
 
 	public Student(String namep, String surnamep, String userNameP, String mailp, String passwordp, boolean isBanned,
-			byte reportCounter) {
+			byte reportCounter, Prenotazione prenotazione, Message message) {
 
 		this.name = namep;
 		this.surname = surnamep;
@@ -27,11 +29,15 @@ public class Student extends User {
 		this.userName = userNameP;
 		this.isBanned = isBanned;
 		this.reportCounter = reportCounter;
-		if ((reportCounter > 2) && (!isBanned))
-			this.stateMachine = new StateMachine(NotifiedState.getInstance());
-		else if (isBanned)
-			this.stateMachine = new StateMachine(BannedState.getInstance());
-		this.stateMachine = new StateMachine(NormalState.getInstance());
+		if ((reportCounter > 2) && (!isBanned)) {
+			this.stateMachine = new StateMachine(new NotifiedState());
+		}
+		else if (isBanned) {
+			this.stateMachine = new StateMachine(new BannedState());
+		}
+		else {
+		    this.stateMachine = new StateMachine(new NormalState());
+		}
 	}
 
 	public boolean isBanned() {
