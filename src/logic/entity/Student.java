@@ -11,8 +11,8 @@ public class Student extends User {
 	private byte reportCounter;
 	private String surname;
 	private StateMachine stateMachine;
-	private Prenotazione prenotazione;
-	private Message message;
+	//private Prenotazione prenotazione;
+	//private Message message;
 
 	public Student() {
 		this.stateMachine = new StateMachine(new NormalState());
@@ -20,7 +20,7 @@ public class Student extends User {
 	}
 
 	public Student(String namep, String surnamep, String userNameP, String mailp, String passwordp, boolean isBanned,
-			byte reportCounter, Prenotazione prenotazione, Message message) {
+			byte reportCounter) {
 
 		this.name = namep;
 		this.surname = surnamep;

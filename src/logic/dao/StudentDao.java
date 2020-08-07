@@ -13,7 +13,7 @@ public class StudentDao extends GenericDao {
 	private Connection con;
 	private PreparedStatement ps;
 
-	// INSERT STUDENT
+	// SAVE STUDENT
 	public int insert(String mail, String password, String username, String nome, String cognome, String telefono)
 			throws SQLException {
 		int status = 0;
@@ -85,6 +85,41 @@ public class StudentDao extends GenericDao {
 		} finally {
 			con.close();
 			ps.close();
+		}
+		return status;
+	}
+	
+	public int updateStudent(Student student) {
+		int status = 0;
+		try {
+			con = Db.getConnection();
+			ps = con.prepareStatement("UPDATE Studente SET mailStudente = ?, password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ? WHERE mailStudente = ?");
+			ps.setString(1, student.getMail());
+			ps.setString(2, student.getPassword());
+			ps.setString(3, student.getUsername());
+			ps.setString(4, student.getName());
+			ps.setString(5, student.getSurname());
+			ps.setString(6,  student.getPhone());
+			ps.setByte(7, student.getReportCounter());
+			ps.setBoolean(8, student.isBanned());
+			status=ps.executeUpdate();
+		}
+		catch (Exception e) {
+			 myLogger.info("Aggiornamento fallito");
+			 return status;
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			try {
+				con.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 		}
 		return status;
 	}
