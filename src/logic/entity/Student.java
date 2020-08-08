@@ -1,5 +1,6 @@
 package logic.entity;
 
+import java.time.LocalDateTime;
 import logic.pattern.BannedState;
 import logic.pattern.NormalState;
 import logic.pattern.NotifiedState;
@@ -11,8 +12,9 @@ public class Student extends User {
 	private byte reportCounter;
 	private String surname;
 	private StateMachine stateMachine;
-	//private Prenotazione prenotazione;
-	//private Message message;
+	private Prenotazione prenotazione;
+	private Message message;
+	private LocalDateTime time;
 
 	public Student() {
 		this.stateMachine = new StateMachine(new NormalState());
@@ -20,7 +22,7 @@ public class Student extends User {
 	}
 
 	public Student(String namep, String surnamep, String userNameP, String mailp, String passwordp, boolean isBanned,
-			byte reportCounter) {
+			byte reportCounter, LocalDateTime time) {
 
 		this.name = namep;
 		this.surname = surnamep;
@@ -38,6 +40,7 @@ public class Student extends User {
 		else {
 		    this.stateMachine = new StateMachine(new NormalState());
 		}
+		this.time = time;
 	}
 
 	public boolean isBanned() {
@@ -81,5 +84,17 @@ public class Student extends User {
 	public void setStateMachine(StateMachine stateMachine) {
 		this.stateMachine = stateMachine;
 	}
+	
+	public void startCountdown() {
+		time = LocalDateTime.now();
+	}
+	
+	public void stopCountdown() {
+		time = null;
+	}
 
+	public String getCountdown() {
+		return time.toString();
+	}
+	
 }

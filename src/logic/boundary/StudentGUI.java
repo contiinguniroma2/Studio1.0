@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
-import logic.bean.StudBean;
+import logic.bean.StudentBean;
 import logic.control.StudentMainPageController;
 
 public class StudentGUI extends GuiSUPER {
@@ -21,7 +21,7 @@ public class StudentGUI extends GuiSUPER {
 	protected Button logOutStud;
 	protected Button refresh;
 	protected Alert alert;
-	protected StudBean studInfoB;
+	protected StudentBean studInfoB;
 
 	protected StudentGUI() {
 		settingsBtn = new Button();
@@ -33,7 +33,7 @@ public class StudentGUI extends GuiSUPER {
 		logOutStud = createBtn("Log out");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
 		alert = new Alert(AlertType.WARNING);
-		studInfoB = new StudBean();
+		studInfoB = new StudentBean();
 	}
 
 	public void createBannedRoot(Main main) {

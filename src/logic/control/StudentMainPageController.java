@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import logic.bean.LibrBean;
-import logic.bean.StudBean;
+import logic.bean.StudentBean;
 import logic.dao.BookMarkDao;
 import logic.dao.LibraryDao;
 import logic.dao.PrenotazioneDao;
@@ -18,7 +18,7 @@ import logic.exceptions.StudentAlreadyBookedException;
 
 public class StudentMainPageController extends MainPageController {
 	private Student studInfo;
-	private StudBean studInfoB;
+	private StudentBean studInfoB;
 	private StudentDao studDao;
 	private Prenotazione book;
 	private List<BookMark> bookInfo;
@@ -35,7 +35,7 @@ public class StudentMainPageController extends MainPageController {
 		this.bookInfo = new ArrayList<>();
 		this.bookMarkDao = new BookMarkDao();
 		this.studInfo = new Student();
-		this.studInfoB = new StudBean();
+		this.studInfoB = new StudentBean();
 		this.studDao = new StudentDao();
 	}
 
@@ -91,11 +91,11 @@ public class StudentMainPageController extends MainPageController {
 		this.studInfo = studInfo;
 	}
 
-	public StudBean getStudInfoB() {
+	public StudentBean getStudInfoB() {
 		return studInfoB;
 	}
 
-	public void setStudInfoB(StudBean studInfoB) {
+	public void setStudInfoB(StudentBean studInfoB) {
 		this.studInfoB = studInfoB;
 	}
 

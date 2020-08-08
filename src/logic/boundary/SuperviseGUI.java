@@ -12,14 +12,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
+import logic.control.SuperviseController;
 
-public class BehaviorCheckGUI extends LibrarianGUI {
-	List<Button> btnListUsers;
-	List<Button> btnListFeedback;
+public class SuperviseGUI extends LibrarianGUI {
+	List<Button> btnListStudent;
+	SuperviseController superviseController;
+	// InfoAccountSelectedGUI infoAccount;
 
-	public BehaviorCheckGUI() {
-		btnListUsers = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
-		btnListFeedback = new ArrayList<>(); //lista contenente tanti bottoni quanti sono i feedbacks
+	public SuperviseGUI() {
+		btnListStudent = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
 
 	}
 
@@ -92,6 +93,9 @@ public class BehaviorCheckGUI extends LibrarianGUI {
 
 		content = createPanel(titleCheckBehavior, hBoxTitleColumns, hBoxColumns);
 		content.setPadding(new Insets(20, 0, 20, 0));
+		
+		
+		
 
 		return content;
 	}

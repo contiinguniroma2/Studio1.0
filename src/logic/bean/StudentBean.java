@@ -1,6 +1,6 @@
 package logic.bean;
 
-public class StudBean extends UserBean {
+public class StudentBean extends UserBean {
 
 	private boolean isBanned;
 	private String surname;

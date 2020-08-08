@@ -43,52 +43,7 @@ public class StudentDao extends GenericDao {
 		return status;
 	}
 
-	// UPDATE BAN
-	public int updateBan(boolean isBan, String mail) throws SQLException {
-		int status = 0;
-		try {
-			con = Db.getConnection();
 
-			ps = con.prepareStatement("UPDATE Studente SET isBan = ?, WHERE mail = ? ");
-			ps.setBoolean(1, isBan);
-			ps.setString(2, mail);
-			status = ps.executeUpdate();
-
-		}
-
-		catch (Exception e) {
-			myLogger.info("Aggiornamento isBan fallito");// definire un eccezione apposita con logger serio
-			return status;
-		} finally {
-			con.close();
-			ps.close();
-		}
-		return status;
-	}
-
-	// UPDATE REPORTCOUNTER
-	public int updateReportCounter(byte newReportCounter, String mail) throws SQLException {
-		int status = 0;
-		try {
-			con = Db.getConnection();
-
-			ps = con.prepareStatement("UPDATE Studente SET reportCounter = ?, WHERE mail = ? ");
-			ps.setByte(1, newReportCounter);
-			ps.setString(2, mail);
-			status=ps.executeUpdate();
-
-		}
-
-		catch (Exception e) {
-			myLogger.info("Aggiornamento reportCounter fallito");// definire un eccezione apposita con logger serio
-			return status;
-		} finally {
-			con.close();
-			ps.close();
-		}
-		return status;
-	}
-	
 	public int updateStudent(Student student) {
 		int status = 0;
 		try {
@@ -102,6 +57,7 @@ public class StudentDao extends GenericDao {
 			ps.setString(6,  student.getPhone());
 			ps.setByte(7, student.getReportCounter());
 			ps.setBoolean(8, student.isBanned());
+			ps.setString(9, student.getCountdown());
 			status=ps.executeUpdate();
 		}
 		catch (Exception e) {
@@ -202,5 +158,12 @@ public class StudentDao extends GenericDao {
 		}
 		return studentList;
 	}
+
+	public List<Student> getStudentFromDb() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 
 }

@@ -7,14 +7,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
-import logic.bean.StudBean;
+import logic.bean.StudentBean;
 import logic.control.LoginController;
 import logic.control.StudentSearchInsertController;
 
 public class StudentSearchInsertGUI extends StudentGUI {
 	Button librarySearchButton;
 	TextField location;
-	StudBean studInfo;
+	StudentBean studInfo;
 
 	public StudentSearchInsertGUI() {
 		librarySearchButton = new Button();

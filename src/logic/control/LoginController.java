@@ -1,7 +1,7 @@
 package logic.control;
 
 import logic.bean.LibrBean;
-import logic.bean.StudBean;
+import logic.bean.StudentBean;
 import logic.dao.LibraryDao;
 import logic.dao.StudentDao;
 import logic.entity.Library;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class LoginController implements GenericController {
 	private LibrBean librBean;
-	private StudBean studBean;
+	private StudentBean studBean;
 	private Library library;
 	private LibraryDao loginL;
 	private StudentDao loginS;
@@ -25,7 +25,7 @@ public class LoginController implements GenericController {
 
 	protected LoginController() {
 		this.librBean = new LibrBean();
-		this.studBean = new StudBean();
+		this.studBean = new StudentBean();
 		this.library = new Library();
 		this.studInfo = new Student();
 		this.loginL = new LibraryDao();
@@ -104,11 +104,11 @@ public class LoginController implements GenericController {
 		this.librBean = librBean;
 	}
 
-	public StudBean getStudBean() {
+	public StudentBean getStudBean() {
 		return studBean;
 	}
 
-	public void setStudBean(StudBean studBean) {
+	public void setStudBean(StudentBean studBean) {
 		this.studBean = studBean;
 	}
 

@@ -1,61 +1,64 @@
 package logic.entity;
 
-import logic.interfaces.FeedbackInterface;
 
-public class Message implements FeedbackInterface {
-	private String messageText;
-	private String messageTitle;
-	private String messageBiblId;
-	private String messageStudId;
+public class Message {
+	private String text;
+	private String title;
+	private String librarianId;
+	private String studentId;
 	private long messageId;
-
-	@Override
-	public void setTitle(String titleP) {
-		this.messageTitle = titleP;
-
+	
+	public Message(long id, String title, String text, String librarianId, String studentId) {
+		this.messageId = id;
+		this.setTitle(title);
+		this.setText(text);
+		this.setLibrarianId(librarianId);
+		this.setStudentId(studentId);
 	}
 
-	@Override
-	public String getTitle() {
-		return messageTitle;
-	}
 
-	@Override
-	public void setText(String textP) {
-		this.messageText = textP;
-
-	}
-
-	@Override
-	public String getText() {
-		return messageText;
-	}
-
-	@Override
-	public String getStudentId() {
-		return messageStudId;
-	}
-
-	@Override
-	public void setStudentId(String studId) {
-		this.messageStudId = studId;
-
-	}
-
-	@Override
 	public long getId() {
 		return messageId;
 	}
 
-	@Override
-	public String getBibId() {
 
-		return messageBiblId;
+	public String getTitle() {
+		return title;
 	}
 
-	@Override
-	public void setBibId(String bibIdp) {
-		this.messageBiblId = bibIdp;
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+
+	public String getText() {
+		return text;
+	}
+
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+
+	public String getStudentId() {
+		return studentId;
+	}
+
+
+	public void setStudentId(String studentId) {
+		this.studentId = studentId;
+	}
+
+
+	public String getLibrarianId() {
+		return librarianId;
+	}
+
+
+	public void setLibrarianId(String librarianId) {
+		this.librarianId = librarianId;
 	}
 
 }

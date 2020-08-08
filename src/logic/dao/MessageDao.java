@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import logic.entity.Message;
 import logic.interfaces.FeedbackInterface;
 import logic.pattern.Factory;
 
@@ -73,6 +74,11 @@ public class MessageDao extends GenericDao {
 			ps.close();
 		}
 		return messageList;
+	}
+
+	public List<Message> getMessagesFromDb() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

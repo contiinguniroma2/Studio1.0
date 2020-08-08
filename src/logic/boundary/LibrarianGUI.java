@@ -27,6 +27,7 @@ public class LibrarianGUI extends GuiSUPER {
 	protected Button logOut;
 	protected Button refresh;
 	protected LibrBean libInfoB;
+	//protected LoginController loginController;
 
 	protected LibrarianGUI() {
 		settingImageView = new Button("", createImg("src/resources/guest.png"));
@@ -55,7 +56,7 @@ public class LibrarianGUI extends GuiSUPER {
 		checkBehavior.setOnAction((event -> {
 			try {
 
-				new BehaviorCheckGUI().createBehaviorCheckGUI(main);
+				new SuperviseGUI().createBehaviorCheckGUI(main);
 
 			} catch (Exception e) {
 				e.printStackTrace();

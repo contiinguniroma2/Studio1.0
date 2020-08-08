@@ -2,19 +2,19 @@ package logic.control;
 
 import java.util.logging.Logger;
 
-import logic.bean.StudBean;
+import logic.bean.StudentBean;
 import logic.dao.StudentDao;
 import logic.entity.Student;
 
 public class StudentSettingsController {
 	private Student studInfo;
-	private StudBean studInfoB;
+	private StudentBean studInfoB;
 	private StudentDao studDao;
 	static Logger myLogger = Logger.getLogger("logger");
 	private static StudentSettingsController instance = null;
 
 	protected StudentSettingsController() {
-		this.studInfoB = new StudBean();
+		this.studInfoB = new StudentBean();
 		this.studInfo = LoginController.getLoginController().getStudent();
 		this.studDao = new StudentDao();
 	}
@@ -52,11 +52,11 @@ public class StudentSettingsController {
 		this.studInfo = studInfo;
 	}
 
-	public StudBean getStudInfoB() {
+	public StudentBean getStudInfoB() {
 		return studInfoB;
 	}
 
-	public void setStudInfoB(StudBean studInfoB) {
+	public void setStudInfoB(StudentBean studInfoB) {
 		this.studInfoB = studInfoB;
 	}
 
