@@ -2,6 +2,7 @@ package logic.control;
 
 import java.util.List;
 
+import logic.bean.MessageBean;
 import logic.bean.StudentBean;
 
 /*
@@ -11,5 +12,5 @@ public interface LibrarianSuperviseController {
 	public List<String> fillSupervisePage();
 	public StudentBean getInfoStudent(String username);
 	public void increaseReportingCounter(String username);
-	public void sendMessage();
+	public void sendMessage(MessageBean messageBean);
 }

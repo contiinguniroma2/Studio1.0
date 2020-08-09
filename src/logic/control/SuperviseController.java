@@ -1,5 +1,6 @@
 package logic.control;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	private List<Student> listStudents;
 	private List<StudentBean> listStudentBean;
 	private StudentDao studentDao;
-	private MessageBean messageBean;
+	private ListMessageBean messageBean;
 	private List<Message> listMessages;
 	private MessageDao messageDao;
 	
@@ -92,8 +93,14 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	}
 
 	@Override
-	public void sendMessage() {
-		// TODO Auto-generated method stub
-		
+	public void sendMessage(MessageBean messageBean) {
+	    Message message = new Message(messageBean.getTitle(), messageBean.getText(), messageBean.getLibrarianId(), messageBean.getStudentId());
+	    try {
+			message.setId(messageDao.insert(message));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
+
+
 }

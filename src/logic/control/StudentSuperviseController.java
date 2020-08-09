@@ -6,6 +6,6 @@ import logic.entity.Student;
 
 public interface StudentSuperviseController {
 	public List<MessageBean> getMessages();
-	public void sendMessageInteraction();
-	void sendMessageInteraction(Student student);
+	
+	public void sendMessageInteraction(Student student);
 }

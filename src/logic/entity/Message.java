@@ -6,10 +6,17 @@ public class Message {
 	private String title;
 	private String librarianId;
 	private String studentId;
-	private long messageId;
+	private long messageId = 0;
 	
 	public Message(long id, String title, String text, String librarianId, String studentId) {
 		this.messageId = id;
+		this.setTitle(title);
+		this.setText(text);
+		this.setLibrarianId(librarianId);
+		this.setStudentId(studentId);
+	}
+	
+	public Message(String title, String text, String librarianId, String studentId) {
 		this.setTitle(title);
 		this.setText(text);
 		this.setLibrarianId(librarianId);
@@ -20,7 +27,10 @@ public class Message {
 	public long getId() {
 		return messageId;
 	}
-
+    
+	public void setId(long id) {
+		this.messageId = id;
+	}
 
 	public String getTitle() {
 		return title;

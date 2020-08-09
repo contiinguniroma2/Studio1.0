@@ -104,10 +104,7 @@ public class GenericDao {
 				ps = con.prepareStatement("DELETE FROM SERVIZIO WHERE mailBiblioteca=?");
 				fillDeleteStatement(ps, bibId, null);
 			}
-			if (entity.equals(MESSAGE)) {
-				ps = con.prepareStatement("DELETE FROM Messaggio WHERE mailBiblioteca=? AND mailStudente=?");
-				fillDeleteStatement(ps, bibId, studId);
-			}
+
 			if (entity.equals(FEEDBACK)) {
 				ps = con.prepareStatement("DELETE FROM Feedback WHERE mailBiblioteca=? AND mailStudente=?");
 				fillDeleteStatement(ps, bibId, studId);
