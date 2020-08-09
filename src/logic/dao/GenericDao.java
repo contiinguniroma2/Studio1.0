@@ -38,6 +38,12 @@ public class GenericDao {
 	public static final String PRENOTAZIONE = "Prenotazione";
 	public static final String TELEFONOB = "telefonoBiblioteca";
 	public static final String BOOKMARK = "bookmark";
+	protected Connection con;
+	protected PreparedStatement ps;
+	
+	public GenericDao() {
+		con=Db.getInstance().getConnection();
+	}
 
 	// AUTOFILL UPDATE
 	public void fillUpdateStatement(PreparedStatement ps, String newValue, String entityId) throws SQLException {
@@ -82,9 +88,6 @@ public class GenericDao {
 	public int delete(String entity, String bibId, String studId) {
 		int status = 0;
 		try {
-			Connection con = Db.getConnection();
-
-			PreparedStatement ps = null;
 
 			if (entity.equals(PRENOTAZIONE)) {
 				ps = con.prepareStatement("DELETE FROM Prenotazione WHERE mailStudente=?");
@@ -120,11 +123,16 @@ public class GenericDao {
 			}
 
 			status = ps.executeUpdate();
-			con.close();
 		}
 
 		catch (SQLException e) {
 			myLogger.info("Eliminazione fallita");// definire un eccezione apposita con logger serio
+		}finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return status;
 	}

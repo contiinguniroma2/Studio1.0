@@ -15,12 +15,15 @@ public class ServizioDao extends GenericDao {
 	private PreparedStatement ps;
 
 	static Logger myLogger = Logger.getLogger("logger");
+	
+	public ServizioDao() {
+		con=Db.getInstance().getConnection();
+	}
 
 	// INSERT SERVIZIO
 	public int insert(String idBiblioteca, String servizio, String descrizione) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 
 			ps = con.prepareStatement("INSERT INTO Servizio(mailBiblioteca,nome,descrizione) VALUES(?,?,?)");
 			ps.setString(1, idBiblioteca);
@@ -35,7 +38,7 @@ public class ServizioDao extends GenericDao {
 			myLogger.info("Salvataggio servizio fallito");// definire un eccezione apposita con logger serio
 
 		} finally {
-			con.close();
+			
 			ps.close();
 		}
 		return status;
@@ -45,21 +48,26 @@ public class ServizioDao extends GenericDao {
 		ResultSet rs = null;
 		List<Servizio> serviceList = new ArrayList<>();
 		try {
-			con = Db.getConnection();
-
+			
 			ps = con.prepareStatement("SELECT * FROM Servizio WHERE mailBiblioteca = ?");
 			fillSelectStatement(ps, id1, null);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				serviceList.add(new Servizio(rs.getString(NOMES), rs.getString(MAILB), rs.getString(DESCRIZIONE)));
 			}
-			con.close();
+			
 			return serviceList;
 
 		}
 
 		catch (Exception e) {
 			myLogger.info("Select servizi fallito");// definire un eccezione apposita con logger serio
+		}finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return serviceList;
 	}
@@ -68,7 +76,6 @@ public class ServizioDao extends GenericDao {
 	public int updateServizio(String nome, String newDesc, String idBib) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 
 			ps = con.prepareStatement("UPDATE Servizio SET descrizione = ? WHERE nome = ? AND mailBiblioteca = ?");
 			ps.setString(1, newDesc);
@@ -81,7 +88,7 @@ public class ServizioDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Aggiornamento Servizio fallito");// definire un eccezione apposita con logger serio
 		} finally {
-			con.close();
+			
 			ps.close();
 		}
 		return status;

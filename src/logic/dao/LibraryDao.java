@@ -1,7 +1,5 @@
 package logic.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,14 +8,15 @@ import java.util.List;
 import logic.entity.Library;
 
 public class LibraryDao extends GenericDao {
-	private Connection con;
-	private PreparedStatement ps;
+	
+	public LibraryDao() {
+		con=Db.getInstance().getConnection();
+	}
 
 	// INSERT BIBLIOTECA
 	public int insert(String... arg) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 
 			ps = con.prepareStatement(
 					"INSERT INTO Biblioteca(mailBiblioteca,passwordBiblioteca,nomeBiblioteca,indirizzo,telefonoBiblioteca,usernameBiblioteca,posti,citta) VALUES(?,?,?,?,?,?,?,?)");
@@ -38,7 +37,7 @@ public class LibraryDao extends GenericDao {
 			myLogger.info("Salvataggio biblioteca fallito");// definire un eccezione apposita con logger serio
 			return status;
 			} finally {
-			con.close();
+			
 			ps.close();
 		}
 		return status;
@@ -48,7 +47,6 @@ public class LibraryDao extends GenericDao {
 	public int updatePosti(int posti, String mail, String tipo) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 			ps = null;
 			if (tipo.equals(CAPACITY))
 				ps = con.prepareStatement("UPDATE Biblioteca SET posti = ? WHERE mailBiblioteca = ?");
@@ -63,7 +61,7 @@ public class LibraryDao extends GenericDao {
 			myLogger.info("Aggiornamento fallito");// definire un eccezione apposita con logger serio
 			return status;
 		} finally {
-			con.close();
+			ps.close();
 		}
 		return status;
 	}
@@ -72,7 +70,6 @@ public class LibraryDao extends GenericDao {
 	public int update(String attr, String newValue, String entityId) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 			// a sonarlint non piace come bug
 			ps = null;
 
@@ -113,13 +110,14 @@ public class LibraryDao extends GenericDao {
 			}
 
 			status = ps.executeUpdate();
-			con.close();
 			return status;
 		}
 
 		catch (SQLException e) {
 			myLogger.info("Aggiornamento Biblioteca fallito");// definire un eccezione apposita con logger serio
 			return status;
+		}finally {
+			ps.close();
 		}
 		
 	}
@@ -129,8 +127,6 @@ public class LibraryDao extends GenericDao {
 		List<Library> libraryList = new ArrayList<>();
 
 		try {
-
-			con = Db.getConnection();
 
 			ps = null;
 			if (id2 != null)
@@ -146,13 +142,14 @@ public class LibraryDao extends GenericDao {
 						rs.getString(TELEFONOB), rs.getString(CITTA), String.valueOf(rs.getString(POSTIO))));
 			}
 
-			con.close();
 			return libraryList;
 
 		}
 
 		catch (SQLException e) {
 			myLogger.info("Select biblioteca fallito");// definire un eccezione apposita con logger serio
+		}finally {
+			ps.close();
 		}
 		return libraryList;
 	}
@@ -161,7 +158,6 @@ public class LibraryDao extends GenericDao {
 		ResultSet rs = null;
 		Library library = null;
 		try {
-			con = Db.getConnection();
 			ps = null;
 			ps = con.prepareStatement("SELECT * FROM Biblioteca WHERE mailBiblioteca = ? AND passwordBiblioteca = ?");
 			fillSelectStatement(ps, id1, id2);
@@ -171,13 +167,14 @@ public class LibraryDao extends GenericDao {
 						rs.getString(PASSWORDB), rs.getString(INDIRIZZO), String.valueOf(rs.getInt(CAPACITY)),
 						rs.getString(TELEFONOB), rs.getString(CITTA), String.valueOf(rs.getString(POSTIO)));
 			
-			con.close();
 			return library;
 
 		}
 
 		catch (SQLException e) {
 			myLogger.info("Select biblioteca fallito");// definire un eccezione apposita con logger serio
+		}finally {
+			ps.close();
 		}
 		return library;
 	}

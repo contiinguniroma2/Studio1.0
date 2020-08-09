@@ -18,6 +18,7 @@ public class MessageDao extends GenericDao {
 	private PreparedStatement ps;
 
 	public MessageDao() {
+		con=Db.getInstance().getConnection();
 	}
 
 	// INSERT
@@ -25,7 +26,6 @@ public class MessageDao extends GenericDao {
 		ResultSet rs = null;
 		long autoId = 0;
 		try {
-			con = Db.getConnection();
 
 			ps = con.prepareStatement(
 					"INSERT INTO Messaggio(mailBiblioteca,mailStudente,testoMessaggio,titoloMessaggio) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
@@ -40,11 +40,9 @@ public class MessageDao extends GenericDao {
 			ps.executeUpdate();
 
 		} catch (Exception e) {
-
 			myLogger.info("Salvataggio messaggio fallito");// definire un eccezione apposita con logger serio
 
 		} finally {
-			con.close();
 			ps.close();
 		}
 		return autoId;
@@ -56,7 +54,6 @@ public class MessageDao extends GenericDao {
 		ResultSet rs = null;
 		List<Message> messageList = new ArrayList<>();
 		try {
-			con = Db.getConnection();
 			ps = con.prepareStatement("SELECT * FROM Messaggio WHERE mailBiblioteca = ? AND mailStudente = ?");
 			fillSelectStatement(ps, idBibl, idStud);
 			rs = ps.executeQuery();
@@ -72,7 +69,7 @@ public class MessageDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Select messaggio fallito");// definire un eccezione apposita con logger serio
 		} finally {
-			con.close();
+			
 			ps.close();
 		}
 		return messageList;
@@ -81,7 +78,6 @@ public class MessageDao extends GenericDao {
 	public int delete(String bibId, String studId) {
 		int status = 0;
 		try {
-			Connection con = Db.getConnection();
 
 			PreparedStatement ps = null;
 
@@ -89,11 +85,16 @@ public class MessageDao extends GenericDao {
 			fillDeleteStatement(ps, bibId, studId);
 			
 			status = ps.executeUpdate();
-			con.close();
 		}
 
 		catch (SQLException e) {
 			myLogger.info("Eliminazione fallita");// definire un eccezione apposita con logger serio
+		}finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return status;
 	}

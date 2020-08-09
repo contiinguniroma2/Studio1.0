@@ -15,12 +15,15 @@ public class PrenotazioneDao extends GenericDao {
 	static Logger myLogger = Logger.getLogger("logger");
 	Connection con;
 	PreparedStatement ps;
+	
+	public PrenotazioneDao() {
+		con=Db.getInstance().getConnection();
+	}
 
 	// INSERT
 	public int insert(String mailB, String mailS, String username) throws SQLException {
 		int status = 0;
 		try {
-			con = Db.getConnection();
 
 			ps = con.prepareStatement(
 					"INSERT INTO Prenotazione(mailBiblioteca,mailStudente,username,orarioPrenotazione) VALUES(?,?,?,now())");
@@ -39,7 +42,7 @@ public class PrenotazioneDao extends GenericDao {
 			myLogger.info("Salvataggio prenotazione fallito");// definire un eccezione apposita con logger serio
 
 		} finally {
-			con.close();
+			
 			ps.close();
 		}
 		return status;
@@ -49,7 +52,6 @@ public class PrenotazioneDao extends GenericDao {
 		ResultSet rs = null;
 		List<Prenotazione> bookList = new ArrayList<>();
 		try {
-			con = Db.getConnection();
 
 			ps = null;
 			if (tipo.equals("mainS"))
@@ -69,7 +71,7 @@ public class PrenotazioneDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Select prenotazione fallito");// definire un eccezione apposita con logger serio
 		} finally {
-			con.close();
+			ps.close();
 		}
 		return bookList;
 	}
