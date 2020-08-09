@@ -22,6 +22,15 @@ public class ReportDao {
 		conn = Db.getInstance().getConnection();
 	}
 
+	public void closeStatement(PreparedStatement ps) {
+		try {
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public List<Report> getReportFromDbByLibrary(Library library) {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
@@ -41,12 +50,8 @@ public class ReportDao {
 		catch (Exception e) {
 			myLogger.info("Select report fallito");
 		} finally {
-
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
+			
 		}
 		return reportList;
 	}
@@ -71,11 +76,7 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
 		}
 		return reportList;
 	}
@@ -91,11 +92,7 @@ public class ReportDao {
 			myLogger.info("Eliminazione report fallita");
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
 		}
 		return status;
 	}
@@ -118,11 +115,7 @@ public class ReportDao {
 			myLogger.info("Salvataggio report fallito");
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
 		}
 		return status;
 	}
@@ -141,11 +134,7 @@ public class ReportDao {
 			myLogger.info("Eliminazione report fallita");
 			e.printStackTrace();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
 		}
 		return status;
 	}

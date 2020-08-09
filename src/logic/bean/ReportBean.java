@@ -7,7 +7,9 @@ public class ReportBean {
 	private String title;
 	private String description;
 	
-	public ReportBean() {}
+	public ReportBean() {
+		//default constructor
+	}
 
 	public void setTitle(String title) throws EmptyTextFieldException  {
 
