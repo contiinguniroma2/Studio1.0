@@ -79,8 +79,6 @@ public class MessageDao extends GenericDao {
 		int status = 0;
 		try {
 
-			PreparedStatement ps = null;
-
 			ps = con.prepareStatement("DELETE FROM Messaggio WHERE mailBiblioteca=? AND mailStudente=?");
 			fillDeleteStatement(ps, bibId, studId);
 			
