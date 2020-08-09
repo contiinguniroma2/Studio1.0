@@ -80,72 +80,44 @@ public class StudentDao extends GenericDao {
 		return status;
 	}
 
-	// UPDATE GENERICO
-	public int update(String attr, String newValue, String entityId) {
 
-		int status = 0;
-		try {
-			con = Db.getConnection();
-
-			ps = null;
-
-			if (attr.equals(MAIL)) {
-				ps = con.prepareStatement("UPDATE Studente SET mailStudente = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			if (attr.equals(PASSWORD)) {
-				ps = con.prepareStatement("UPDATE Studente SET password = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			if (attr.equals(NOMES)) {
-				ps = con.prepareStatement("UPDATE Studente SET nome = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			if (attr.equals(COGNOMES)) {
-				ps = con.prepareStatement("UPDATE Studente SET cognome = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			if (attr.equals(USERNAME)) {
-				ps = con.prepareStatement("UPDATE Studente SET username = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			if (attr.equals(TELEFONOS)) {
-				ps = con.prepareStatement("UPDATE Studente SET telefono = ? WHERE mailStudente = ?");
-				fillUpdateStatement(ps, newValue, entityId);
-			}
-
-			status = ps.executeUpdate();
-			con.close();
-		}
-
-		catch (Exception e) {
-			myLogger.info("Aggiornamento Studente fallito");// definire un eccezione apposita con logger serio
-			return status;
-		}
-		return status;
-	}
-
-	public List<Student> select(String id1, String id2) throws SQLException {
+	public Student select(String id1, String id2) throws SQLException {
 		ResultSet rs = null;
-		List<Student> studentList = new ArrayList<>();
+		Student student = null;
 		try {
 			con = Db.getConnection();
-
 			ps = null;
 			ps = con.prepareStatement("SELECT * FROM Studente WHERE mailStudente = ? AND password = ?");
 			fillSelectStatement(ps, id1, id2);
 			rs = ps.executeQuery();
+			student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
+						rs.getString(MAIL), rs.getString(PASSWORD), rs.getBoolean("isBan"),
+						rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));
+		}
+
+		catch (SQLException e) {
+			myLogger.info("Select studente fallito");// definire un eccezione apposita con logger serio
+		} finally {
+			con.close();
+			ps.close();
+		}
+		return student;
+	}
+
+	public List<Student> getStudentFromDb(String idBiblio) throws SQLException {
+		ResultSet rs = null;
+		List<Student> studentList = new ArrayList<>();
+		try {
+			con = Db.getConnection();
+			ps = null;
+			ps = con.prepareStatement("SELECT * FROM Studente LEFT JOIN recent_student ON studente.mailStudente = recent_student.mailStudent WHERE recent_student.mailBiblioteca = ? ");
+			fillSelectStatement(ps, idBiblio, null);
+			rs = ps.executeQuery();
 			while (rs.next()) {
 				studentList.add(new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						rs.getString(MAIL), rs.getString(PASSWORD), rs.getBoolean("isBan"),
-						rs.getByte("reportCounter")));
+						rs.getString(MAIL), "****", rs.getBoolean("isBan"),
+						rs.getByte("reportCounter"), rs.getString("timeStartCountdown")));
 			}
-
 			return studentList;
 
 		}
@@ -157,11 +129,6 @@ public class StudentDao extends GenericDao {
 			ps.close();
 		}
 		return studentList;
-	}
-
-	public List<Student> getStudentFromDb() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	

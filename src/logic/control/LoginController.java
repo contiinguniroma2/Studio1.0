@@ -6,12 +6,9 @@ import logic.dao.LibraryDao;
 import logic.dao.StudentDao;
 import logic.entity.Library;
 import logic.entity.Student;
-import logic.pattern.BannedState;
-import logic.pattern.NotifiedState;
 
 import java.util.logging.Logger;
 import java.sql.SQLException;
-import java.util.List;
 
 public class LoginController implements GenericController {
 	private LibrBean librBean;
@@ -27,7 +24,6 @@ public class LoginController implements GenericController {
 		this.librBean = new LibrBean();
 		this.studBean = new StudentBean();
 		this.library = new Library();
-		this.studInfo = new Student();
 		this.loginL = new LibraryDao();
 		this.loginS = new StudentDao();
 	}
@@ -40,42 +36,18 @@ public class LoginController implements GenericController {
 
 	public char validateUser(String mail, String password) throws SQLException {
 
-		List<Student> rsS = loginS.select(mail, password);
-		for (byte i = 0; i < rsS.size();) {
-			if ((rsS.get(i).getMail().equals(mail)) && (rsS.get(i).getPassword().equals(password))) {
-
-				studInfo.fillUser(rsS.get(i).getUsername(), rsS.get(i).getMail(), rsS.get(i).getPassword(),
-						rsS.get(i).getName(), rsS.get(i).getPhone());
-				studInfo.fillStudent(rsS.get(i).getSurname(), rsS.get(i).isBanned(), rsS.get(i).getReportCounter());
-				if ((studInfo.getReportCounter() > 2) && (!studInfo.isBanned()))
-					studInfo.getStateMachine().setState(NotifiedState.getInstance());
-				if (studInfo.isBanned())
-					studInfo.getStateMachine().setState(BannedState.getInstance());
-				studBean.fillUserBean(rsS.get(i).getUsername(), rsS.get(i).getMail(), rsS.get(i).getPassword(),
-						rsS.get(i).getName(), rsS.get(i).getPhone());
-				studBean.fillStudBean(rsS.get(i).getSurname(), rsS.get(i).isBanned(), rsS.get(i).getReportCounter());
-				return 's';
-			}
+		studInfo = loginS.select(mail, password);
+		if (studInfo != null) {
+		    studBean.fillUserBean(studInfo.getUsername(), studInfo.getMail(), studInfo.getPassword(),studInfo.getName(), studInfo.getPhone());
+		    studBean.fillStudBean(studInfo.getSurname(), studInfo.isBanned(), studInfo.getReportCounter());
+		    return 's';
 		}
-
-		List<Library> rsL = loginL.select(mail, password);
-		for (byte i = 0; i < rsL.size();) {
-			if ((rsL.get(i).getMail().equals(mail)) && (rsL.get(i).getPassword().equals(password))) {
-
-				librBean.fillUserBean(rsL.get(i).getUsername(), rsL.get(i).getMail(), rsL.get(i).getPassword(),
-						rsL.get(i).getName(), rsL.get(i).getPhone());
-				librBean.fillLibrBean(rsL.get(i).getIndirizzo(), rsL.get(i).getCity(), rsL.get(i).getCapacity(),
-						rsL.get(i).getPostiOccupati());
-
-				library.fillUser(rsL.get(i).getUsername(), rsL.get(i).getMail(), rsL.get(i).getPassword(),
-						rsL.get(i).getName(), rsL.get(i).getPhone());
-				library.fillLibrary(rsL.get(i).getIndirizzo(), rsL.get(i).getCity(), rsL.get(i).getCapacity(),
-						rsL.get(i).getPostiOccupati());
-
-				return 'l';
-			}
+		library = loginL.selectL(mail, password);
+		if (library != null) {
+		    librBean.fillUserBean(library.getUsername(), library.getMail(), library.getPassword(), library.getName(), library.getPhone());
+		    librBean.fillLibrBean(library.getIndirizzo(), library.getCity(), library.getCapacity(), library.getPostiOccupati());
+		    return 'l';
 		}
-
 		return '0';
 	}
 

@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import logic.entity.Message;
-import logic.interfaces.FeedbackInterface;
-import logic.pattern.Factory;
 
 public class MessageDao extends GenericDao {
 
@@ -51,6 +49,8 @@ public class MessageDao extends GenericDao {
 		}
 		return autoId;
 	}
+	
+
 
 	public List<Message> getMessagesFromDb(String idBibl, String idStud) throws SQLException {
 		ResultSet rs = null;

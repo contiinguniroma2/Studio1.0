@@ -157,5 +157,30 @@ public class LibraryDao extends GenericDao {
 		return libraryList;
 	}
 	
+	public Library selectL(String id1, String id2) throws SQLException {
+		ResultSet rs = null;
+		Library library = null;
+		try {
+			con = Db.getConnection();
+			ps = null;
+			ps = con.prepareStatement("SELECT * FROM Biblioteca WHERE mailBiblioteca = ? AND passwordBiblioteca = ?");
+			fillSelectStatement(ps, id1, id2);
+			rs = ps.executeQuery();
+			
+			library = new Library(rs.getString(USERNAMEB), rs.getString(NOMEB), rs.getString(MAILB),
+						rs.getString(PASSWORDB), rs.getString(INDIRIZZO), String.valueOf(rs.getInt(CAPACITY)),
+						rs.getString(TELEFONOB), rs.getString(CITTA), String.valueOf(rs.getString(POSTIO)));
+			
+			con.close();
+			return library;
+
+		}
+
+		catch (SQLException e) {
+			myLogger.info("Select biblioteca fallito");// definire un eccezione apposita con logger serio
+		}
+		return library;
+	}
+	
 
 }
