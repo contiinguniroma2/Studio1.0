@@ -19,14 +19,14 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 	Button bookSeat;
 	Button noticeBoard;
 	Button timeTable;
-	Button reportFeedback;
+	Button reportIssue;
 	Button map;
 	Button backToRes;
 
 	public StudentSearchLibPageGUI() {
 		bookSeat = createBtn("Book seat");
 		noticeBoard = createBtn("Notice board");
-		reportFeedback = createBtn("Report feedback");
+		reportIssue = createBtn("Report Issue");
 		map = createBtn("Map");
 		timeTable = createBtn("Time table");
 		backToRes = createBtn("Back");
@@ -60,7 +60,7 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		infoLib.setSpacing(20);
 
 		VBox buttonsLib = new VBox();
-		buttonsLib.getChildren().addAll(bookSeat, reportFeedback, timeTable, noticeBoard, map);
+		buttonsLib.getChildren().addAll(bookSeat, reportIssue, timeTable, noticeBoard, map);
 		buttonsLib.setAlignment(Pos.CENTER_RIGHT);
 		buttonsLib.setPrefHeight(400);
 		buttonsLib.setSpacing(20);
@@ -83,9 +83,10 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		centerContent.setPrefSize(400, 400);
 		centerContent.setPadding(new Insets(20, 20, 20, 20));
 
-		reportFeedback.setOnAction((event -> {
+		reportIssue.setOnAction((event -> {
 			try {
-				new StudentSearchSendFeedGUI().createStudentSearchSendFeedGUI(main, i);
+				new IssueBoundary(main);
+				//new ReportIssueForm(main,i);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
