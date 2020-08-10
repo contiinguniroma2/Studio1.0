@@ -54,6 +54,9 @@ public class Student extends User {
 				 this.setBanned(true);
 				 this.stateMachine.setState(new BannedState());
 			}
+			else {
+				this.stateMachine.setState(new NotifiedState());
+			}
 		}
 	}
 
