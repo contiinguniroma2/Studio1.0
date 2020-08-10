@@ -82,13 +82,12 @@ public class StudentDao extends GenericDao {
 			ps = con.prepareStatement("SELECT * FROM Studente WHERE mailStudente = ? AND password = ?");
 			fillSelectStatement(ps, id1, id2);
 			rs = ps.executeQuery();
-			rs.next();
-			student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						rs.getString(MAIL), rs.getString(PASSWORD), rs.getBoolean("isBan"),
-						rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));
-			
+			while(rs.next()) {
+			    student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
+						    rs.getString(MAIL), rs.getString(PASSWORD), rs.getBoolean("isBan"),
+		    				rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));			    
+		    }			
 		}
-
 		catch (SQLException e) {
 			e.printStackTrace();
 			myLogger.info("Select studente fallito");// definire un eccezione apposita con logger serio

@@ -24,14 +24,14 @@ public class Student extends User {
 
 	}
 
-	public Student(String namep, String surnamep, String userNameP, String mailp, String passwordp, boolean isBanned,
+	public Student(String name, String surname, String userName, String mail, String password, boolean isBanned,
 			byte reportCounter, String time) {
 
-		this.name = namep;
-		this.surname = surnamep;
-		this.mail = mailp;
-		this.password = passwordp;
-		this.userName = userNameP;
+		this.name = name;
+		this.surname = surname;
+		this.mail = mail;
+		this.password = password;
+		this.userName = userName;
 		this.isBanned = isBanned;
 		this.reportCounter = reportCounter;
 		if ((reportCounter > 2) && (!isBanned)) {
@@ -43,7 +43,7 @@ public class Student extends User {
 		else {
 		    this.stateMachine = new StateMachine(new NormalState());
 		}
-		if (time=="") {
+		if (time.equals("")) {
 			this.time = null;
 		}
 		else {
