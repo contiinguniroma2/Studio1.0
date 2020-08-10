@@ -15,7 +15,6 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	private List<Student> listStudents;
 	private List<StudentBean> listStudentBean;
 	private StudentDao studentDao;
-	private ListMessageBean messageBean;
 	private List<Message> listMessages;
 	private MessageDao messageDao;
 	
@@ -25,8 +24,12 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	}
 
 	@Override
-	public List<String> fillSupervisePage() {
-		listStudents = studentDao.getStudentFromDb();
+	public List<String> fillSupervisePage(String biblioId) {
+		try {
+			listStudents = studentDao.getStudentFromDb(biblioId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		List<String> list = new ArrayList<>();
 		for (int i=0; i< listStudents.size(); i++) {
 			 list.add(listStudents.get(i).getUsername());
@@ -76,8 +79,12 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	
 
 	@Override
-	public List<MessageBean> getMessages() {
-		listMessages = messageDao.getMessagesFromDb();
+	public List<MessageBean> getMessages(String idBibl, String idStud) {
+		try {
+			listMessages = messageDao.getMessagesFromDb(idBibl, idStud);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		List<MessageBean> list = new ArrayList<>();
 		for (int i=0; i< listMessages.size(); i++) {
 			 MessageBean messageBean = new MessageBean(listMessages.get(i).getId(), listMessages.get(i).getTitle(), listMessages.get(i).getText(), listMessages.get(i).getLibrarianId(), listMessages.get(i).getStudentId());

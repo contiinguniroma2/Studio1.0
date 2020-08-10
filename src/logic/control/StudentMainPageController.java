@@ -53,7 +53,7 @@ public class StudentMainPageController extends MainPageController {
 	 * Update delle info della bilioteca
 	 */
 	public void updateStudentInfo() throws SQLException {
-		studInfo = studDao.select(studInfo.getMail(), studInfo.getPassword()).get(0);
+		studInfo = studDao.select(studInfo.getMail(), studInfo.getPassword());
 	}
 
 	public void getBookMarks() {

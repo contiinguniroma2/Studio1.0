@@ -121,6 +121,45 @@ public class StudentDao extends GenericDao {
 		}
 		return studentList;
 	}
+	
+	// UPDATE GENERICO
+		public int update(String attr, String newValue, String entityId) {
+			int status = 0;
+			try {
+				ps = null;
+				if (attr.equals(MAIL)) {
+					ps = con.prepareStatement("UPDATE Studente SET mailStudente = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				if (attr.equals(PASSWORD)) {
+					ps = con.prepareStatement("UPDATE Studente SET password = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				if (attr.equals(NOMES)) {
+					ps = con.prepareStatement("UPDATE Studente SET nome = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				if (attr.equals(COGNOMES)) {
+					ps = con.prepareStatement("UPDATE Studente SET cognome = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				if (attr.equals(USERNAME)) {
+					ps = con.prepareStatement("UPDATE Studente SET username = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				if (attr.equals(TELEFONOS)) {
+					ps = con.prepareStatement("UPDATE Studente SET telefono = ? WHERE mailStudente = ?");
+					fillUpdateStatement(ps, newValue, entityId);
+				}
+				status = ps.executeUpdate();
+				con.close();
+			}
+			catch (Exception e) {
+				myLogger.info("Aggiornamento Studente fallito");// definire un eccezione apposita con logger serio
+				return status;
+			}
+			return status;
+		}
 
 	
 

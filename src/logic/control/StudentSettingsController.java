@@ -43,6 +43,8 @@ public class StudentSettingsController {
 		if (!studInfoB.getPhone().isEmpty())
 			studDao.update("telefono", studInfoB.getPhone(), studInfo.getMail());
 	}
+	
+	
 
 	public Student getStudInfo() {
 		return studInfo;
