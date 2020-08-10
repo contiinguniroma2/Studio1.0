@@ -10,11 +10,11 @@ import logic.application.Main;
 
 public class GuestGUI extends GuiSUPER {
 
-	private GuestGUI() {
+	public GuestGUI() {
 
 	}
 
-	public static Scene createGuestGUI(Main main) {
+	public Scene createGuestGUI(Main main) {
 
 		Button searchBtn = createBtn("Search seat:");
 		Button guestHomeBtn = createBtn(PROJ_NAME);

@@ -18,9 +18,8 @@ public class LoginController implements GenericController {
 	private StudentDao loginS;
 	private Student studInfo;
 	static Logger myLogger = Logger.getLogger("logger");
-	private static LoginController instance = null;
 
-	protected LoginController() {
+	public LoginController() {
 		this.librBean = new LibrBean();
 		this.studBean = new StudentBean();
 		this.library = new Library();
@@ -28,11 +27,6 @@ public class LoginController implements GenericController {
 		this.loginS = new StudentDao();
 	}
 
-	public static LoginController getLoginController() {
-		if (LoginController.instance == null)
-			LoginController.instance = new LoginController();
-		return instance;
-	}
 
 	public char validateUser(String mail, String password) throws SQLException {
 

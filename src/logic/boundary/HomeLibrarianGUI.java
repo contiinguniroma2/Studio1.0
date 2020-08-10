@@ -17,7 +17,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
 import logic.control.LibraryMainPageController;
-import logic.control.LoginController;
 import logic.entity.Prenotazione;
 import logic.exceptions.NoOneSelectedException;
 
@@ -34,7 +33,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 	public HomeLibrarianGUI() {
 		add = createBtn("Add");
 		del = createBtn("Del");
-		libInfoB = LoginController.getLoginController().getLibrBean();
+		libInfoB = loginController.getLibrBean();
 		prenotazioni = FXCollections.observableArrayList();
 	}
 

@@ -12,11 +12,11 @@ import logic.application.Main;
 
 public class StartGUI extends GuiSUPER {
 
-	private StartGUI() {
+	public StartGUI() {
 
 	}
 
-	public static Scene createStart(Main main) {
+	public Scene createStart(Main main) {
 
 		Label titleStart = createLabel("Welcome:", 24);
 		Button homeBtn = createBtn(PROJ_NAME);

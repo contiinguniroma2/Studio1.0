@@ -13,7 +13,6 @@ import logic.application.Main;
 import logic.bean.LibrBean;
 import logic.control.LibrarianScheduleController;
 import logic.control.LibraryMainPageController;
-import logic.control.LoginController;
 
 public class LibrarianGUI extends GuiSUPER {
 	protected BorderPane root;
@@ -39,7 +38,7 @@ public class LibrarianGUI extends GuiSUPER {
 		statistics = createBtn("Statistics");
 		logOut = createBtn("Log Out");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
-		libInfoB = LoginController.getLoginController().getLibrBean();
+		libInfoB = loginController.getLibrBean();
 
 	}
 

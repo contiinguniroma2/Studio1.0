@@ -2,7 +2,13 @@ package logic.application;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import logic.boundary.GuestGUI;
 import logic.boundary.HomeLibrarianGUI;
+import logic.boundary.LoginGUI;
+import logic.boundary.RegLibrarianSettingsGUI;
+import logic.boundary.RegStudentSettingsGUI;
+import logic.boundary.RegistrationGUI;
+import logic.boundary.StartGUI;
 import logic.boundary.StudentBannedGUI;
 import logic.boundary.StudentNotifiedGUI;
 import logic.boundary.StudentSearchInsertGUI;
@@ -33,27 +39,33 @@ public class Main extends Application implements RequestNewStage {
 		switch (guiName) {
 
 		case ("StartGUI"):
-			scene = logic.boundary.StartGUI.createStart(this);
+			StartGUI startGUI = new StartGUI();
+            scene = startGUI.createStart(this);
 			break;
 
 		case ("LoginGUI"):
-			scene = logic.boundary.LoginGUI.createLogin(this);
+			LoginGUI loginGUI = new LoginGUI();
+            scene = loginGUI.createLogin(this);
 			break;
 
 		case ("RegistrationGUI"):
-			scene = logic.boundary.RegistrationGUI.createRegistration(this);
+			RegistrationGUI registrationGUI = new RegistrationGUI();
+            scene = registrationGUI.createRegistration(this);
 			break;
 
 		case ("RegStudentSettingsGUI"):
-			scene = logic.boundary.RegStudentSettingsGUI.createRegStudentSettings(this);
+			RegStudentSettingsGUI regStudentSettingsGUI = new RegStudentSettingsGUI();
+	        scene = regStudentSettingsGUI.createRegStudentSettings(this);
 			break;
 
 		case ("RegLibrarianSettingsGUI"):
-			scene = logic.boundary.RegLibrarianSettingsGUI.createRegLibrarianSettings(this);
-			break;
+			RegLibrarianSettingsGUI regLibrarianSettingsGUI = new RegLibrarianSettingsGUI();
+		    scene = regLibrarianSettingsGUI.createRegLibrarianSettings(this);
+		    break;
 
 		case ("GuestGUI"):
-			scene = logic.boundary.GuestGUI.createGuestGUI(this);
+			GuestGUI guestGUI = new GuestGUI();
+			scene = guestGUI.createGuestGUI(this);
 			break;
 
 		case ("LibrarianGUI"):

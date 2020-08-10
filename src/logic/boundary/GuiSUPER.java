@@ -18,37 +18,43 @@ import logic.application.Main;
 import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
 
+
 public class GuiSUPER {
 	static Logger myLogger = Logger.getLogger("logger");
-	public static final String PROJ_NAME = "Stud.io";
-	public static final String START = "StartGUI";
-	public static final String LOGIN = "LoginGUI";
-	public static final String REGISTRATION = "RegistrationGUI";
-	public static final String STUDENT = "StudentGUI";
-	public static final String NOTIFIEDSTUDENT = "StudentNotifiedGUI";
-	public static final String BANNEDSTUDENT = "StudentBannedGUI";
-	public static final String LIBRARIAN = "LibrarianGUI";
-	public static final String GUEST = "GuestGUI";
-	public static final String REG_STUD_SETTINGS = "RegStudentSettingsGUI";
-	public static final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
+	public final String PROJ_NAME = "Stud.io";
+	public final String START = "StartGUI";
+	public final String LOGIN = "LoginGUI";
+	public final String REGISTRATION = "RegistrationGUI";
+	public final String STUDENT = "StudentGUI";
+	public final String NOTIFIEDSTUDENT = "StudentNotifiedGUI";
+	public final String BANNEDSTUDENT = "StudentBannedGUI";
+	public final String LIBRARIAN = "LibrarianGUI";
+	public final String GUEST = "GuestGUI";
+	public final String REG_STUD_SETTINGS = "RegStudentSettingsGUI";
+	public final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
+	protected String nome;
+	protected String indirizzo;
+	protected String mail;
+	protected String telefono;
+	protected LoginController loginController;
 
-	protected GuiSUPER() {
-
+	public GuiSUPER() {
+		loginController = new LoginController();          
 	}
 
-	public static void leftPadding(VBox panel, int padding) {
+	public void leftPadding(VBox panel, int padding) {
 		panel.setPadding(new Insets(0, 0, 0, padding));
 	}
 
-	public static void leftVPadding(VBox vPanel, int padding) {
+	public void leftVPadding(VBox vPanel, int padding) {
 		vPanel.setPadding(new Insets(0, 0, 0, padding));
 	}
 
-	public static void leftHPadding(HBox hPanel) {
+	public void leftHPadding(HBox hPanel) {
 		hPanel.setPadding(new Insets(0, 0, 0, 20));
 	}
 
-	public static VBox createPanel(Node... nodes) {
+	public VBox createPanel(Node... nodes) {
 		VBox panel = new VBox();
 		for (Node next : nodes)
 			panel.getChildren().add(next);
@@ -58,7 +64,7 @@ public class GuiSUPER {
 		return panel;
 	}
 
-	public static HBox createTopPanel(Node btn, String title) {
+	public HBox createTopPanel(Node btn, String title) {
 		Label titleLabel = new Label(title);
 		HBox topPanel = new HBox();
 		topPanel.getChildren().addAll(btn, titleLabel);
@@ -71,14 +77,14 @@ public class GuiSUPER {
 		return topPanel;
 	}
 
-	public static HBox createLibrTopPanel() {
+	public HBox createLibrTopPanel() {
 		HBox top = new HBox();
 		ImageView img = createImg("src/resources/libraryIcon.png");
 		img.prefWidth(100);
-		VBox titles = createPanel(new Label(LoginController.getLoginController().getLibrary().getName()),
-				new Label(LoginController.getLoginController().getLibrary().getIndirizzo()),
-				new Label(LoginController.getLoginController().getLibrary().getMail()),
-				new Label(LoginController.getLoginController().getLibrary().getPhone()));
+		VBox titles = createPanel(new Label(nome),
+				new Label(indirizzo),
+				new Label(mail),
+				new Label(telefono));
 		titles.setPadding(new Insets(0, 0, 0, 20));
 		titles.setStyle("-fx-font-size: 14");
 		titles.setSpacing(0);
@@ -91,14 +97,14 @@ public class GuiSUPER {
 		return top;
 	}
 
-	public static Button createBtn(String nameBtn) {
+	public Button createBtn(String nameBtn) {
 		Button btn = new Button(nameBtn);
 		btn.setPrefWidth(100);
 		btn.setPrefHeight(20);
 		return btn;
 	}
 
-	public static ImageView createImg(String nameImg) {
+	public ImageView createImg(String nameImg) {
 		File file = new File(nameImg);
 		ImageView imageW = new ImageView();
 		Image image = new Image(file.toURI().toString());
@@ -111,14 +117,14 @@ public class GuiSUPER {
 	/*
 	 * setta altezza button a 100
 	 */
-	public static void setHeightBtn(Button nameBtn, int height) {
+	public void setHeightBtn(Button nameBtn, int height) {
 		nameBtn.setPrefHeight(height);
 	}
 
 	/*
 	 * crea label della dimensione specificata in size, con padding bottom 20
 	 */
-	public static Label createLabel(String title, int size) {
+	public Label createLabel(String title, int size) {
 		Label lbl = new Label(title);
 		lbl.setStyle("-fx-font: " + size + " arial;");
 		lbl.setPadding(new Insets(0, 0, 20, 0));
@@ -129,7 +135,7 @@ public class GuiSUPER {
 	 * Metodo che crea textfield della larghezza specificata (inserendo una stringa
 	 * come parametro in TextField, essa viene inizializzata con una stringa)
 	 */
-	public static TextField createTextField(int width) {
+	public TextField createTextField(int width) {
 		TextField txtFld = new TextField();
 		txtFld.setAlignment(Pos.CENTER);
 		txtFld.setPrefWidth(width);
@@ -139,7 +145,7 @@ public class GuiSUPER {
 	/*
 	 * Metodo per creare una riga composta da label e button
 	 */
-	public static HBox createLabelWithBtn(String nomeLabel, String typeBtn) {
+	public HBox createLabelWithBtn(String nomeLabel, String typeBtn) {
 		HBox panel = new HBox();
 		panel.setPrefWidth(300);
 		Button btn = new Button();

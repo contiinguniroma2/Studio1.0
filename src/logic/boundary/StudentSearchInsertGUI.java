@@ -8,7 +8,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
 import logic.bean.StudentBean;
-import logic.control.LoginController;
 import logic.control.StudentSearchInsertController;
 
 public class StudentSearchInsertGUI extends StudentGUI {
@@ -19,7 +18,7 @@ public class StudentSearchInsertGUI extends StudentGUI {
 	public StudentSearchInsertGUI() {
 		librarySearchButton = new Button();
 		location = new TextField();
-		studInfo = LoginController.getLoginController().getStudBean();
+		studInfo = loginController.getStudBean();
 	}
 
 	public Scene createStudentSearchInsertGUI(Main main) {

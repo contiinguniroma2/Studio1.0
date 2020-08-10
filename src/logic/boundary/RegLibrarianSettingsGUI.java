@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
-import logic.control.LoginController;
 import logic.control.RegistrationController;
 
 public class RegLibrarianSettingsGUI extends GuiSUPER {
@@ -18,11 +17,11 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 	public static final String TITLE_L1 = "Registration 2/2";
 	public static final String TITLE_L2 = "Please insert this information about your library:";
 
-	private RegLibrarianSettingsGUI() {
+	public RegLibrarianSettingsGUI() {
 
 	}
 
-	public static Scene createRegLibrarianSettings(Main main) {
+	public Scene createRegLibrarianSettings(Main main) {
 
 		Button homeBtn = createBtn(PROJ_NAME);
 		Button signUpBtn = createBtn("Sign up");
@@ -69,8 +68,7 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 						passwordField.getText(), nameLibraryField.getText(), addressField.getText(),
 						phoneField.getText(), usernameField.getText(), capacityField.getText(), cityField.getText());
 
-				LoginController.getLoginController()
-						.setLibrary(RegistrationController.getRegistrationController().getLibr());
+				loginController.setLibrary(RegistrationController.getRegistrationController().getLibr());
 				main.setNewStage(LIBRARIAN);
 			} catch (Exception e) {
 				e.printStackTrace();

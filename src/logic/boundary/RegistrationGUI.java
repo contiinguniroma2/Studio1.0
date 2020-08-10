@@ -10,11 +10,11 @@ import logic.application.Main;
 
 public class RegistrationGUI extends GuiSUPER {
 
-	private RegistrationGUI() {
+	public RegistrationGUI() {
 
 	}
 
-	public static Scene createRegistration(Main main) {
+	public Scene createRegistration(Main main) {
 
 		Label titleReg = createLabel("Registration:", 24);
 		Button homeBtn = createBtn(PROJ_NAME);

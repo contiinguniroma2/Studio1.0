@@ -17,11 +17,11 @@ public class RegStudentSettingsGUI extends GuiSUPER {
 	public static final String TITLE_S1 = "Registration 2/2";
 	public static final String TITLE_S2 = "Please insert this information about you:";
 
-	private RegStudentSettingsGUI() {
+	public RegStudentSettingsGUI() {
 
 	}
 
-	public static Scene createRegStudentSettings(Main main) { // main serve a setOnAction, NON TOGLIERE!
+	public Scene createRegStudentSettings(Main main) { // main serve a setOnAction, NON TOGLIERE!
 
 		Button homeBtn = createBtn(PROJ_NAME);
 		Button signUpBtn = createBtn("Sign up");

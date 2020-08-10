@@ -17,29 +17,33 @@ import logic.control.SuperviseController;
 public class SuperviseGUI extends LibrarianGUI {
 	List<Button> infoAccountBtnList;
 	SuperviseController superviseController;
+	List<String> usernameList;
 	// InfoAccountSelectedGUI infoAccount;
 
 	public SuperviseGUI() {
 		infoAccountBtnList = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
-
+        superviseController = new SuperviseController();
+        usernameList = new ArrayList<>();
 	}
 
 	public Button createBtnSupervise(String nameBtn) {
 		Button btnUser = new Button(nameBtn);
-		btnUser.setMinWidth(400);
+		btnUser.setMinWidth(450);
 		btnUser.setMinHeight(40);
 		return btnUser;
+	}
+	
+	public void fillUsernameList() {
+		usernameList = superviseController.fillSupervisePage(mail);
 	}
 
 	public VBox superviseGUI() {
 		Label titleSupervisePage = createLabel("Studenti con cui hai interagito recentemente", 24);
-		
+		titleSupervisePage.setPadding(new Insets(50, 30, 10, 0));
 		VBox content;
-
 		HBox hBoxColumns = new HBox();
 		hBoxColumns.setSpacing(20);
 		hBoxColumns.setMaxHeight(300);
-
 		ScrollPane spUsers = new ScrollPane();
 	
 
@@ -50,13 +54,13 @@ public class SuperviseGUI extends LibrarianGUI {
 				createBtnSupervise("user5648"), createBtnSupervise("user568"),
 				createBtnSupervise("user5348"), createBtnSupervise("user46575"),
 				createBtnSupervise("user534"), createBtnSupervise("user5623335"));
-		vBoxUser.setMaxSize(300, 300);
-		vBoxUser.setAlignment(Pos.TOP_CENTER);
+		vBoxUser.setMaxSize(500, 500);
+		vBoxUser.setAlignment(Pos.CENTER);
 		vBoxUser.setSpacing(0);
 
 
 		spUsers.setContent(vBoxUser);
-		spUsers.setMinSize(300, 300);
+		spUsers.setMinSize(460, 350);
 		spUsers.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		spUsers.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
@@ -65,7 +69,8 @@ public class SuperviseGUI extends LibrarianGUI {
 		hBoxColumns.getChildren().addAll(spUsers);
 
 		content = createPanel(titleSupervisePage, hBoxColumns);
-		//content.setMaxWidth(500);
+		content.setMaxWidth(500);
+		content.setAlignment(Pos.TOP_CENTER);
 		//content.setPadding(new Insets(20, 0, 20, 0));
 		
 		
