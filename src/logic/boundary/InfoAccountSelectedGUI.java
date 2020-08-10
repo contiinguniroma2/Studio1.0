@@ -4,13 +4,17 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
+import logic.bean.StudentBean;
 
 public class InfoAccountSelectedGUI {
 	private BorderPane root;
 	private SuperviseGUI superviseGUI;
+	private StudentBean studentBean;
+	
 	private Button reportAccount;
 	private Button back;
 	private Button confermationBtn;
+	
 	
 	
 	public InfoAccountSelectedGUI (SuperviseGUI superviseGUI) {

@@ -15,12 +15,12 @@ import logic.application.Main;
 import logic.control.SuperviseController;
 
 public class SuperviseGUI extends LibrarianGUI {
-	List<Button> btnListStudent;
+	List<Button> infoAccountBtnList;
 	SuperviseController superviseController;
 	// InfoAccountSelectedGUI infoAccount;
 
 	public SuperviseGUI() {
-		btnListStudent = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
+		infoAccountBtnList = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
 
 	}
 
@@ -29,13 +29,6 @@ public class SuperviseGUI extends LibrarianGUI {
 		btnUser.setMinWidth(300);
 		btnUser.setMinHeight(40);
 		return btnUser;
-	}
-
-	public Button createBtnCheckBehaviorFeed(String nameBtn) {
-		Button btnFeed = new Button(nameBtn);
-		btnFeed.setMinWidth(300);
-		btnFeed.setMinHeight(40);
-		return btnFeed;
 	}
 
 	public VBox checkBehaviorGUI() {
@@ -55,7 +48,7 @@ public class SuperviseGUI extends LibrarianGUI {
 		hBoxColumns.setMaxHeight(300);
 
 		ScrollPane spUsers = new ScrollPane();
-		ScrollPane spFeed = new ScrollPane();
+	
 
 
 		VBox vBoxUser = createPanel(createBtnCheckBehavior("user556"), createBtnCheckBehavior("user383"),
@@ -68,28 +61,15 @@ public class SuperviseGUI extends LibrarianGUI {
 		vBoxUser.setAlignment(Pos.TOP_CENTER);
 		vBoxUser.setSpacing(0);
 
-		VBox vBoxFeed = createPanel(createBtnCheckBehaviorFeed("Wifi ok"),
-				createBtnCheckBehaviorFeed("Pagate la luce"), createBtnCheckBehaviorFeed("Bagno fuori servizio"),
-				createBtnCheckBehaviorFeed("Non trovo parcheggio"), createBtnCheckBehaviorFeed("Prese guaste"),
-				createBtnCheckBehaviorFeed("Fermata autobus lontana"), createBtnCheckBehaviorFeed("Non ci sono bar"),
-				createBtnCheckBehaviorFeed("Wi fi ottimo"), createBtnCheckBehaviorFeed("Sala giochi al piano terra"),
-				createBtnCheckBehaviorFeed("Non ci sono lampade"), createBtnCheckBehaviorFeed("Wi fi non funzionante"),
-				createBtnCheckBehaviorFeed("Giardino non curato"));
-		vBoxFeed.setMaxSize(300, 300);
-		vBoxFeed.setAlignment(Pos.TOP_CENTER);
-		vBoxFeed.setSpacing(0);
 
 		spUsers.setContent(vBoxUser);
 		spUsers.setMinSize(300, 300);
 		spUsers.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		spUsers.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		spFeed.setContent(vBoxFeed);
-		spFeed.setMinSize(300, 300);
-		spFeed.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-		spFeed.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+		
 
-		hBoxColumns.getChildren().addAll(spUsers, spFeed);
+		hBoxColumns.getChildren().addAll(spUsers);
 
 		content = createPanel(titleCheckBehavior, hBoxTitleColumns, hBoxColumns);
 		content.setPadding(new Insets(20, 0, 20, 0));

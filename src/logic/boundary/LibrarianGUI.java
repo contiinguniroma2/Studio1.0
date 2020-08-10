@@ -53,7 +53,7 @@ public class LibrarianGUI extends GuiSUPER {
 
 		setOnActionRefresh(refresh, main);
 
-		checkBehavior.setOnAction((event -> {
+		/*checkBehavior.setOnAction((event -> {
 			try {
 
 				new SuperviseGUI().createBehaviorCheckGUI(main);
@@ -62,7 +62,7 @@ public class LibrarianGUI extends GuiSUPER {
 				e.printStackTrace();
 			}
 		}));
-
+*/
 		timeTable.setOnAction((event -> {
 			try {
 
