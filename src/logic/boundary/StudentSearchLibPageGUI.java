@@ -1,7 +1,13 @@
 package logic.boundary;
 
+import java.io.IOException;
+
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -10,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import logic.application.Main;
 import logic.control.StudentMainPageController;
 import logic.control.StudentSearchInsertController;
@@ -84,12 +91,17 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		centerContent.setPadding(new Insets(20, 20, 20, 20));
 
 		reportIssue.setOnAction((event -> {
+			Parent issueBoundary = null;
 			try {
-				new IssueBoundary(main);
-				//new ReportIssueForm(main,i);
-			} catch (Exception e) {
+				issueBoundary = FXMLLoader.load(getClass().getResource("/logic/fxml/IssueGUI.fxml"));
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
+			Scene issueBoundaryScene=new Scene(issueBoundary);
+			//Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+			Stage window=main.getStage();
+			window.setScene(issueBoundaryScene);
+			window.show();
 		}));
 
 		backToRes.setOnAction((event -> {

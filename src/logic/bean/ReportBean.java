@@ -6,6 +6,8 @@ public class ReportBean {
 
 	private String title;
 	private String description;
+	private String user;
+	private String status;
 	
 	public ReportBean() {
 		//default constructor
@@ -41,5 +43,21 @@ public class ReportBean {
 
 		return description;
 
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }

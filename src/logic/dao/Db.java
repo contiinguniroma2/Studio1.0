@@ -9,7 +9,7 @@ public class Db {
 	private Connection connection;
 	private static Db dbSingletonInstance;
 	private static Logger myLogger = Logger.getLogger("logger");
-	private static final String DB_URL="jdbc:mysql://localhost:3306/mydb?useSSL=false";
+	private static final String DB_URL="jdbc:mysql://localhost:3306/mydb?allowPublicKeyRetrieval=true&useSSL=false";
 	private static final String DB_USERNAME="root";
 	private static final String DB_PASSWORD="root";
 
