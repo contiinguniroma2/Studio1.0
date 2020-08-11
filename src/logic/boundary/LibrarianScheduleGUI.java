@@ -5,15 +5,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
 import logic.control.LibrarianScheduleController;
 
 public class LibrarianScheduleGUI extends LibrarianGUI {
 
 	protected Button ediBtnLibr;
 
-	public void createLibrarianScheduleGUI(Main main) {
-
+	public VBox createLibrarianScheduleGUI(BorderPane root) {
+        this.root = root;
 		Label titleLibrSettings = createLabel("Timetable:", 24);
 
 		Label sundayLabel = createLabel(
@@ -56,16 +55,16 @@ public class LibrarianScheduleGUI extends LibrarianGUI {
 		ediBtnLibr.setOnAction((event -> {
 			try {
 
-				new LibrarianScheduleEditGUI().createLibrarianScheduleEditGUI(main);
+				root.setCenter(new LibrarianScheduleEditGUI().createLibrarianScheduleEditGUI(root));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
+		
+		return contentLibrSchedule;
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(contentLibrSchedule);
-		main.getScene().setRoot(root);
+	
 
 	}
 }

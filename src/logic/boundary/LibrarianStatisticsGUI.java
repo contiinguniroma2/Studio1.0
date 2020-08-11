@@ -6,9 +6,8 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
+
 
 public class LibrarianStatisticsGUI extends LibrarianGUI {
 
@@ -20,7 +19,7 @@ public class LibrarianStatisticsGUI extends LibrarianGUI {
 	static final String FRIDAY = "Friday";
 	static final String SATURDAY = "Saturday";
 
-	public void createLibrarianStatisticsGUI(Main main) {
+	public VBox createLibrarianStatisticsGUI() {
 
 		Label titleLibrStatistics = createLabel("Statistics:", 24);
 
@@ -49,9 +48,7 @@ public class LibrarianStatisticsGUI extends LibrarianGUI {
 		content.getChildren().addAll(titleLibrStatistics, barChart);
 		content.setAlignment(Pos.CENTER);
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(content);
-		main.getScene().setRoot(root);
+		return content;
 
 	}
 

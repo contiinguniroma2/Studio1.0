@@ -26,6 +26,14 @@ public class LibrBean extends UserBean {
 	public int getCapacity() {
 		return capacity;
 	}
+	
+	public void increaseCapacity() {
+		capacity = capacity+1;
+	}
+	
+	public void decreaseCapacity() {
+		capacity = capacity-1;
+	}
 
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;

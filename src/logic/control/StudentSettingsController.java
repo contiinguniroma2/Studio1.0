@@ -15,7 +15,7 @@ public class StudentSettingsController {
 
 	protected StudentSettingsController() {
 		this.studInfoB = new StudentBean();
-		this.studInfo = LoginController.getLoginController().getStudent();
+	//	this.studInfo = LoginController.getLoginController().getStudent();
 		this.studDao = new StudentDao();
 	}
 

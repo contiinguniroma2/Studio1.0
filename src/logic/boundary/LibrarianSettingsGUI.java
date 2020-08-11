@@ -2,13 +2,14 @@ package logic.boundary;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
+import logic.bean.LibrBean;
 import logic.control.LibrarianSettingsController;
 import logic.control.LibraryMainPageController;
 
@@ -37,8 +38,22 @@ public class LibrarianSettingsGUI extends LibrarianGUI {
 		applyBtnLibr = createBtn("Apply");
 
 	}
+	
+	public LibrarianSettingsGUI(LibrBean libraryBean) {
+        super(libraryBean);
+		nameLibrField = createTextField(400);
+		addressLibrField = createTextField(400);
+		cityLibrField = createTextField(400);
+		emailLibrField = createTextField(400);
+		passwordLibrField = createTextField(400);
+		usernameLibrField = createTextField(400);
+		phoneLibrField = createTextField(400);
+		capacityLibrField = createTextField(400);
+		applyBtnLibr = createBtn("Apply");
 
-	public void createLibrarianSettingsGUI(Main main) {
+	}
+
+	public VBox createLibrarianSettingsGUI(Main main) {
 		Label titleLibrSettings = createLabel("Settings:", 24);
 
 		ScrollPane spLibrSettings = new ScrollPane();
@@ -74,38 +89,33 @@ public class LibrarianSettingsGUI extends LibrarianGUI {
 
 		applyBtnLibr.setOnAction((event -> {
 			try {
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setMail(emailLibrField.getText());
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setPassword(passwordLibrField.getText());
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setUsername(usernameLibrField.getText());
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setName(nameLibrField.getText());
+				
+				libraryBean.setMail(emailLibrField.getText());
+				libraryBean.setPassword(passwordLibrField.getText());
+				libraryBean.setUsername(usernameLibrField.getText());
+				libraryBean.setName(nameLibrField.getText());
 
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setAddress(addressLibrField.getText());
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setPhone(phoneLibrField.getText());
-				LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-						.setCity(cityLibrField.getText());
+				libraryBean.setAddress(addressLibrField.getText());
+				libraryBean.setPhone(phoneLibrField.getText());
+				libraryBean.setCity(cityLibrField.getText());
 				if (capacityLibrField.getText().isEmpty())
-					LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB().setCapacity(0);
+					libraryBean.setCapacity(0);
 				else
-					LibrarianSettingsController.getLibrarianSettingsController().getLibrInfoB()
-							.setCapacity(Integer.valueOf(capacityLibrField.getText()));
-
+					libraryBean.setCapacity(Integer.valueOf(capacityLibrField.getText()));
+				
+				LibrarianSettingsController.getLibrarianSettingsController().setLibrInfoB(libraryBean);
 				LibrarianSettingsController.getLibrarianSettingsController().updateLibraryInfo();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				main.setNewStage(LIBRARIAN);
+				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+				homeLibrarianGUI.createRootLibrarian(main);
+				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+				main.stage.setScene(scene);
+				main.stage.show();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(contentLibrSett);
-		main.getScene().setRoot(root);
-
+		return contentLibrSett;
 	}
 }

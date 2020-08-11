@@ -10,10 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
 import logic.entity.Post;
 
 public class LibrarianNoticeboardGUI extends LibrarianGUI {
@@ -34,7 +32,7 @@ public class LibrarianNoticeboardGUI extends LibrarianGUI {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void createLibrarianNoticeboardGUI(Main main) {
+	public VBox createLibrarianNoticeboardGUI() {
 
 		Label titleNoticeboard = createLabel("Notice board", 24);
 
@@ -82,9 +80,7 @@ public class LibrarianNoticeboardGUI extends LibrarianGUI {
 		vboxNoticeboard.setAlignment(Pos.CENTER);
 		vboxNoticeboard.setPadding(new Insets(20, 20, 20, 20));
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(vboxNoticeboard);
-		main.getScene().setRoot(root);
+		return vboxNoticeboard;
 
 	}
 

@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 
 public class Main extends Application implements RequestNewStage {
 	//prova
-	protected Stage stage;
+	public Stage stage;
 	protected Scene scene;
 
 	@Override

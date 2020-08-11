@@ -10,10 +10,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
 import logic.entity.Servizio;
 
 public class LibrarianServicesGUI extends LibrarianGUI {
@@ -34,7 +32,7 @@ public class LibrarianServicesGUI extends LibrarianGUI {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void createLibrarianServicesGUI(Main main) {
+	public VBox createLibrarianServicesGUI() {
 
 		Label titleServ = createLabel("Services", 24);
 
@@ -74,9 +72,7 @@ public class LibrarianServicesGUI extends LibrarianGUI {
 		vboxServ.setAlignment(Pos.CENTER);
 		vboxServ.setPadding(new Insets(20, 20, 20, 20));
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(vboxServ);
-		main.getScene().setRoot(root);
+		return vboxServ;
 
 	}
 

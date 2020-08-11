@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
 import logic.control.LibrarianScheduleController;
 
 public class LibrarianScheduleEditGUI extends LibrarianGUI {
@@ -20,7 +19,8 @@ public class LibrarianScheduleEditGUI extends LibrarianGUI {
 	protected TextField saturdayField;
 	protected Button applySchedEditBtnLibr;
 
-	public void createLibrarianScheduleEditGUI(Main main) {
+	public VBox createLibrarianScheduleEditGUI(BorderPane root) {
+		this.root = root;
 		Label titleLibrSchedEdit = createLabel("Update timetable:", 24);
 		Label sunday = new Label("Sunday:");
 		sundayField = new TextField();
@@ -46,9 +46,7 @@ public class LibrarianScheduleEditGUI extends LibrarianGUI {
 		contentLibrSettings.setSpacing(4);
 		contentLibrSettings.setPadding(new Insets(0, 0, 10, 0));
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(contentLibrSettings);
-		main.getScene().setRoot(root);
+		
 		applySchedEditBtnLibr.setOnAction((event -> {
 			try {
 
@@ -75,12 +73,14 @@ public class LibrarianScheduleEditGUI extends LibrarianGUI {
 						.setHour(saturdayField.getText());
 				LibrarianScheduleController.getLibrarianScheduleController().updateOrario();
 				LibrarianScheduleController.getLibrarianScheduleController().getScheduleFromDb();
-				new LibrarianScheduleGUI().createLibrarianScheduleGUI(main);
+				root.setCenter(new LibrarianScheduleGUI().createLibrarianScheduleGUI(root));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
+		
+		return contentLibrSettings;
 
 	}
 }

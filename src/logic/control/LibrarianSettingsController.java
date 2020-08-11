@@ -17,7 +17,7 @@ public class LibrarianSettingsController {
 
 	protected LibrarianSettingsController() {
 		this.librInfoB = new LibrBean();
-		this.librInfo = LoginController.getLoginController().getLibrary();
+		//this.librInfo = LoginController.getLoginController().getLibrary();
 		this.librDao = new LibraryDao();
 	}
 

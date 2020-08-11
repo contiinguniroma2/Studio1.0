@@ -2,10 +2,10 @@ package logic.boundary;
 
 import java.io.File;
 import java.util.logging.Logger;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
+import logic.bean.LibrBean;
+import logic.bean.StudentBean;
 import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
 
@@ -32,14 +34,23 @@ public class GuiSUPER {
 	public final String GUEST = "GuestGUI";
 	public final String REG_STUD_SETTINGS = "RegStudentSettingsGUI";
 	public final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
-	protected String nome;
-	protected String indirizzo;
-	protected String mail;
-	protected String telefono;
 	protected LoginController loginController;
+	protected StudentBean studentBean;
+	protected LibrBean libraryBean;
 
 	public GuiSUPER() {
-		loginController = new LoginController();          
+		loginController = new LoginController();  
+		
+	}
+	
+	public GuiSUPER(StudentBean studentBean) {
+		loginController = new LoginController();  
+		this.studentBean = studentBean;
+	}
+	
+	public GuiSUPER(LibrBean libraryBean) {
+		loginController = new LoginController();  
+		this.libraryBean = libraryBean;
 	}
 
 	public void leftPadding(VBox panel, int padding) {
@@ -81,10 +92,10 @@ public class GuiSUPER {
 		HBox top = new HBox();
 		ImageView img = createImg("src/resources/libraryIcon.png");
 		img.prefWidth(100);
-		VBox titles = createPanel(new Label(nome),
-				new Label(indirizzo),
-				new Label(mail),
-				new Label(telefono));
+		VBox titles = createPanel(new Label(libraryBean.getName()),
+				new Label(libraryBean.getAddress()),
+				new Label(libraryBean.getMail()),
+				new Label(libraryBean.getPhone()));
 		titles.setPadding(new Insets(0, 0, 0, 20));
 		titles.setStyle("-fx-font-size: 14");
 		titles.setSpacing(0);
@@ -163,16 +174,7 @@ public class GuiSUPER {
 		return panel;
 	}
 
-	public void setOnClick(Button btn, Main main, String string) {
-		btn.setOnAction((event -> {
-			try {
-				main.setNewStage(string);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}));
-	}
 
 	public VBox loadPrefers() {
 		Label title = createLabel("Prefers:", 24);
@@ -210,35 +212,19 @@ public class GuiSUPER {
 			try {
 				// VA RESETTATA LA PAGINA
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				main.setNewStage(LIBRARIAN);
+				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+				homeLibrarianGUI.createRootLibrarian(main);
+				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+				main.stage.setScene(scene);
+				main.stage.show();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
 	}
 
-	public void setOnActionNoticeBoard(Button btn, Main main) {
-		btn.setOnAction((event -> {
-			try {
 
-				new LibrarianNoticeboardGUI().createLibrarianNoticeboardGUI(main);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}));
-	}
 
-	public void setOnActionServices(Button btn, Main main) {
-		btn.setOnAction((event -> {
-			try {
-
-				new LibrarianServicesGUI().createLibrarianServicesGUI(main);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}));
-	}
 
 }

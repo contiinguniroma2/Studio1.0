@@ -2,6 +2,7 @@ package logic.boundary;
 
 import java.util.NoSuchElementException;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -21,12 +22,12 @@ public class LibrarianGUI extends GuiSUPER {
 	protected Button noticeBoard;
 	protected Button timeTable;
 	protected Button services;
-	protected Button checkBehavior;
+	protected Button supervisePage;
 	protected Button statistics;
 	protected Button logOut;
 	protected Button refresh;
-	protected LibrBean libInfoB;
-	//protected LoginController loginController;
+	
+	
 
 	protected LibrarianGUI() {
 		settingImageView = new Button("", createImg("src/resources/guest.png"));
@@ -34,30 +35,57 @@ public class LibrarianGUI extends GuiSUPER {
 		noticeBoard = createBtn("Notice board");
 		timeTable = createBtn("Time table");
 		services = createBtn("Services");
-		checkBehavior = createBtn("User behavior");
+		supervisePage = createBtn("User behavior");
 		statistics = createBtn("Statistics");
 		logOut = createBtn("Log Out");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
-		libInfoB = loginController.getLibrBean();
+		
+
+	}
+	
+	protected LibrarianGUI(LibrBean libraryBean) {
+		super(libraryBean);
+		settingImageView = new Button("", createImg("src/resources/guest.png"));
+		updateSeatsBtn = createBtn("Update seats");
+		noticeBoard = createBtn("Notice board");
+		timeTable = createBtn("Time table");
+		services = createBtn("Services");
+		supervisePage = createBtn("User behavior");
+		statistics = createBtn("Statistics");
+		logOut = createBtn("Log Out");
+		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
+		
 
 	}
 
 	public void createRootLibrarian(Main main) {
 		HBox topPanel = createLibrTopPanel();
 		VBox leftLibrarian = createPanel(refresh, settingImageView, updateSeatsBtn, noticeBoard, timeTable, services,
-				checkBehavior, statistics, logOut);
+				supervisePage, statistics, logOut);
 		leftPadding(leftLibrarian, 20);
 
-		setOnClick(updateSeatsBtn, main, "LibrarianGUI");
+		updateSeatsBtn.setOnAction((event -> {
+			try {
+
+				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+				homeLibrarianGUI.createRootLibrarian(main);
+				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+				main.stage.setScene(scene);
+				main.stage.show();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}));
 
 		setOnActionRefresh(refresh, main);
 
-		checkBehavior.setOnAction((event -> {
+		supervisePage.setOnAction((event -> {
 			try {
-
-				new SuperviseGUI().createBehaviorCheckGUI(main);
-
-			} catch (Exception e) {
+				SuperviseGUI superviseGUI = new SuperviseGUI();
+				root.setCenter(superviseGUI.createSuperviseGUI());	                
+			} 
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
@@ -66,19 +94,40 @@ public class LibrarianGUI extends GuiSUPER {
 			try {
 
 				LibrarianScheduleController.getLibrarianScheduleController().getScheduleFromDb();
-				new LibrarianScheduleGUI().createLibrarianScheduleGUI(main);
+				root.setCenter(new LibrarianScheduleGUI().createLibrarianScheduleGUI(root));
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
+		
+		
+	    services.setOnAction((event -> {
+			try {
 
-		setOnActionServices(services, main);
-		setOnActionNoticeBoard(noticeBoard, main);
+				root.setCenter(new LibrarianServicesGUI().createLibrarianServicesGUI());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}));
+	  
+
+		
+		noticeBoard.setOnAction((event -> {
+			try {
+				LibrarianNoticeboardGUI librarianNoticeboardGUI = new LibrarianNoticeboardGUI();
+				root.setCenter(librarianNoticeboardGUI.createLibrarianNoticeboardGUI());	
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}));
 
 		settingImageView.setOnAction((event -> {
 			try {
-				new LibrarianSettingsGUI().createLibrarianSettingsGUI(main);
+				LibrarianSettingsGUI librarianSettingsGUI = new LibrarianSettingsGUI(libraryBean);
+				root.setCenter(librarianSettingsGUI.createLibrarianSettingsGUI(main));	
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -86,7 +135,8 @@ public class LibrarianGUI extends GuiSUPER {
 
 		statistics.setOnAction((event -> {
 			try {
-				new LibrarianStatisticsGUI().createLibrarianStatisticsGUI(main);
+				LibrarianStatisticsGUI librarianStatisticsGUI = new LibrarianStatisticsGUI();
+				root.setCenter(librarianStatisticsGUI.createLibrarianStatisticsGUI());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -124,7 +174,12 @@ public class LibrarianGUI extends GuiSUPER {
 								.getCapacity()) {
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("+");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					main.setNewStage(LIBRARIAN);
+					libraryBean.increaseCapacity();
+					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+					homeLibrarianGUI.createRootLibrarian(main);
+					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+					main.stage.setScene(scene);
+					main.stage.show();
 				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -140,7 +195,12 @@ public class LibrarianGUI extends GuiSUPER {
 				if (LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getPostiOccupati() > 0) {
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("-");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					main.setNewStage(LIBRARIAN);
+					libraryBean.decreaseCapacity();
+					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+					homeLibrarianGUI.createRootLibrarian(main);
+					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+					main.stage.setScene(scene);
+					main.stage.show();
 				}
 			} catch (Exception e1) {
 				e1.printStackTrace();

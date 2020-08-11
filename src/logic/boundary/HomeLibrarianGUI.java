@@ -16,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
+import logic.bean.LibrBean;
 import logic.control.LibraryMainPageController;
 import logic.entity.Prenotazione;
 import logic.exceptions.NoOneSelectedException;
@@ -33,9 +34,16 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 	public HomeLibrarianGUI() {
 		add = createBtn("Add");
 		del = createBtn("Del");
-		libInfoB = loginController.getLibrBean();
 		prenotazioni = FXCollections.observableArrayList();
 	}
+	
+	public HomeLibrarianGUI(LibrBean libraryBean) {
+		super(libraryBean);
+		add = createBtn("Add");
+		del = createBtn("Del");
+		prenotazioni = FXCollections.observableArrayList();
+	}
+
 
 	public ObservableList<Prenotazione> getPrenotazione() {
 		for (int i = 0; i < LibraryMainPageController.getLibraryMainPageController().getBooks().size(); i++)
@@ -122,7 +130,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 					throw new NoOneSelectedException();
 				}
 				LibraryMainPageController.getLibraryMainPageController().confirmPrenotatione(
-						table.getSelectionModel().getSelectedItems().get(0).getUser(), libInfoB.getMail());
+						table.getSelectionModel().getSelectedItems().get(0).getUser(), libraryBean.getMail());
 				delClicked();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 				main.setNewStage(LIBRARIAN);

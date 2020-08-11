@@ -8,10 +8,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
 import logic.control.SuperviseController;
 
 public class SuperviseGUI extends LibrarianGUI {
@@ -34,10 +32,10 @@ public class SuperviseGUI extends LibrarianGUI {
 	}
 	
 	public void fillUsernameList() {
-		usernameList = superviseController.fillSupervisePage(mail);
+		usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
 	}
 
-	public VBox superviseGUI() {
+	public VBox createSuperviseGUI() {
 		Label titleSupervisePage = createLabel("Studenti con cui hai interagito recentemente", 24);
 		titleSupervisePage.setPadding(new Insets(50, 30, 10, 0));
 		VBox content;
@@ -78,11 +76,11 @@ public class SuperviseGUI extends LibrarianGUI {
 		return content;
 	}
 
-	public void createBehaviorCheckGUI(Main main) {
+/*	public void createBehaviorCheckGUI(Main main) {
 
 		root = (BorderPane) main.getScene().getRoot();
 		root.setCenter(superviseGUI());
 		main.getScene().setRoot(root);
-
-	}
+		
+	}*/
 }

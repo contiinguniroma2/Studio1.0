@@ -64,6 +64,7 @@ public class LoginGUI extends GuiSUPER {
 						main.setNewStage(BANNEDSTUDENT);
 					else {
 						StudentMainPageController.getStudentMainPageController().getBookMarks();
+						
 						main.setNewStage(STUDENT);
 					}
 				} else if (loginController.validateUser(emailField.getText(),
@@ -73,7 +74,12 @@ public class LoginGUI extends GuiSUPER {
 					LibraryMainPageController.getLibraryMainPageController()
 							.setLibrInfoB(loginController.getLibrBean());
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					main.setNewStage(LIBRARIAN);
+					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(loginController.getLibrBean());
+					homeLibrarianGUI.createRootLibrarian(main);
+					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+					main.stage.setScene(scene);
+					main.stage.show();
+					//main.setNewStage(LIBRARIAN);
 
 				}
 
