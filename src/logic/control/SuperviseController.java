@@ -6,6 +6,8 @@ import java.util.List;
 
 import logic.bean.MessageBean;
 import logic.bean.StudentBean;
+import logic.boundary.InfoAccountSelectedGUI;
+import logic.boundary.SuperviseGUI;
 import logic.dao.MessageDao;
 import logic.dao.StudentDao;
 import logic.entity.Message;
@@ -38,11 +40,12 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	}
 
 	@Override
-	public StudentBean getInfoStudent(String username) {
+	public void getInfoStudent(String username, SuperviseGUI superviseGUI) {
 		int i;
 	    for (i=0; i<listStudentBean.size(); i++) {
 	    	if (listStudentBean.get(i).getUsername().equals(username)) {
-	    		return listStudentBean.get(i);
+	    		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, listStudentBean.get(i));
+	    		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());
 	    	}
 	    }
 	    StudentBean studentBean = new StudentBean();
@@ -56,7 +59,8 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 				System.out.println("Errore: lo studente non è nella lista");
 			}
 		}
-		return studentBean;
+		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, studentBean);
+		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());
 	}
 	
 
@@ -77,9 +81,11 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		}
 	}
 	
-	
-	
 
+	
+	
+	
+	
 	
 	
 	

@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.bean.LibrBean;
@@ -44,6 +45,16 @@ public class SuperviseGUI extends LibrarianGUI {
 		ScrollPane spUsers = new ScrollPane();
 	    for (int i=0; i<usernameList.size(); i++) {
 	    	infoAccountBtnList.add(createBtnSupervise(usernameList.get(i)));
+	    	String studentId = infoAccountBtnList.get(i).getText();
+	    	infoAccountBtnList.get(i).setOnAction((event -> {
+				try {
+					superviseController.getInfoStudent(studentId, this);
+						                
+				} 
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+			}));
 	    }
 	    
 		VBox vBoxUser = new VBox();
@@ -68,4 +79,11 @@ public class SuperviseGUI extends LibrarianGUI {
 		
 		return content;
 	}
+
+	public BorderPane getRoot() {
+		return root;
+		
+	}
+	
+
 }

@@ -75,14 +75,9 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 
 		ObservableList<PieChart.Data> pieChartData = FXCollections
 				.observableArrayList(
-						new PieChart.Data("Busy",
-								LibraryMainPageController
-										.getLibraryMainPageController().getLibrInfoB().getPostiOccupati()),
+						new PieChart.Data("Busy", libraryBean.getPostiOccupati()),
 						new PieChart.Data("Booked", prenotazioni.size()),
-						new PieChart.Data("Free",
-								(LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getCapacity()
-										- LibraryMainPageController.getLibraryMainPageController().getLibrInfoB()
-												.getPostiOccupati())));
+						new PieChart.Data("Free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()));
 
 		PieChart chart = new PieChart(pieChartData);
 		chart.getData().forEach(data -> Tooltip.install(data.getNode(),
@@ -91,13 +86,10 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 
 		HBox seatsStatus = new HBox();
 
-		Label free = new Label(
-				"Free: " + (LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getCapacity()
-						- LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getPostiOccupati()));
+		Label free = new Label("Free: " + (libraryBean.getCapacity() - libraryBean.getPostiOccupati()));
 		free.setPrefSize(100, 20);
 		free.setStyle("-fx-text-fill: #38761d;" + FONT);
-		Label busy = new Label(
-				"Busy: " + LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getPostiOccupati());
+		Label busy = new Label("Busy: " + libraryBean.getPostiOccupati());
 		busy.setPrefSize(100, 20);
 		busy.setStyle("-fx-text-fill: #cc4125;" + FONT);
 		Label booked = new Label("Booked: " + prenotazioni.size());
@@ -133,7 +125,11 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 						table.getSelectionModel().getSelectedItems().get(0).getUser(), libraryBean.getMail());
 				delClicked();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				main.setNewStage(LIBRARIAN);
+				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+				homeLibrarianGUI.createRootLibrarian(main);
+				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+				main.stage.setScene(scene);
+				main.stage.show();
 			} catch (NoOneSelectedException exc) {
 				exc.createAlert();
 
@@ -153,7 +149,11 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 						.deletePrenotatione(table.getSelectionModel().getSelectedItems().get(0).getUser());
 				delClicked();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				main.setNewStage(LIBRARIAN);
+				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+				homeLibrarianGUI.createRootLibrarian(main);
+				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+				main.stage.setScene(scene);
+				main.stage.show();
 			} catch (NoOneSelectedException exc) {
 				exc.createAlert();
 

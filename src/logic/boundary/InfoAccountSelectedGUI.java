@@ -1,51 +1,46 @@
 package logic.boundary;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
 import logic.bean.StudentBean;
 
 public class InfoAccountSelectedGUI {
-	private BorderPane root;
 	private SuperviseGUI superviseGUI;
 	private StudentBean studentBean;
-	
 	private Button reportAccount;
 	private Button back;
 	private Button confermationBtn;
 	
 	
 	
-	public InfoAccountSelectedGUI (SuperviseGUI superviseGUI) {
+	public InfoAccountSelectedGUI (SuperviseGUI superviseGUI, StudentBean studentBean) {
 		this.superviseGUI = superviseGUI;
-		
+		this.studentBean = studentBean;
 	}
 	
-	public VBox infoAccountGUI(Main main) {
+	public VBox createInfoAccountGUI() {
 		
-	}
-	
-	public void backMethod() {
 		back.setOnAction((event -> {
 			try {
-				root = (BorderPane) main.getScene().getRoot();
-				root.setCenter(backBox);
-				main.getScene().setRoot(root);
+				superviseGUI.getRoot().setCenter(superviseGUI.createSuperviseGUI());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
+		
+		return content;
 	}
 	
 	
 	
-	public void createInfoAccountSelectedGUI(Main main) {
+	
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(infoAccountGUI(main));
-		main.getScene().setRoot(root);
-
-	}
 
 }

@@ -3,14 +3,14 @@ package logic.control;
 import java.util.List;
 
 import logic.bean.MessageBean;
-import logic.bean.StudentBean;
+import logic.boundary.SuperviseGUI;
 
 /*
  * Dichiarazione metodi di interazione del Librarian nel caso d'uso SuperviseStudent
  */
 public interface LibrarianSuperviseController {
 	public List<String> fillSupervisePage(String biblioId);
-	public StudentBean getInfoStudent(String username);
+	public void getInfoStudent(String username, SuperviseGUI superviseGUI);
 	public void increaseReportingCounter(String username);
 	public void sendMessage(MessageBean messageBean);
 }
