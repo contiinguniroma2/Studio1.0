@@ -93,7 +93,7 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		reportIssue.setOnAction((event -> {
 			Parent issueBoundary = null;
 			try {
-				issueBoundary = FXMLLoader.load(getClass().getResource("/logic/fxml/IssueGUI.fxml"));
+				issueBoundary = FXMLLoader.load(getClass().getResource("/logic/fxml/IssueListStudentGUI.fxml"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
