@@ -5,10 +5,12 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import logic.control.ReportIssueController;
 
 public class ReportFormBoundary extends IssueStudentBoundary {
 	
 	@FXML private Button btnSendReport;
+	private ReportIssueController reportIssueController;
 	
 	public void sendReportClicked() {
 		

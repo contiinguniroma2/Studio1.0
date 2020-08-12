@@ -1,11 +1,16 @@
 package logic.entity;
 
-public class User {
+import java.util.List;
+
+import logic.pattern.AbstractObservable;
+
+public abstract class User extends AbstractObservable {
 	protected String name;
 	protected String userName;
 	protected String mail;
 	protected String password;
 	protected String phone;
+	protected List<Report> reports;
 
 	public String getName() {
 		return name;
@@ -53,6 +58,22 @@ public class User {
 		this.mail = mail;
 		this.password = password;
 		this.phone = phone;
+	}
+
+	public List<Report> getReports() {
+		return reports;
+	}
+
+	public void setReports(List<Report> reports) {
+		this.reports = reports;
+	}
+	
+	public void addReport(Report report) {
+		this.reports.add(report);
+	}
+	
+	public void removeReport(Report report) {
+		this.reports.remove(report);
 	}
 
 }
