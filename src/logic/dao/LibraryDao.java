@@ -86,7 +86,6 @@ public class LibraryDao extends GenericDao {
 			if (attr.equals(USERNAME)) {
 				ps = con.prepareStatement("UPDATE Biblioteca SET usernameBiblioteca = ? WHERE mailBiblioteca = ?");
 				fillUpdateStatement(ps, newValue, entityId);
-				status = ps.executeUpdate();
 			}
 
 			if (attr.equals(NOMEB)) {

@@ -26,31 +26,31 @@ public class IssueBoundary implements Initializable {
 	//protected ReportIssueController reportIssueController;
 	
 	public void openClicked() {
-		
+		//TODO
 	}
 	
 	public void deleteClicked() {
-		
+		//TODO
 	}
 	
 	public void backClicked() {
-		
+		//TODO
 	}
 	
 	public void searchSeatClicked() {
-		
+		//TODO
 	}
 	
 	public void logoutClicked() {
-		
+		//TODO
 	}
 	
 	public void messagesClicked() {
-		
+		//TODO
 	}
 	
 	public void userProfileClicked() {
-		
+		//TODO
 	}
 
 	@Override

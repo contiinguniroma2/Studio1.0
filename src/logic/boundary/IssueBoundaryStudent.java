@@ -8,7 +8,7 @@ public class IssueBoundaryStudent extends IssueBoundary {
 	@FXML private Button btnSendReport;
 	
 	public void sendReportClicked() {
-		
+		//TODO
 	}
 
 }

@@ -23,17 +23,17 @@ import logic.control.LoginController;
 
 public class GuiSUPER {
 	static Logger myLogger = Logger.getLogger("logger");
-	public final String PROJ_NAME = "Stud.io";
-	public final String START = "StartGUI";
-	public final String LOGIN = "LoginGUI";
-	public final String REGISTRATION = "RegistrationGUI";
-	public final String STUDENT = "StudentGUI";
-	public final String NOTIFIEDSTUDENT = "StudentNotifiedGUI";
-	public final String BANNEDSTUDENT = "StudentBannedGUI";
-	public final String LIBRARIAN = "LibrarianGUI";
-	public final String GUEST = "GuestGUI";
-	public final String REG_STUD_SETTINGS = "RegStudentSettingsGUI";
-	public final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
+	public static final String PROJ_NAME = "Stud.io";
+	public static final String START = "StartGUI";
+	public static final String LOGIN = "LoginGUI";
+	public static final String REGISTRATION = "RegistrationGUI";
+	public static final String STUDENT = "StudentGUI";
+	public static final String NOTIFIEDSTUDENT = "StudentNotifiedGUI";
+	public static final String BANNEDSTUDENT = "StudentBannedGUI";
+	public static final String LIBRARIAN = "LibrarianGUI";
+	public static final String GUEST = "GuestGUI";
+	public static final String REG_STUD_SETTINGS = "RegStudentSettingsGUI";
+	public static final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
 	protected LoginController loginController;
 	protected StudentBean studentBean;
 	protected LibrBean libraryBean;

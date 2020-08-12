@@ -47,13 +47,13 @@ public class ReportIssueForm extends StudentSearchSelectGUI {
 		contentFeedPanel.getChildren().addAll(titlePagFeed, titleLbl, reportTitle, contentLbl, reportDescription, sendBtnPanel);
 		contentFeedPanel.setPadding(new Insets(0, 20, 0, 20));
 
-		sendReport.setOnAction((event -> {
-			sendReportClicked();
-		}));
+		sendReport.setOnAction((event -> 
+			sendReportClicked()
+		));
 
-		backBtn.setOnAction((event -> {
-			backClicked(main, i);
-		}));
+		backBtn.setOnAction((event -> 
+			backClicked(main, i)
+		));
 
 		BorderPane root = (BorderPane) main.getScene().getRoot();
 		root.setCenter(contentFeedPanel);
