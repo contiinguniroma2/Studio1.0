@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import logic.bean.LibrBean;
 import logic.control.SuperviseController;
 
 public class SuperviseGUI extends LibrarianGUI {
@@ -18,11 +19,12 @@ public class SuperviseGUI extends LibrarianGUI {
 	List<String> usernameList;
 	// InfoAccountSelectedGUI infoAccount;
 
-	public SuperviseGUI() {
+	public SuperviseGUI(LibrBean libraryBean) {
+		super(libraryBean);
 		infoAccountBtnList = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
         superviseController = new SuperviseController();
         usernameList = new ArrayList<>();
-        fillUsernameList();
+        usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
 	}
 
 	public Button createBtnSupervise(String nameBtn) {
@@ -32,10 +34,6 @@ public class SuperviseGUI extends LibrarianGUI {
 		return btnUser;
 	}
 	
-	public void fillUsernameList() {
-		usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
-	}
-
 	public VBox createSuperviseGUI() {
 		Label titleSupervisePage = createLabel("Studenti con cui hai interagito recentemente", 24);
 		titleSupervisePage.setPadding(new Insets(50, 30, 10, 0));
@@ -57,25 +55,17 @@ public class SuperviseGUI extends LibrarianGUI {
 		vBoxUser.setAlignment(Pos.CENTER);
 		vBoxUser.setSpacing(0);
 
-
 		spUsers.setContent(vBoxUser);
 		spUsers.setMinSize(460, 350);
 		spUsers.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		spUsers.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		
-
 		hBoxColumns.getChildren().addAll(spUsers);
-
 		content = createPanel(titleSupervisePage, hBoxColumns);
 		content.setMaxWidth(500);
 		content.setAlignment(Pos.TOP_CENTER);
-		//content.setPadding(new Insets(20, 0, 20, 0));
 		
 		
-	
 		return content;
 	}
-
-
 }

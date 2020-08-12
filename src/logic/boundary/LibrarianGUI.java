@@ -82,7 +82,7 @@ public class LibrarianGUI extends GuiSUPER {
 
 		supervisePage.setOnAction((event -> {
 			try {
-				SuperviseGUI superviseGUI = new SuperviseGUI();
+				SuperviseGUI superviseGUI = new SuperviseGUI(libraryBean);
 				root.setCenter(superviseGUI.createSuperviseGUI());	                
 			} 
 			catch (Exception e) {
@@ -169,12 +169,10 @@ public class LibrarianGUI extends GuiSUPER {
 	public void addOnAction(Button btn, Main main) {
 		btn.setOnAction((e -> {
 			try {
-				if (LibraryMainPageController.getLibraryMainPageController().getLibrInfoB()
-						.getPostiOccupati() < LibraryMainPageController.getLibraryMainPageController().getLibrInfoB()
-								.getCapacity()) {
+				if (libraryBean.getPostiOccupati() < libraryBean.getCapacity()) {
+					libraryBean.increaseCapacity();
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("+");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					libraryBean.increaseCapacity();
 					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
 					homeLibrarianGUI.createRootLibrarian(main);
 					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
@@ -192,10 +190,10 @@ public class LibrarianGUI extends GuiSUPER {
 	public void delOnAction(Button btn, Main main) {
 		btn.setOnAction((e -> {
 			try {
-				if (LibraryMainPageController.getLibraryMainPageController().getLibrInfoB().getPostiOccupati() > 0) {
+				if (libraryBean.getPostiOccupati() > 0) {
+					libraryBean.decreaseCapacity();
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("-");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					libraryBean.decreaseCapacity();
 					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
 					homeLibrarianGUI.createRootLibrarian(main);
 					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
