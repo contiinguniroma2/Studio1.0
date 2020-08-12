@@ -103,6 +103,7 @@ public class StudentDao extends GenericDao {
 		List<Student> studentList = new ArrayList<>();
 		try {
 			ps = null;
+			System.out.println("oh");
 			ps = con.prepareStatement("SELECT * FROM Studente LEFT JOIN recent_student ON studente.mailStudente = recent_student.mailStudent WHERE recent_student.mailBiblioteca = ? ");
 			fillSelectStatement(ps, idBiblio, null);
 			rs = ps.executeQuery();

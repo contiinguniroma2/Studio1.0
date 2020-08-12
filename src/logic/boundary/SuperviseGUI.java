@@ -22,6 +22,7 @@ public class SuperviseGUI extends LibrarianGUI {
 		infoAccountBtnList = new ArrayList<>(); //lista contenente tanti bottoni quanti sono gli utenti
         superviseController = new SuperviseController();
         usernameList = new ArrayList<>();
+        fillUsernameList();
 	}
 
 	public Button createBtnSupervise(String nameBtn) {
@@ -43,15 +44,15 @@ public class SuperviseGUI extends LibrarianGUI {
 		hBoxColumns.setSpacing(20);
 		hBoxColumns.setMaxHeight(300);
 		ScrollPane spUsers = new ScrollPane();
-	
-
-
-		VBox vBoxUser = createPanel(createBtnSupervise("user556"), createBtnSupervise("user383"),
-				createBtnSupervise("user202"), createBtnSupervise("user35285"),
-				createBtnSupervise("usr2"), createBtnSupervise("usr54"), createBtnSupervise("user234"),
-				createBtnSupervise("user5648"), createBtnSupervise("user568"),
-				createBtnSupervise("user5348"), createBtnSupervise("user46575"),
-				createBtnSupervise("user534"), createBtnSupervise("user5623335"));
+	    for (int i=0; i<usernameList.size(); i++) {
+	    	infoAccountBtnList.add(createBtnSupervise(usernameList.get(i)));
+	    }
+	    
+		VBox vBoxUser = new VBox();
+		for (int i=0; i<infoAccountBtnList.size(); i++) {
+			vBoxUser.getChildren().add(infoAccountBtnList.get(i));
+		}
+		
 		vBoxUser.setMaxSize(500, 500);
 		vBoxUser.setAlignment(Pos.CENTER);
 		vBoxUser.setSpacing(0);
@@ -76,11 +77,5 @@ public class SuperviseGUI extends LibrarianGUI {
 		return content;
 	}
 
-/*	public void createBehaviorCheckGUI(Main main) {
 
-		root = (BorderPane) main.getScene().getRoot();
-		root.setCenter(superviseGUI());
-		main.getScene().setRoot(root);
-		
-	}*/
 }
