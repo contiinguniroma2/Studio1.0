@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.IssueBoundary">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.IssueListLibraryBoundary">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #52BE8C;" BorderPane.alignment="CENTER">
          <children>
@@ -23,17 +22,16 @@
                </image>
             </ImageView>
             <Label id="lbStudentName" fx:id="lbUser" layoutX="122.0" layoutY="17.0" text="User" />
-            <Label id="lbStatus" fx:id="lbStatus" layoutX="386.0" layoutY="17.0" />
          </children>
       </AnchorPane>
    </top>
    <left>
       <AnchorPane prefHeight="300.0" prefWidth="129.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnSearchSeat" fx:id="btnSearchSeat" layoutX="17.0" layoutY="303.0" mnemonicParsing="false" onAction="#searchSeatClicked" prefHeight="25.0" prefWidth="100.0" text="Search seat" />
-            <Button id="btnMessages" fx:id="btnMessages" layoutX="17.0" layoutY="337.0" mnemonicParsing="false" onAction="#messagesClicked" prefHeight="25.0" prefWidth="100.0" text="Messages" />
-            <Button id="btnLogout" fx:id="btnLogout" layoutX="17.0" layoutY="371.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="100.0" text="Logout" />
-            <Button id="btnUserPic" fx:id="btnUserPic" layoutX="17.0" layoutY="185.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userProfileClicked" prefHeight="108.0" prefWidth="100.0">
+            <Button id="btnUserBehavior" fx:id="btnUserBehavior" layoutX="17.0" layoutY="351.0" mnemonicParsing="false" onAction="#userBehaviorClicked" prefHeight="25.0" prefWidth="100.0" text="User behavior" />
+            <Button id="btnStatistics" fx:id="btnStatistics" layoutX="17.0" layoutY="383.0" mnemonicParsing="false" onAction="#statisticsClicked" prefHeight="25.0" prefWidth="100.0" text="Statistics" />
+            <Button id="btnLogout" fx:id="btnLogout" layoutX="17.0" layoutY="415.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="100.0" text="Logout" />
+            <Button id="btnUserPic" fx:id="btnUserPic" layoutX="17.0" layoutY="109.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userProfileClicked" prefHeight="108.0" prefWidth="100.0">
                <graphic>
                   <ImageView id="ivBtnUserPic" fx:id="ivBtnUserPic" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -42,6 +40,10 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button id="btnNoticeBoard" fx:id="btnNoticeBoard" layoutX="17.0" layoutY="258.0" mnemonicParsing="false" onAction="#noticeBoardClicked" prefHeight="25.0" prefWidth="100.0" text="Notice board" />
+            <Button id="btnUpdateSeats" fx:id="btnUpdateSeats" layoutX="17.0" layoutY="225.0" mnemonicParsing="false" onAction="#updateSeatsClicked" prefHeight="25.0" prefWidth="100.0" text="UpdateSeats" />
+            <Button id="btnServices" fx:id="btnServices" layoutX="17.0" layoutY="320.0" mnemonicParsing="false" onAction="#servicesClicked" prefHeight="25.0" prefWidth="100.0" text="Services" />
+            <Button id="btnTimeTable" fx:id="btnTimeTable" layoutX="17.0" layoutY="289.0" mnemonicParsing="false" onAction="#timeTableClicked" prefHeight="25.0" prefWidth="100.0" text="Time table" />
          </children>
       </AnchorPane>
    </left>
