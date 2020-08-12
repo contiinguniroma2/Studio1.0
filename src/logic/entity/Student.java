@@ -3,7 +3,6 @@ package logic.entity;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 import logic.pattern.BannedState;
 import logic.pattern.NormalState;
@@ -22,7 +21,7 @@ public class Student extends User {
 
 	public Student() {
 		this.stateMachine = new StateMachine(new NormalState());
-		this.observers=new ArrayList<>();
+
 	}
 
 	public Student(String name, String surname, String userName, String mail, String password, boolean isBanned,
@@ -35,7 +34,6 @@ public class Student extends User {
 		this.userName = userName;
 		this.isBanned = isBanned;
 		this.reportCounter = reportCounter;
-		this.observers=new ArrayList<>();
 		if ((reportCounter > 2) && (!isBanned)) {
 			this.stateMachine = new StateMachine(new NotifiedState());
 		}
@@ -117,12 +115,6 @@ public class Student extends User {
 			return "";
 		}
 		return time.toString();
-	}
-
-	@Override
-	public void notifyObservers() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

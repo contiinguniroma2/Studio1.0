@@ -2,7 +2,6 @@ package logic.boundary;
 
 import java.io.IOException;
 
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -92,9 +91,17 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		centerContent.setPadding(new Insets(20, 20, 20, 20));
 
 		reportIssue.setOnAction((event -> {
+			Parent issueBoundary = null;
+			try {
+				issueBoundary = FXMLLoader.load(getClass().getResource("/logic/fxml/IssueGUI.fxml"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			Scene issueBoundaryScene=new Scene(issueBoundary);
+			Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
 			
-			reportIssueClicked(event);
-			
+			window.setScene(issueBoundaryScene);
+			window.show();
 		}));
 
 		backToRes.setOnAction((event -> {
@@ -150,19 +157,6 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		BorderPane root = (BorderPane) main.getScene().getRoot();
 		root.setCenter(centerContent);
 
-	}
-	
-	public void reportIssueClicked(Event event) {
-		Parent issueListStudentGui = null;
-		try {
-			issueListStudentGui = FXMLLoader.load(getClass().getResource("/logic/fxml/IssueListStudentGUI.fxml"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		Scene issueListStudentGuiScene=new Scene(issueListStudentGui);
-		Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-		window.setScene(issueListStudentGuiScene);
-		window.show();
 	}
 
 }

@@ -6,9 +6,8 @@ public class ReportBean {
 
 	private String title;
 	private String description;
-	private String userId;
+	private String user;
 	private String status;
-	private String library;
 	
 	public ReportBean() {
 		//default constructor
@@ -46,12 +45,12 @@ public class ReportBean {
 
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getStatus() {
@@ -60,13 +59,5 @@ public class ReportBean {
 
 	public void setStatus(String status) {
 		this.status = status;
-	}
-
-	public String getLibrary() {
-		return library;
-	}
-
-	public void setLibrary(String library) {
-		this.library = library;
 	}
 }

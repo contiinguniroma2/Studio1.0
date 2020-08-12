@@ -26,7 +26,6 @@ public class Library extends User {
 		this.phone = arg[6];
 		this.city = arg[7];
 		this.postiOccupati = Integer.valueOf(arg[8]);
-		this.observers=new ArrayList<>();
 	}
 
 	// SET INDIRIZZO BIBLIOTECA
@@ -116,12 +115,6 @@ public class Library extends User {
 		this.capacity = capacity;
 		this.postiOccupati = postiOccupati;
 
-	}
-
-	@Override
-	public void notifyObservers() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
