@@ -98,8 +98,8 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 				e.printStackTrace();
 			}
 			Scene issueBoundaryScene=new Scene(issueBoundary);
-			//Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
-			Stage window=main.getStage();
+			Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+			
 			window.setScene(issueBoundaryScene);
 			window.show();
 		}));

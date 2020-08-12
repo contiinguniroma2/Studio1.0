@@ -89,22 +89,24 @@ public class LibrarianSettingsGUI extends LibrarianGUI {
 
 		applyBtnLibr.setOnAction((event -> {
 			try {
-				
-				libraryBean.setMail(emailLibrField.getText());
-				libraryBean.setPassword(passwordLibrField.getText());
-				libraryBean.setUsername(usernameLibrField.getText());
-				libraryBean.setName(nameLibrField.getText());
+				LibrBean newLibraryBean = new LibrBean();
+				newLibraryBean.setMail(emailLibrField.getText());
+				System.out.println(libraryBean.getAddress());
+				newLibraryBean.setPassword(passwordLibrField.getText());
+				newLibraryBean.setUsername(usernameLibrField.getText());
+				newLibraryBean.setName(nameLibrField.getText());
 
-				libraryBean.setAddress(addressLibrField.getText());
-				libraryBean.setPhone(phoneLibrField.getText());
-				libraryBean.setCity(cityLibrField.getText());
+				newLibraryBean.setAddress(addressLibrField.getText());
+				System.out.println(libraryBean.getAddress());
+				newLibraryBean.setPhone(phoneLibrField.getText());
+				newLibraryBean.setCity(cityLibrField.getText());
 				if (capacityLibrField.getText().isEmpty())
-					libraryBean.setCapacity(0);
+					newLibraryBean.setCapacity(0);
 				else
-					libraryBean.setCapacity(Integer.valueOf(capacityLibrField.getText()));
+					newLibraryBean.setCapacity(Integer.valueOf(capacityLibrField.getText()));
 				
-				LibrarianSettingsController.getLibrarianSettingsController().setLibrInfoB(libraryBean);
-				LibrarianSettingsController.getLibrarianSettingsController().updateLibraryInfo();
+				LibrarianSettingsController.getLibrarianSettingsController().setLibrInfoB(newLibraryBean);
+				LibrarianSettingsController.getLibrarianSettingsController().updateLibraryInfo(libraryBean.getMail());
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
 				homeLibrarianGUI.createRootLibrarian(main);
