@@ -46,7 +46,7 @@ public class ReportIssueController implements Observer{
 	}
 	
 	public void sendReport(ReportBean reportInfo) throws IOException, SQLException {
-		Report newReport=new Report(reportInfo.getTitle(),reportInfo.getdescription(), 0, reportInfo.getUserId(), reportInfo.getLibrary(), "Not read");
+		Report newReport=new Report(reportInfo.getTitle(),reportInfo.getdescription(), 0, reportInfo.getStudentId(), reportInfo.getLibraryId(), "Not read");
 		this.sessionUser.addReport(newReport);
 		this.reportDao.saveReportOnDb(newReport);
 		outToServer.writeObject(newReport);

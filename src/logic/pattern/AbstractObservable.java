@@ -1,4 +1,4 @@
-+package logic.pattern;
+package logic.pattern;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-+package logic.boundary;
+package logic.boundary;
 
 import java.net.URL;
 import java.util.ResourceBundle;
