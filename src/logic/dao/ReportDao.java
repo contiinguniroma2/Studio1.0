@@ -97,26 +97,19 @@ public class ReportDao {
 		return status;
 	}
 
-	public int saveReportOnDb(Report report) {
+	public int saveReportOnDb(Report report) throws SQLException {
 		int status = 0;
-		try {
-
-			ps = conn.prepareStatement(
-					"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)");
-			ps.setString(1, report.getDescription());
-			ps.setString(2, report.getStudentId());
-			ps.setString(3, report.getLibraryId());
-			ps.setString(4, report.getTitle());
-			ps.setString(5, report.getStatus());
-			status = ps.executeUpdate();
-		}
-
-		catch (Exception e) {
-			myLogger.info("Salvataggio report fallito");
-			e.printStackTrace();
-		} finally {
-			closeStatement(ps);
-		}
+		
+		ps = conn.prepareStatement(
+				"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)");
+		ps.setString(1, report.getDescription());
+		ps.setString(2, report.getStudentId());
+		ps.setString(3, report.getLibraryId());
+		ps.setString(4, report.getTitle());
+		ps.setString(5, report.getStatus());
+		status = ps.executeUpdate();
+		closeStatement(ps);
+		
 		return status;
 	}
 

@@ -6,7 +6,7 @@ public class ReportBean {
 
 	private String title;
 	private String description;
-	private String user;
+	private String studentId;
 	private String status;
 	
 	public ReportBean() {
@@ -46,11 +46,11 @@ public class ReportBean {
 	}
 
 	public String getUser() {
-		return user;
+		return studentId;
 	}
 
 	public void setUser(String user) {
-		this.user = user;
+		this.studentId = user;
 	}
 
 	public String getStatus() {
@@ -59,5 +59,13 @@ public class ReportBean {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getLibraryId() {
+		return libraryId;
+	}
+
+	public void setLibraryId(String libraryId) {
+		this.libraryId = libraryId;
 	}
 }

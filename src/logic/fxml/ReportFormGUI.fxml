@@ -13,13 +13,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.boundary.ReportFormBoundary">
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #52BE8C;" BorderPane.alignment="CENTER">
          <children>
             <ImageView id="ivLogo" fx:id="ivLogo" fitHeight="50.0" fitWidth="100.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Documents/GitHub/Studio1.0/src/resources/logo_button2.png" />
+                  <Image url="@../../resources/logo_button2.png" />
                </image>
             </ImageView>
             <Label id="lbStudentName" fx:id="lbUser" layoutX="122.0" layoutY="17.0" text="User" />
@@ -28,31 +28,27 @@
       </AnchorPane>
    </top>
    <left>
-      <AnchorPane prefHeight="434.0" prefWidth="129.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="300.0" prefWidth="129.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnTimeTable" fx:id="btnTimeTable" layoutX="17.0" layoutY="289.0" mnemonicParsing="false" onAction="#timeTableClicked" prefHeight="25.0" prefWidth="100.0" text="Time table" />
-            <Button id="btnServices" fx:id="btnServices" layoutX="17.0" layoutY="320.0" mnemonicParsing="false" onAction="#servicesClicked" prefHeight="25.0" prefWidth="100.0" text="Services" />
-            <Button id="btnLogout" fx:id="btnLogout" layoutX="17.0" layoutY="415.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="100.0" text="Logout" />
-            <Button id="btnUserPic" fx:id="btnUserPic" layoutX="17.0" layoutY="109.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userProfileClicked" prefHeight="108.0" prefWidth="100.0">
+            <Button id="btnSearchSeat" fx:id="btnSearchSeat" layoutX="17.0" layoutY="303.0" mnemonicParsing="false" onAction="#searchSeatClicked" prefHeight="25.0" prefWidth="100.0" text="Search seat" />
+            <Button id="btnMessages" fx:id="btnMessages" layoutX="17.0" layoutY="337.0" mnemonicParsing="false" onAction="#messagesClicked" prefHeight="25.0" prefWidth="100.0" text="Messages" />
+            <Button id="btnLogout" fx:id="btnLogout" layoutX="17.0" layoutY="371.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="100.0" text="Logout" />
+            <Button id="btnUserPic" fx:id="btnUserPic" layoutX="17.0" layoutY="185.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userProfileClicked" prefHeight="108.0" prefWidth="100.0">
                <graphic>
                   <ImageView id="ivBtnUserPic" fx:id="ivBtnUserPic" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../Documents/GitHub/Studio1.0/src/resources/student.png" />
+                        <Image url="@../../resources/student.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
-            <Button id="btnStatistics" fx:id="btnStatistics" layoutX="17.0" layoutY="383.0" mnemonicParsing="false" onAction="#statisticsClicked" prefHeight="25.0" prefWidth="100.0" text="Statistics" />
-            <Button id="btnUserBehavior" fx:id="btnUserBehavior" layoutX="17.0" layoutY="351.0" mnemonicParsing="false" onAction="#userBehaviorClicked" prefHeight="25.0" prefWidth="100.0" text="User behavior" />
-            <Button id="btnNoticeBoard" fx:id="btnNoticeBoard" layoutX="17.0" layoutY="258.0" mnemonicParsing="false" onAction="#noticeBoardCllicked" prefHeight="25.0" prefWidth="100.0" text="Notice board" />
-            <Button id="btnUpdateSeats" fx:id="btnUpdateSeats" layoutX="17.0" layoutY="225.0" mnemonicParsing="false" onAction="#updateSeatsClicked" prefHeight="25.0" prefWidth="100.0" text="Update seats" />
          </children>
       </AnchorPane>
    </left>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Report  details:">
+            <Label text="Report form:">
                <VBox.margin>
                   <Insets left="250.0" top="20.0" />
                </VBox.margin>
@@ -60,7 +56,7 @@
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <TextField id="tvTitle" fx:id="tvTitle" editable="false" prefHeight="25.0" prefWidth="631.0">
+            <TextField id="tvTitle" fx:id="tvTitle" prefHeight="25.0" prefWidth="631.0" promptText="Title, max 128 chars">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
@@ -68,7 +64,7 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextArea id="tvDescription" fx:id="tvDescription" editable="false" prefHeight="328.0" prefWidth="611.0">
+            <TextArea id="tvDescription" fx:id="tvDescription" prefHeight="328.0" prefWidth="611.0" promptText="Description, max 1024 chars">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
@@ -82,12 +78,12 @@
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnBack" fx:id="btnBack" mnemonicParsing="false" onAction="#backClicked" prefHeight="25.0" prefWidth="78.0" text="Back">
+            <Button id="btnBack" fx:id="btnBack" mnemonicParsing="false" onAction="#backClicked" prefHeight="25.0" prefWidth="79.0" text="Back">
                <HBox.margin>
                   <Insets left="280.0" top="35.0" />
                </HBox.margin>
             </Button>
-            <Button id="btnReportUser" fx:id="btnReportUser" mnemonicParsing="false" onAction="#reportUserClicked" text="Report user">
+            <Button id="btnSendReport" fx:id="btnSendReport" mnemonicParsing="false" onAction="#sendReportClicked" prefHeight="25.0" prefWidth="79.0" text="Send ">
                <HBox.margin>
                   <Insets left="200.0" top="35.0" />
                </HBox.margin>
