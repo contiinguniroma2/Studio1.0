@@ -5,11 +5,13 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import logic.control.ReportIssueController;
 
 public class ReportDetailsBoundary extends IssueLibraryBoundary {
 	
 	@FXML private Button btnSolve;
 	@FXML private Button btnReportUser;
+	private ReportIssueController reportIssueController;
 	
 	public void solveClicked() {
 		//TODO

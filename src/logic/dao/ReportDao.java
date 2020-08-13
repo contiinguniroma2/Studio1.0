@@ -7,11 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import logic.constants.ReportConstants;
-import logic.entity.Library;
 import logic.entity.Report;
-import logic.entity.Student;
+import logic.entity.User;
 
 public class ReportDao {
 	private PreparedStatement ps;
@@ -31,12 +29,12 @@ public class ReportDao {
 	}
 	
 	
-	public List<Report> getReportFromDbByLibrary(Library library) {
+	public List<Report> getReportFromDbByLibrary(User user) {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailBiblioteca = ?");
-			ps.setString(1, library.getMail());
+			ps.setString(1, user.getMail());
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				reportList.add(new Report(rs.getString(ReportConstants.REPORT_TITLE),
@@ -56,12 +54,12 @@ public class ReportDao {
 		return reportList;
 	}
 
-	public List<Report> getReportFromDbByStudent(Student student) {
+	public List<Report> getReportFromDbByStudent(User user) {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailStudente = ?");
-			ps.setString(1, student.getMail());
+			ps.setString(1, user.getMail());
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				reportList.add(new Report(rs.getString(ReportConstants.REPORT_TITLE),

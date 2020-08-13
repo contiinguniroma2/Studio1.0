@@ -76,5 +76,13 @@ public class Report {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getMainInfoForLibrarian() {
+		return this.title.concat("    ".concat(this.studentId.concat("    ".concat(this.status))));
+	}
+	
+	public String getMainInfoForStudent() {
+		return this.title.concat("    ".concat(this.libraryId.concat("    ".concat(this.status))));
+	}
 
 }
