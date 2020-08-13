@@ -25,7 +25,7 @@ public class Student extends User {
 		this.observers=new ArrayList<>();
 	}
 
-	public Student(String name, String surname, String userName, String mail, String password, boolean isBanned,
+	public Student(String name, String surname, String userName, String mail, String phone, String password, boolean isBanned,
 			byte reportCounter, String time) {
 
 		this.name = name;
@@ -35,6 +35,7 @@ public class Student extends User {
 		this.userName = userName;
 		this.isBanned = isBanned;
 		this.reportCounter = reportCounter;
+		this.phone = phone;
 		this.observers=new ArrayList<>();
 		if ((reportCounter > 2) && (!isBanned)) {
 			this.stateMachine = new StateMachine(new NotifiedState());

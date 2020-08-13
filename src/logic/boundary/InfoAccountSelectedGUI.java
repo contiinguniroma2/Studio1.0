@@ -10,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import logic.application.Main;
 import logic.bean.StudentBean;
 
@@ -30,31 +31,28 @@ public class InfoAccountSelectedGUI {
 	}
 	
 
-	
 	public VBox createInfoAccountGUI() {
-		Label title = new Label("Settings:"); 
-		title.setStyle("-fx-font: " + 25 + " arial;");
-	    title.setPadding(new Insets(0, 0, 20, 0));
-		
-		Label name = new Label("Name:");
-		TextField nameField = new TextField();
-		Label surname = new Label("Surname:");
-		TextField surnameField = new TextField();
-		Label email = new Label("Email:");
-		TextField emailField = new TextField();
-		Label password = new Label("Password:");
-		TextField passwordField = new TextField();
-		Label username = new Label("Username:");
-		TextField usernameField = new TextField();
-		Label phone = new Label("Phone:");
-		TextField phoneField = new TextField();
+		Label nameField = new Label(studentBean.getName());
+		Label surnameField = new Label(studentBean.getSurname());
+		Label emailField = new Label(studentBean.getMail());
+		Label usernameField = new Label(studentBean.getUsername());
+		Label phoneField = new Label(studentBean.getPhone());
+		Label banLabel = new Label();
+		if(studentBean.isBanned()) {
+			banLabel.setText("Utente bannato");
+		}
+		else {
+			banLabel.setText("Utente attivo");
+		}
+		banLabel.setFont(new Font(22));
 		HBox hBox = new HBox();
 		hBox.getChildren().addAll(back, reportAccount);
-		VBox content = createPanel(title, name, nameField, surname, surnameField, phone, phoneField, username,
-				usernameField, email, emailField, password, passwordField, hBox);
+	
+		VBox content = createPanel(createLabel("Name:"), nameField, createLabel("Surname:"), surnameField, createLabel("Phone:"), phoneField, createLabel("Username:"),
+				usernameField, createLabel("Email:"), emailField, banLabel, hBox);
 		back.setOnAction((event -> {
 			try {
-				superviseGUI.getRoot().setCenter(superviseGUI.createSuperviseGUI());
+				superviseGUI.getRoot().setCenter(superviseGUI.getGui());
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,7 +60,13 @@ public class InfoAccountSelectedGUI {
 		
 		return content;
 	}
+  
 	
+	public Label createLabel(String text) {
+		Label name = new Label(text);
+		name.setFont(new Font(22));
+		return name;
+	}
 	public VBox createPanel(Node... nodes) {
 		VBox panel = new VBox();
 		for (Node next : nodes)

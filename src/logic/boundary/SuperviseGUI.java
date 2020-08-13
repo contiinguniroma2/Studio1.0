@@ -15,10 +15,11 @@ import logic.bean.LibrBean;
 import logic.control.SuperviseController;
 
 public class SuperviseGUI extends LibrarianGUI {
-	List<Button> infoAccountBtnList;
-	SuperviseController superviseController;
-	List<String> usernameList;
+	private List<Button> infoAccountBtnList;
+	private SuperviseController superviseController;
+	private List<String> usernameList;
 	// InfoAccountSelectedGUI infoAccount;
+	private VBox gui;
 
 	public SuperviseGUI(LibrBean libraryBean) {
 		super(libraryBean);
@@ -26,6 +27,7 @@ public class SuperviseGUI extends LibrarianGUI {
         superviseController = new SuperviseController();
         usernameList = new ArrayList<>();
         usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
+        
 	}
 
 	public Button createBtnSupervise(String nameBtn) {
@@ -49,6 +51,7 @@ public class SuperviseGUI extends LibrarianGUI {
 	    	infoAccountBtnList.get(i).setOnAction((event -> {
 				try {
 					superviseController.getInfoStudent(studentId, this);
+				
 						                
 				} 
 				catch (Exception e) {
@@ -76,14 +79,15 @@ public class SuperviseGUI extends LibrarianGUI {
 		content.setMaxWidth(500);
 		content.setAlignment(Pos.TOP_CENTER);
 		
-		
+		this.gui = content;
 		return content;
 	}
-
-	public BorderPane getRoot() {
-		return root;
-		
+	
+	public VBox getGui() {
+		return this.gui;
 	}
+
+
 	
 
 }

@@ -83,7 +83,9 @@ public class LibrarianGUI extends GuiSUPER {
 		supervisePage.setOnAction((event -> {
 			try {
 				SuperviseGUI superviseGUI = new SuperviseGUI(libraryBean);
-				root.setCenter(superviseGUI.createSuperviseGUI());	                
+				superviseGUI.setRoot(root);
+				root.setCenter(superviseGUI.createSuperviseGUI());	 
+				
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
@@ -205,5 +207,14 @@ public class LibrarianGUI extends GuiSUPER {
 			}
 
 		}));
+	}
+	
+	public BorderPane getRoot() {
+		return root;
+		
+	}
+	
+	public void setRoot(BorderPane root) {
+		this.root = root;
 	}
 }

@@ -52,6 +52,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	    StudentBean studentBean = new StudentBean();
 		for (i=0; i< listStudents.size(); i++) {
 			if (listStudents.get(i).getUsername().equals(username)) {
+				studentBean.setPhone(listStudents.get(i).getPhone());
 				studentBean.fillUserBean(listStudents.get(i).getUsername(),listStudents.get(i).getMail(), "****", listStudents.get(i).getName(),listStudents.get(i).getPhone());
 				studentBean.fillStudBean(listStudents.get(i).getSurname(), listStudents.get(i).isBanned(), listStudents.get(i).getReportCounter());
 				listStudentBean.add(studentBean);
@@ -62,6 +63,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		}
 		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, studentBean);
 		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());
+		
 	}
 	
 

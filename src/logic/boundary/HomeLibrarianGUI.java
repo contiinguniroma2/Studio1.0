@@ -86,7 +86,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 
 		HBox seatsStatus = new HBox();
 
-		Label free = new Label("Free: " + (libraryBean.getCapacity() - libraryBean.getPostiOccupati()));
+		Label free = new Label("Free: " + (libraryBean.getCapacity() - libraryBean.getPostiOccupati() - prenotazioni.size()));
 		free.setPrefSize(100, 20);
 		free.setStyle("-fx-text-fill: #38761d;" + FONT);
 		Label busy = new Label("Busy: " + libraryBean.getPostiOccupati());

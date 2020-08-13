@@ -84,7 +84,7 @@ public class StudentDao extends GenericDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 			    student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						    rs.getString(MAIL), rs.getString(PASSWORD), rs.getBoolean("isBan"),
+						    rs.getString(MAIL), rs.getString(TELEFONOS), rs.getString(PASSWORD), rs.getBoolean("isBan"),
 		    				rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));			    
 		    }			
 		}
@@ -109,7 +109,7 @@ public class StudentDao extends GenericDao {
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				studentList.add(new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						rs.getString(MAIL), "****", rs.getBoolean("isBan"),
+						rs.getString(MAIL), rs.getString(TELEFONOS), "****", rs.getBoolean("isBan"),
 						rs.getByte("reportCounter"), rs.getString("timeStartCountdown")));
 			}
 			return studentList;
