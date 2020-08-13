@@ -121,7 +121,9 @@ public class Student extends User {
 
 	@Override
 	public void notifyObservers() {
-		// TODO Auto-generated method stub
+		for(int i=0; i<this.observers.size();i++) {
+			observers.get(i).update();
+		}
 		
 	}
 	

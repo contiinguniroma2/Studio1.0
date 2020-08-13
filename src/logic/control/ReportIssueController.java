@@ -6,34 +6,30 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-
 import logic.bean.ReportBean;
-import logic.boundary.BaseBoundary;
 import logic.dao.ReportDao;
+import logic.entity.Library;
 import logic.entity.Report;
 import logic.entity.User;
-import logic.pattern.Observer;
 
-public class ReportIssueController implements Observer{
+public class ReportIssueController{
 	private User sessionUser;
+	private Library currentLibrary;
 	private ReportBean reportBean;
-	private BaseBoundary issueListBoundary;
-	private BaseBoundary issueInfoBoundary;
 	private ReportDao reportDao;
-	private Socket socket;
+	//private Socket socket;
+	//private ObjectOutputStream outToServer;
 	static Logger myLogger = Logger.getLogger("logger");
-	private ObjectOutputStream outToServer;
+	
 	
 	public ReportIssueController(){
 		//Default constructor
 	}
 	
-	public ReportIssueController(User sessionUser, ReportBean reportBean, BaseBoundary issueListBoundary){
+	public ReportIssueController(User sessionUser){
 		this.sessionUser=sessionUser;
-		this.reportBean=reportBean;
-		this.issueListBoundary=issueListBoundary;
 		this.reportDao=new ReportDao();
-		try {
+		/*try {
 			socket = new Socket("127.0.0.1", 4444);
 			outToServer = new ObjectOutputStream(socket.getOutputStream());
 		} catch (UnknownHostException e) {
@@ -42,14 +38,18 @@ public class ReportIssueController implements Observer{
 			e.printStackTrace();
 		}finally {
 			myLogger.info("Apertura socket fallita");
-		}
+		}*/
 	}
 	
 	public void sendReport(ReportBean reportInfo) throws IOException, SQLException {
 		Report newReport=new Report(reportInfo.getTitle(),reportInfo.getdescription(), 0, reportInfo.getStudentId(), reportInfo.getLibraryId(), "Not read");
 		this.sessionUser.addReport(newReport);
 		this.reportDao.saveReportOnDb(newReport);
-		outToServer.writeObject(newReport);
+		//outToServer.writeObject(newReport);
+	}
+	
+	public void getStudentReports() {
+		this.sessionUser.setReports(this.reportDao.getReportFromDbByStudent(this.sessionUser));
 	}
 	
 	
@@ -66,10 +66,12 @@ public class ReportIssueController implements Observer{
 		this.reportBean = reportBean;
 	}
 
-	@Override
-	public void update() {
-		// TODO Auto-generated method stub
+	public Library getCurrentLibrary() {
+		return currentLibrary;
 	}
-	
+
+	public void setCurrentLibrary(Library currentLibrary) {
+		this.currentLibrary = currentLibrary;
+	}
 	
 }

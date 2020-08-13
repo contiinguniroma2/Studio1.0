@@ -6,13 +6,14 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import logic.control.ReportIssueController;
 
 public class IssueListLibraryBoundary extends BaseLibraryBoundary {
 
 	@FXML private Button btnDelete;
 	@FXML private Button btnOpen;
 	@FXML private ListView<String> lvReports;
-	//private ReportIssueController reportIssueController;
+	private ReportIssueController reportIssueController;
 	
 	public void openClicked() {
 		//TODO
