@@ -23,6 +23,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	public SuperviseController() {
 		this.studentDao = new StudentDao();
 		this.messageDao = new MessageDao();
+		this.listStudentBean = new ArrayList<>();
 	}
 
 	@Override

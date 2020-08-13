@@ -1,5 +1,6 @@
 package logic.boundary;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -54,5 +55,7 @@ public class StudentSettingsGUI extends StudentGUI {
 		}));
 
 	}
+	
+
 
 }
