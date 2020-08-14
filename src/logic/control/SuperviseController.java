@@ -69,35 +69,44 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	
 
 	@Override
-	public void increaseReportingCounter(String username) {
+	public void increaseReportingCounter(String studentId, String librarianId, String reason) {
 		Student student = null;
+		Message message = null;
 		int i;
 		for (i=0; i< listStudents.size(); i++) {
-			if (listStudents.get(i).getUsername().equals(username)) {
+			if (listStudents.get(i).getMail().equals(studentId)) {
 				student = listStudents.get(i);
 			}
 			else {
 				System.out.println("Errore: lo studente non è nella lista");
 			}
 		}
-		student.increaseReportCounter();
-		if (student.getReportCounter() > 2) {
-			student.getStateMachine().setState(new BannedState());
-			student.notifyStudent();
-			student.setBanned(true);
+		if (student.getStateMachine().getState().getState().equals("Notified")) {
+			message = student.notifyStudent(reason);
 		}
-		if (student.getReportCounter() < 3) {
-			student.getStateMachine().goNext();
-			student.notifyStudent();
+		else {
+			if (student.getReportCounter() > 2) {
+				student.getStateMachine().setState(new BannedState());
+				message = student.notifyStudent(reason);
+				student.setBanned(true);
+			}
+			if (student.getReportCounter() < 3) {
+				student.increaseReportCounter();
+				message = student.notifyStudent(reason);
+				student.getStateMachine().goNext();			
+			}
 		}
+		message.setLibrarianId(librarianId);
+		message.setStudentId(studentId);
 	
 		for (i=0; i<listStudentBean.size(); i++) {
-	    	if (listStudentBean.get(i).getUsername().equals(username)) {
+	    	if (listStudentBean.get(i).getMail().equals(studentId)) {
 	    		listStudentBean.get(i).increaseReportingCounter();
 	    		listStudentBean.get(i).setBanned(student.isBanned());	    		
 	    	}
 	    }
 		studentDao.updateStudent(student);
+		messageDao.insert(message);
 	}
 	
 
@@ -133,11 +142,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	@Override
 	public void sendMessage(MessageBean messageBean) {
 	    Message message = new Message(messageBean.getTitle(), messageBean.getText(), messageBean.getLibrarianId(), messageBean.getStudentId());
-	    try {
-			message.setId(messageDao.insert(message));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	    message.setId(messageDao.insert(message));
 	}
 
 

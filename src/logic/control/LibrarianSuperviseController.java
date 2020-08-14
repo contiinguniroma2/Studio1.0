@@ -11,6 +11,6 @@ import logic.boundary.SuperviseGUI;
 public interface LibrarianSuperviseController {
 	public List<String> fillSupervisePage(String biblioId);
 	public void getInfoStudent(String username, SuperviseGUI superviseGUI);
-	public void increaseReportingCounter(String username);
+	public void increaseReportingCounter(String username, String libraryId, String reason);
 	public void sendMessage(MessageBean messageBean);
 }

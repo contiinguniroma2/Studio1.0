@@ -15,12 +15,16 @@ public class Message {
 		this.setLibrarianId(librarianId);
 		this.setStudentId(studentId);
 	}
-	
 	public Message(String title, String text, String librarianId, String studentId) {
 		this.setTitle(title);
 		this.setText(text);
 		this.setLibrarianId(librarianId);
 		this.setStudentId(studentId);
+	}
+	
+	public Message(String title, String text) {
+		this.setTitle(title);
+		this.setText(text);
 	}
 
 

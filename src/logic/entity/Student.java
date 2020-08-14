@@ -124,8 +124,9 @@ public class Student extends User {
 		return time.toString();
 	}
 	
-	public void notifyStudent() {
-		stateMachine.getState().notifyStudent();
+	public Message notifyStudent(String reason) {
+		Message message = stateMachine.getState().notifyStudent(reason);
+		return message;
 	}
 
 	@Override

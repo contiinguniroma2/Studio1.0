@@ -22,28 +22,32 @@ public class MessageDao extends GenericDao {
 	}
 
 	// INSERT
-	public long insert(Message message) throws SQLException {
+	public long insert(Message message) {
 		ResultSet rs = null;
 		long autoId = 0;
 		try {
-
 			ps = con.prepareStatement(
 					"INSERT INTO Messaggio(mailBiblioteca,mailStudente,testoMessaggio,titoloMessaggio) VALUES(?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			rs = ps.getGeneratedKeys();
+			
 			ps.setString(1, message.getLibrarianId());
 			ps.setString(2, message.getStudentId());
 			ps.setString(3, message.getText());
 			ps.setString(4, message.getTitle());
-			ps.getGeneratedKeys();
-			rs.next();
-			autoId = rs.getLong(1);
 			ps.executeUpdate();
+			rs = ps.getGeneratedKeys();
+			rs.next();
+			autoId = rs.getLong("numeroMessaggio");
+			
 
 		} catch (Exception e) {
 			myLogger.info("Salvataggio messaggio fallito");// definire un eccezione apposita con logger serio
 
 		} finally {
-			ps.close();
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return autoId;
 	}
