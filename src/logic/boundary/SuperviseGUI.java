@@ -2,14 +2,11 @@ package logic.boundary;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.bean.LibrBean;
 import logic.control.SuperviseController;
@@ -18,7 +15,6 @@ public class SuperviseGUI extends LibrarianGUI {
 	private List<Button> infoAccountBtnList;
 	private SuperviseController superviseController;
 	private List<String> usernameList;
-	// InfoAccountSelectedGUI infoAccount;
 	private VBox gui;
 
 	public SuperviseGUI(LibrBean libraryBean) {
@@ -32,18 +28,15 @@ public class SuperviseGUI extends LibrarianGUI {
 
 	public Button createBtnSupervise(String nameBtn) {
 		Button btnUser = new Button(nameBtn);
-		btnUser.setMinWidth(450);
+		btnUser.setMinWidth(475);
 		btnUser.setMinHeight(40);
 		return btnUser;
 	}
 	
 	public VBox createSuperviseGUI() {
 		Label titleSupervisePage = createLabel("Studenti con cui hai interagito recentemente", 24);
-		titleSupervisePage.setPadding(new Insets(50, 30, 10, 0));
+		titleSupervisePage.setPadding(new Insets(50, 0, 15, 0));
 		VBox content;
-		HBox hBoxColumns = new HBox();
-		hBoxColumns.setSpacing(20);
-		hBoxColumns.setMaxHeight(300);
 		ScrollPane spUsers = new ScrollPane();
 	    for (int i=0; i<usernameList.size(); i++) {
 	    	infoAccountBtnList.add(createBtnSupervise(usernameList.get(i)));
@@ -70,13 +63,12 @@ public class SuperviseGUI extends LibrarianGUI {
 		vBoxUser.setSpacing(0);
 
 		spUsers.setContent(vBoxUser);
-		spUsers.setMinSize(460, 350);
 		spUsers.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		spUsers.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		hBoxColumns.getChildren().addAll(spUsers);
-		content = createPanel(titleSupervisePage, hBoxColumns);
-		content.setMaxWidth(500);
+		
+		content = createPanel(titleSupervisePage, spUsers);
+		content.setMaxWidth(475);
 		content.setAlignment(Pos.TOP_CENTER);
 		
 		this.gui = content;
@@ -86,8 +78,8 @@ public class SuperviseGUI extends LibrarianGUI {
 	public VBox getGui() {
 		return this.gui;
 	}
-
-
 	
-
+	public SuperviseController getSuperviseController() {
+		return superviseController;
+	}
 }

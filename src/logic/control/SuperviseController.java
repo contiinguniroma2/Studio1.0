@@ -70,7 +70,8 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	@Override
 	public void increaseReportingCounter(String username) {
 		Student student = null;
-		for (int i=0; i< listStudents.size(); i++) {
+		int i;
+		for (i=0; i< listStudents.size(); i++) {
 			if (listStudents.get(i).getUsername().equals(username)) {
 				student = listStudents.get(i);
 			}
@@ -82,6 +83,14 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		if (student.getReportCounter() > 2) {
 			student.setBanned(true);
 		}
+	
+		for (i=0; i<listStudentBean.size(); i++) {
+	    	if (listStudentBean.get(i).getUsername().equals(username)) {
+	    		listStudentBean.get(i).increaseReportingCounter();
+	    		listStudentBean.get(i).setBanned(student.isBanned());	    		
+	    	}
+	    }
+		studentDao.updateStudent(student);
 	}
 	
 

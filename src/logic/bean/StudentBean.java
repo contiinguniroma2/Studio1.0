@@ -26,8 +26,12 @@ public class StudentBean extends UserBean {
 		return reportCounter;
 	}
 
-	public void setReportCounter(byte reportCounter) {
-		this.reportCounter = reportCounter;
+	public void increaseReportingCounter() {
+		reportCounter++;
+	}
+	
+	public void decreaseReportingCounter() {
+		reportCounter--;
 	}
 
 	public void fillStudBean(String surname, boolean isBanned, byte reportCounter) {

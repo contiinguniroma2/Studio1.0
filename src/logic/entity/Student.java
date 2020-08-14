@@ -82,6 +82,10 @@ public class Student extends User {
 	public void increaseReportCounter() {
 		this.reportCounter++;
 	}
+	
+	public void decreseReportCounter() {
+		this.reportCounter--;
+	}
 
 	public String getSurname() {
 		return surname;

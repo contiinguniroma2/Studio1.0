@@ -46,6 +46,8 @@ public class StudentDao extends GenericDao {
 	public int updateStudent(Student student) {
 		int status = 0;
 		try {
+			System.out.println(student.getReportCounter());
+			System.out.println(student.isBanned());
 			ps = con.prepareStatement("UPDATE Studente SET mailStudente = ?, password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ? WHERE mailStudente = ?");
 			ps.setString(1, student.getMail());
 			ps.setString(2, student.getPassword());
