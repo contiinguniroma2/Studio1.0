@@ -1,5 +1,7 @@
 package logic.pattern;
 
+import logic.entity.Message;
+
 public class BannedState extends AbstractState {
 
 
@@ -15,7 +17,6 @@ public class BannedState extends AbstractState {
 
 	@Override
 	public void notifyStudent() {
-		
 		
 	}
 }

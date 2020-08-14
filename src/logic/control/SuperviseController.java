@@ -12,6 +12,7 @@ import logic.dao.MessageDao;
 import logic.dao.StudentDao;
 import logic.entity.Message;
 import logic.entity.Student;
+import logic.pattern.BannedState;
 
 public class SuperviseController implements StudentSuperviseController, LibrarianSuperviseController{
 	private List<Student> listStudents;
@@ -81,7 +82,13 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		}
 		student.increaseReportCounter();
 		if (student.getReportCounter() > 2) {
+			student.getStateMachine().setState(new BannedState());
+			student.notifyStudent();
 			student.setBanned(true);
+		}
+		if (student.getReportCounter() < 3) {
+			student.getStateMachine().goNext();
+			student.notifyStudent();
 		}
 	
 		for (i=0; i<listStudentBean.size(); i++) {

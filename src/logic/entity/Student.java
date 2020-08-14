@@ -123,6 +123,10 @@ public class Student extends User {
 		}
 		return time.toString();
 	}
+	
+	public void notifyStudent() {
+		stateMachine.getState().notifyStudent();
+	}
 
 	@Override
 	public void notifyObservers() {
@@ -131,5 +135,6 @@ public class Student extends User {
 		}
 		
 	}
+
 	
 }

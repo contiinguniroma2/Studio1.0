@@ -48,16 +48,17 @@ public class StudentDao extends GenericDao {
 		try {
 			System.out.println(student.getReportCounter());
 			System.out.println(student.isBanned());
-			ps = con.prepareStatement("UPDATE Studente SET mailStudente = ?, password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ? WHERE mailStudente = ?");
-			ps.setString(1, student.getMail());
-			ps.setString(2, student.getPassword());
-			ps.setString(3, student.getUsername());
-			ps.setString(4, student.getName());
-			ps.setString(5, student.getSurname());
-			ps.setString(6,  student.getPhone());
-			ps.setByte(7, student.getReportCounter());
-			ps.setBoolean(8, student.isBanned());
-			ps.setString(9, student.getCountdown());
+			ps = con.prepareStatement("UPDATE Studente SET password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
+			
+			ps.setString(1, student.getPassword());
+			ps.setString(2, student.getUsername());
+			ps.setString(3, student.getName());
+			ps.setString(4, student.getSurname());
+			ps.setString(5,  student.getPhone());
+			ps.setByte(6, student.getReportCounter());
+			ps.setBoolean(7, student.isBanned());
+			ps.setString(8, student.getCountdown());
+			ps.setString(9, student.getMail());
 			status=ps.executeUpdate();
 		}
 		catch (Exception e) {
