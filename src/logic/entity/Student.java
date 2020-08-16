@@ -129,13 +129,5 @@ public class Student extends User {
 		return message;
 	}
 
-	@Override
-	public void notifyObservers() {
-		for(int i=0; i<this.observers.size();i++) {
-			observers.get(i).update();
-		}
-		
-	}
-
 	
 }

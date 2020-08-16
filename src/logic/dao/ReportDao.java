@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import logic.constants.ReportConstants;
+import logic.entity.Library;
 import logic.entity.Report;
 import logic.entity.User;
+import logic.exceptions.ReportSaveException;
 
 public class ReportDao {
 	private PreparedStatement ps;
@@ -33,7 +36,7 @@ public class ReportDao {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
-			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailBiblioteca = ?");
+			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailBiblioteca = ? ORDER BY numero");
 			ps.setString(1, user.getMail());
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -54,12 +57,13 @@ public class ReportDao {
 		return reportList;
 	}
 
-	public List<Report> getReportFromDbByStudent(User user) {
+	public List<Report> getReportFromDbByStudent(User sessionUser, Library library) {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
-			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailStudente = ?");
-			ps.setString(1, user.getMail());
+			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailStudente = ? AND mailBiblioteca = ? ORDER BY numero");
+			ps.setString(1, sessionUser.getMail());
+			ps.setString(2, library.getMail());
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				reportList.add(new Report(rs.getString(ReportConstants.REPORT_TITLE),
@@ -95,18 +99,35 @@ public class ReportDao {
 		return status;
 	}
 
-	public int saveReportOnDb(Report report) throws SQLException {
+	public int saveReportOnDb(Report report) throws ReportSaveException {
 		int status = 0;
-		
-		ps = conn.prepareStatement(
-				"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)");
-		ps.setString(1, report.getDescription());
-		ps.setString(2, report.getStudentId());
-		ps.setString(3, report.getLibraryId());
-		ps.setString(4, report.getTitle());
-		ps.setString(5, report.getStatus());
-		status = ps.executeUpdate();
-		closeStatement(ps);
+		try {
+			ps = conn.prepareStatement(
+					"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, report.getDescription());
+			ps.setString(2, report.getStudentId());
+			ps.setString(3, report.getLibraryId());
+			ps.setString(4, report.getTitle());
+			ps.setString(5, report.getStatus());
+			status=ps.executeUpdate();
+			
+	        if (status == 0) {
+	        	throw new ReportSaveException();
+	        }
+
+	        try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	                report.setReportId(generatedKeys.getLong(1));
+	            }
+	            else {
+	            	throw new ReportSaveException();
+	            }
+	        }
+		} catch (SQLException e) {
+			 throw new ReportSaveException();
+		}finally {
+			closeStatement(ps);
+		}
 		
 		return status;
 	}

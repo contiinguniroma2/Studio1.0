@@ -23,14 +23,14 @@
                </image>
             </ImageView>
             <Label id="lbStudentName" fx:id="lbUser" layoutX="122.0" layoutY="17.0" text="User" />
-            <Label id="lbStatus" fx:id="lbStatus" layoutX="417.0" layoutY="17.0"/>
+            <Label id="lbStatus" fx:id="lbStatus" layoutX="417.0" layoutY="17.0" />
          </children>
       </AnchorPane>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Report form:">
+            <Label text="Report details:">
                <VBox.margin>
                   <Insets left="310.0" top="20.0" />
                </VBox.margin>
@@ -38,7 +38,7 @@
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <TextField id="tvTitle" fx:id="tvTitle" prefHeight="25.0" prefWidth="631.0" promptText="Title, max 128 chars">
+            <TextField id="tvTitle" fx:id="tvTitle" editable="false" prefHeight="25.0" prefWidth="631.0">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
@@ -46,7 +46,7 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <TextArea id="tvDescription" fx:id="tvDescription" prefHeight="328.0" prefWidth="611.0" promptText="Description, max 1024 chars">
+            <TextArea id="tvDescription" fx:id="tvDescription" editable="false" prefHeight="328.0" prefWidth="611.0">
                <VBox.margin>
                   <Insets left="30.0" right="30.0" top="30.0" />
                </VBox.margin>
@@ -62,12 +62,7 @@
          <children>
             <Button id="btnBack" fx:id="btnBack" mnemonicParsing="false" onAction="#backClicked" prefHeight="25.0" prefWidth="79.0" text="Back">
                <HBox.margin>
-                  <Insets left="230.0" top="35.0" />
-               </HBox.margin>
-            </Button>
-            <Button id="btnSendReport" fx:id="btnSendReport" mnemonicParsing="false" onAction="#sendReportClicked" prefHeight="25.0" prefWidth="79.0" text="Send ">
-               <HBox.margin>
-                  <Insets left="200.0" top="35.0" />
+                  <Insets left="350.0" top="35.0" />
                </HBox.margin>
             </Button>
          </children>

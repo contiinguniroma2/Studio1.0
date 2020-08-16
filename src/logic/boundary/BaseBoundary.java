@@ -3,6 +3,7 @@ package logic.boundary;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,11 +19,11 @@ public abstract class BaseBoundary implements Initializable{
 	@FXML protected Label lbUser;
 	@FXML protected ImageView ivBtnUserPic;
 	
-	public abstract void backClicked();
+	public abstract void backClicked(ActionEvent event);
 	
-	public abstract void userProfileClicked();
+	public abstract void userProfileClicked(ActionEvent event);
 	
-	public void logoutClicked() {
+	public void logoutClicked(ActionEvent event) {
 		//TODO
 	}
 

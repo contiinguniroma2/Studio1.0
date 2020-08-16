@@ -3,38 +3,41 @@ package logic.boundary;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logic.bean.ReportBean;
 import logic.control.ReportIssueController;
-import logic.exceptions.ReportSaveException;
 
-public class ReportFormBoundary extends IssueBoundary {
-
-	@FXML private Button btnSendReport;
+public class IssueBoundary implements Initializable {
 	
-	public ReportFormBoundary(ReportIssueController reportIssueController,
-			IssueListStudentBoundary issueListStudentBoundary) {
-		super(reportIssueController, issueListStudentBoundary);
+	@FXML protected TextField tvTitle;
+	@FXML protected TextArea tvDescription;
+	@FXML protected Button btnBack;
+	@FXML protected Label lbUser;
+	@FXML protected Label lbStatus;
+	protected ReportIssueController reportIssueController;
+	protected IssueListStudentBoundary issueListStudentBoundary;
+	
+	public IssueBoundary(ReportIssueController reportIssueController, IssueListStudentBoundary issueListStudentBoundary) {
+		this.reportIssueController=reportIssueController;
 		this.issueListStudentBoundary=issueListStudentBoundary;
+	}
+	
+	public IssueBoundary(ReportIssueController reportIssueController) {
 		this.reportIssueController=reportIssueController;
 	}
 	
-	@FXML
-	public void sendReportClicked(ActionEvent event) {
-		try {
-			this.reportIssueController.sendReport(new ReportBean(tvTitle.getText(),tvDescription.getText()));
-		} catch (ReportSaveException e) {
-			this.lbStatus.setText("Report send failed check the fields and try again.");
-			this.btnSendReport.setText("Try again");
-			e.printStackTrace();
-		}
+	public void backClicked(ActionEvent event) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/fxml/IssueListStudentGUI.fxml"));
 		loader.setController(this.issueListStudentBoundary);
 		BorderPane nextParent = null;
@@ -50,14 +53,14 @@ public class ReportFormBoundary extends IssueBoundary {
         window.setScene(nextScene);
         window.show();
 	}
-
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.btnSendReport.setText("Send");
 		this.lbUser.setText(this.reportIssueController.getSessionUser().getUsername());
+		this.tvTitle.setText(this.reportIssueController.getReportBean().getTitle());
+		this.tvDescription.setText(this.reportIssueController.getReportBean().getDescription());
 	}
-
 	
 	
 }

@@ -2,7 +2,7 @@ package logic.pattern;
 
 import java.util.List;
 
-public abstract class AbstractObservable {
+public class AbstractObservable {
 	protected List<Observer> observers;
 	
 	public void attachObserver(Observer observer) {
@@ -13,5 +13,8 @@ public abstract class AbstractObservable {
 		this.observers.remove(observer);
 	}
 	
-	public abstract void notifyObservers();
+	public void notifyObservers() {
+		for(int i=0; i<this.observers.size();i++)
+			observers.get(i).update();
+	}
 }

@@ -2,6 +2,8 @@ package logic.boundary;
 
 import java.util.logging.Logger;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -10,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import logic.application.Main;
 import logic.control.LibraryMainPageController;
 import logic.control.StudentMainPageController;
@@ -63,9 +66,19 @@ public class LoginGUI extends GuiSUPER {
 							.getState() instanceof BannedState)
 						main.setNewStage(BANNEDSTUDENT);
 					else {
-						StudentMainPageController.getStudentMainPageController().getBookMarks();
+						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentGUI.fxml"));
+						StudentFxmlGUI studentFxmlGui = new StudentFxmlGUI(loginController.getStudent());
+						fxmlLoader.setController(studentFxmlGui);
 						
-						main.setNewStage(STUDENT);
+						BorderPane nextParent = fxmlLoader.load();
+				        Scene nextScene = new Scene(nextParent, 800, 600);
+						
+				        //This line gets the Stage information
+				        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				        
+				        window.setScene(nextScene);
+				        window.show();
+						//main.setNewStage(STUDENT);
 					}
 				} else if (loginController.validateUser(emailField.getText(),
 						passwordField.getText()) == 'l') {

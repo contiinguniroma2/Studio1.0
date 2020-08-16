@@ -3,7 +3,7 @@ package logic.entity;
 import java.util.List;
 import logic.pattern.AbstractObservable;
 
-public abstract class User extends AbstractObservable{
+public class User extends AbstractObservable{
 	protected String name;
 	protected String userName;
 	protected String mail;
@@ -65,14 +65,17 @@ public abstract class User extends AbstractObservable{
 
 	public void setReports(List<Report> reports) {
 		this.reports = reports;
+		notifyObservers();
 	}
 	
 	public void addReport(Report report) {
 		this.reports.add(report);
+		notifyObservers();
 	}
 	
 	public void removeReport(Report report) {
 		this.reports.remove(report);
+		notifyObservers();
 	}
 
 }

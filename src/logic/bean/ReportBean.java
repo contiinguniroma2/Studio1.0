@@ -13,6 +13,12 @@ public class ReportBean {
 	public ReportBean() {
 		//default constructor
 	}
+	
+	public ReportBean(String title, String description) {
+		this.title=title;
+		this.description=description;
+	}
+	
 
 	public void setTitle(String title) throws EmptyTextFieldException  {
 
@@ -30,7 +36,7 @@ public class ReportBean {
 
 	}
 
-	public void setdescription(String description) throws EmptyTextFieldException {
+	public void setDescription(String description) throws EmptyTextFieldException {
 
 		if (description.trim().equals(""))
 
@@ -40,7 +46,7 @@ public class ReportBean {
 
 	}
 
-	public String getdescription() {
+	public String getDescription() {
 
 		return description;
 
@@ -69,4 +75,5 @@ public class ReportBean {
 	public void setLibraryId(String libraryId) {
 		this.libraryId = libraryId;
 	}
+
 }

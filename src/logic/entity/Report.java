@@ -20,7 +20,7 @@ public class Report {
 		this.libraryId = libraryId;
 		this.status = status;
 	}
-
+	
 	public Report(String title, String description, String studentId, String libraryId, String status) {
 		this.title = title;
 		this.description = description;
@@ -28,6 +28,8 @@ public class Report {
 		this.libraryId = libraryId;
 		this.status = status;
 	}
+
+	
 
 	public String getTitle() {
 		return title;
@@ -78,11 +80,11 @@ public class Report {
 	}
 	
 	public String getMainInfoForLibrarian() {
-		return this.title.concat("    ".concat(this.studentId.concat("    ".concat(this.status))));
+		return String.valueOf(this.reportId).concat("    ".concat(this.title.concat("    ".concat(this.studentId.concat("    ".concat(this.status))))));
 	}
 	
 	public String getMainInfoForStudent() {
-		return this.title.concat("    ".concat(this.libraryId.concat("    ".concat(this.status))));
+		return String.valueOf(this.reportId).concat("    ".concat(this.title.concat("    ".concat("    ".concat(this.status)))));
 	}
 
 }
