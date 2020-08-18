@@ -37,30 +37,29 @@ public class Student extends User {
 		this.reportCounter = reportCounter;
 		this.phone = phone;
 		this.observers=new ArrayList<>();
-		if ((reportCounter > 2) && (!isBanned)) {
-			this.stateMachine = new StateMachine(new NotifiedState());
-		}
-		else if (isBanned) {
+		if (isBanned) {
 			this.stateMachine = new StateMachine(new BannedState());
-		}
-		else {
-		    this.stateMachine = new StateMachine(new NormalState());
-		}
-		if (time.equals("")) {
 			this.time = null;
 		}
 		else {
-			DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
-			this.time = LocalDateTime.parse(time, formatter);
-			Duration duration = Duration.between(this.time, LocalDateTime.now());
-			if (duration.getSeconds()>172800 && this.isBanned!=true) {
-				 this.setBanned(true);
-				 this.stateMachine.setState(new BannedState());
+			if (time.equals("")) {
+				this.time = null;
+				this.stateMachine = new StateMachine(new NormalState());
 			}
 			else {
-				this.stateMachine.setState(new NotifiedState());
+				DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+				this.time = LocalDateTime.parse(time, formatter);
+				Duration duration = Duration.between(this.time, LocalDateTime.now());
+				if (duration.getSeconds()>172800) {
+					 this.setBanned(true);
+					 this.stateMachine = new StateMachine(new BannedState());
+				}
+				else {
+					this.stateMachine = new StateMachine(new NotifiedState());
+				}
 			}
 		}
+
 	}
 
 	public boolean isBanned() {

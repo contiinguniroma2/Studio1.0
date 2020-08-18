@@ -18,7 +18,7 @@ public class StudentSearchInsertGUI extends StudentGUI {
 	public StudentSearchInsertGUI() {
 		librarySearchButton = new Button();
 		location = new TextField();
-		studInfo = loginController.getStudBean();
+		studInfo = loginController.getStudentBean();
 	}
 
 	public Scene createStudentSearchInsertGUI(Main main) {

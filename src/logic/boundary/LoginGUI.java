@@ -58,10 +58,14 @@ public class LoginGUI extends GuiSUPER {
 					StudentMainPageController.getStudentMainPageController()
 							.setStudInfo(loginController.getStudent());
 					StudentMainPageController.getStudentMainPageController()
-							.setStudInfoB(loginController.getStudBean());
-					if (loginController.getStudent().getStateMachine()
-							.getState() instanceof NotifiedState)
-						main.setNewStage(NOTIFIEDSTUDENT);
+							.setStudInfoB(loginController.getStudentBean());
+					if (loginController.getStudent().getStateMachine().getState() instanceof NotifiedState) {
+						StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI(loginController.getStudentBean());
+						Scene scene = studentNotifiedGUI.createStudentNotifiedGUI(main);
+						main.stage.setScene(scene);
+						main.stage.show();
+					}
+						
 					else if (loginController.getStudent().getStateMachine()
 							.getState() instanceof BannedState)
 						main.setNewStage(BANNEDSTUDENT);
@@ -78,7 +82,6 @@ public class LoginGUI extends GuiSUPER {
 				        
 				        window.setScene(nextScene);
 				        window.show();
-						//main.setNewStage(STUDENT);
 					}
 				} else if (loginController.validateUser(emailField.getText(),
 						passwordField.getText()) == 'l') {
@@ -92,8 +95,6 @@ public class LoginGUI extends GuiSUPER {
 					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
 					main.stage.setScene(scene);
 					main.stage.show();
-					//main.setNewStage(LIBRARIAN);
-
 				}
 
 				t1.setTextFill(Color.web("#ff0000"));

@@ -4,7 +4,7 @@ import logic.entity.Message;
 
 public class BannedState extends AbstractState {
 	private String titleBanned = "Account banned";
-    private String textBanned = "Your account is banned, you've been behaving inappropriately";
+    private String textBanned = "Your account is banned,\nyou've been behaving inappropriately";
 
 	public BannedState() {
 		state = "Banned";

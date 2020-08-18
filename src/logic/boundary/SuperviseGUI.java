@@ -9,11 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import logic.bean.LibrBean;
+import logic.control.LibrarianSuperviseController;
 import logic.control.SuperviseController;
 
 public class SuperviseGUI extends LibrarianGUI {
 	private List<Button> infoAccountBtnList;
-	private SuperviseController superviseController;
+	private LibrarianSuperviseController superviseController;
 	private List<String> usernameList;
 	private VBox gui;
 
@@ -43,9 +44,7 @@ public class SuperviseGUI extends LibrarianGUI {
 	    	String studentId = infoAccountBtnList.get(i).getText();
 	    	infoAccountBtnList.get(i).setOnAction((event -> {
 				try {
-					superviseController.getInfoStudent(studentId, this);
-				
-						                
+					superviseController.getInfoStudent(studentId, this);					                
 				} 
 				catch (Exception e) {
 					e.printStackTrace();
@@ -57,7 +56,7 @@ public class SuperviseGUI extends LibrarianGUI {
 		for (int i=0; i<infoAccountBtnList.size(); i++) {
 			vBoxUser.getChildren().add(infoAccountBtnList.get(i));
 		}
-		
+
 		vBoxUser.setMaxSize(500, 500);
 		vBoxUser.setAlignment(Pos.CENTER);
 		vBoxUser.setSpacing(0);
@@ -79,7 +78,7 @@ public class SuperviseGUI extends LibrarianGUI {
 		return this.gui;
 	}
 	
-	public SuperviseController getSuperviseController() {
+	public LibrarianSuperviseController getSuperviseController() {
 		return superviseController;
 	}
 }

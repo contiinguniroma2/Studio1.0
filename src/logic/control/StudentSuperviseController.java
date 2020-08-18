@@ -9,5 +9,5 @@ public interface StudentSuperviseController {
 	
 	public void sendMessageInteraction(Student student);
 
-	List<MessageBean> getMessages(String idBibl, String idStud);
+	List<MessageBean> getMessages(String idStud);
 }

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class LoginController implements GenericController {
 	private LibrBean librBean;
-	private StudentBean studBean;
+	private StudentBean studentBean;
 	private Library library;
 	private LibraryDao loginL;
 	private StudentDao loginS;
@@ -21,7 +21,7 @@ public class LoginController implements GenericController {
 
 	public LoginController() {
 		this.librBean = new LibrBean();
-		this.studBean = new StudentBean();
+		this.studentBean = new StudentBean();
 		this.library = new Library();
 		this.loginL = new LibraryDao();
 		this.loginS = new StudentDao();
@@ -32,8 +32,8 @@ public class LoginController implements GenericController {
 
 		studInfo = loginS.select(mail, password);
 		if (studInfo != null) {
-		    studBean.fillUserBean(studInfo.getUsername(), studInfo.getMail(), studInfo.getPassword(),studInfo.getName(), studInfo.getPhone());
-		    studBean.fillStudBean(studInfo.getSurname(), studInfo.isBanned(), studInfo.getReportCounter());
+		    studentBean.fillUserBean(studInfo.getUsername(), studInfo.getMail(), studInfo.getPassword(),studInfo.getName(), studInfo.getPhone());
+		    studentBean.fillStudBean(studInfo.getSurname(), studInfo.isBanned(), studInfo.getReportCounter());
 		    return 's';
 		}
 		library = loginL.selectL(mail, password);
@@ -70,12 +70,12 @@ public class LoginController implements GenericController {
 		this.librBean = librBean;
 	}
 
-	public StudentBean getStudBean() {
-		return studBean;
+	public StudentBean getStudentBean() {
+		return studentBean;
 	}
 
-	public void setStudBean(StudentBean studBean) {
-		this.studBean = studBean;
+	public void setStudentBean(StudentBean studentBean) {
+		this.studentBean = studentBean;
 	}
 
 	public Library getLibrary() {
@@ -93,5 +93,7 @@ public class LoginController implements GenericController {
 	public void setStudent(Student student) {
 		this.studInfo = student;
 	}
+	
+	
 
 }

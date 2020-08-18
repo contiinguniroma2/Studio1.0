@@ -110,7 +110,7 @@ public class GuiSUPER {
 
 	public Button createBtn(String nameBtn) {
 		Button btn = new Button(nameBtn);
-		btn.setPrefWidth(100);
+		btn.setPrefWidth(107);
 		btn.setPrefHeight(20);
 		return btn;
 	}

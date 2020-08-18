@@ -36,7 +36,7 @@ public class MessageDao extends GenericDao {
 			ps.executeUpdate();
 			rs = ps.getGeneratedKeys();
 			rs.next();
-			autoId = rs.getLong("numeroMessaggio");
+			autoId = rs.getLong(1);
 			
 
 		} catch (Exception e) {
@@ -54,12 +54,12 @@ public class MessageDao extends GenericDao {
 	
 
 
-	public List<Message> getMessagesFromDb(String idBibl, String idStud) throws SQLException {
+	public List<Message> getMessagesFromDb(String idStudent) throws SQLException {
 		ResultSet rs = null;
 		List<Message> messageList = new ArrayList<>();
 		try {
-			ps = con.prepareStatement("SELECT * FROM Messaggio WHERE mailBiblioteca = ? AND mailStudente = ?");
-			fillSelectStatement(ps, idBibl, idStud);
+			ps = con.prepareStatement("SELECT * FROM Messaggio WHERE mailStudente = ?");
+			ps.setString(1, idStudent);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				messageList.add(new Message(rs.getLong(1), rs.getString(TITOLOM), rs.getString(TESTOM),

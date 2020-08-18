@@ -35,7 +35,7 @@ public class LibrarianGUI extends GuiSUPER {
 		noticeBoard = createBtn("Notice board");
 		timeTable = createBtn("Time table");
 		services = createBtn("Services");
-		supervisePage = createBtn("User behavior");
+		supervisePage = createBtn("Students");
 		statistics = createBtn("Statistics");
 		logOut = createBtn("Log Out");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
@@ -50,7 +50,7 @@ public class LibrarianGUI extends GuiSUPER {
 		noticeBoard = createBtn("Notice board");
 		timeTable = createBtn("Time table");
 		services = createBtn("Services");
-		supervisePage = createBtn("User behavior");
+		supervisePage = createBtn("Students");
 		statistics = createBtn("Statistics");
 		logOut = createBtn("Log Out");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));

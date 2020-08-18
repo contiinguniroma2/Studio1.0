@@ -46,8 +46,6 @@ public class StudentDao extends GenericDao {
 	public int updateStudent(Student student) {
 		int status = 0;
 		try {
-			System.out.println(student.getReportCounter());
-			System.out.println(student.isBanned());
 			ps = con.prepareStatement("UPDATE Studente SET password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
 			
 			ps.setString(1, student.getPassword());
@@ -59,6 +57,32 @@ public class StudentDao extends GenericDao {
 			ps.setBoolean(7, student.isBanned());
 			ps.setString(8, student.getCountdown());
 			ps.setString(9, student.getMail());
+			status=ps.executeUpdate();
+		}
+		catch (Exception e) {
+			 myLogger.info("Aggiornamento fallito");
+			 return status;
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+		}
+		return status;
+	}
+	
+	public int updateStudentState(Student student) {
+		int status = 0;
+		try {
+			ps = con.prepareStatement("UPDATE Studente SET reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
+			
+			ps.setByte(1, student.getReportCounter());
+			ps.setBoolean(2, student.isBanned());
+			ps.setString(3, student.getCountdown());
+			ps.setString(4, student.getMail());
 			status=ps.executeUpdate();
 		}
 		catch (Exception e) {
@@ -106,7 +130,6 @@ public class StudentDao extends GenericDao {
 		List<Student> studentList = new ArrayList<>();
 		try {
 			ps = null;
-			System.out.println("oh");
 			ps = con.prepareStatement("SELECT * FROM Studente LEFT JOIN recent_student ON studente.mailStudente = recent_student.mailStudent WHERE recent_student.mailBiblioteca = ? ");
 			fillSelectStatement(ps, idBiblio, null);
 			rs = ps.executeQuery();

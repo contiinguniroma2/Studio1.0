@@ -81,11 +81,11 @@ public class Main extends Application implements RequestNewStage {
 			scene = studentSearchInsertGUI.createStudentSearchInsertGUI(this);
 			break;
 
-		case ("StudentNotifiedGUI"):
+		/*case ("StudentNotifiedGUI"):
 			StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI();
 			studentNotifiedGUI.createNotifiedRoot(this);
 			scene = studentNotifiedGUI.createStudentNotifiedGUI(this);
-			break;
+			break;*/
 
 		case ("StudentBannedGUI"):
 			StudentBannedGUI studentBannedGUI = new StudentBannedGUI();

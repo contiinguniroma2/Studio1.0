@@ -63,8 +63,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 			}
 		}
 		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, studentBean);
-		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());
-		
+		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());		
 	}
 	
 
@@ -93,6 +92,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 			if (student.getReportCounter() < 3) {
 				student.increaseReportCounter();
 				message = student.notifyStudent(reason);
+				student.startCountdown();
 				student.getStateMachine().goNext();			
 			}
 		}
@@ -105,30 +105,22 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	    		listStudentBean.get(i).setBanned(student.isBanned());	    		
 	    	}
 	    }
-		studentDao.updateStudent(student);
-		messageDao.insert(message);
+		studentDao.updateStudentState(student);
+		message.setId(messageDao.insert(message));
 	}
-	
-
-	
-	
-	
-	
-	
-	
 	
 	
 	@Override
-	public List<MessageBean> getMessages(String idBibl, String idStud) {
+	public List<MessageBean> getMessages(String idStud) {
 		try {
-			listMessages = messageDao.getMessagesFromDb(idBibl, idStud);
+			listMessages = messageDao.getMessagesFromDb(idStud);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		List<MessageBean> list = new ArrayList<>();
 		for (int i=0; i< listMessages.size(); i++) {
-			 MessageBean messageBean = new MessageBean(listMessages.get(i).getId(), listMessages.get(i).getTitle(), listMessages.get(i).getText(), listMessages.get(i).getLibrarianId(), listMessages.get(i).getStudentId());
-			 list.add(messageBean);
+			MessageBean messageBean = new MessageBean(listMessages.get(i).getId(), listMessages.get(i).getTitle(), listMessages.get(i).getText(), listMessages.get(i).getLibrarianId(), listMessages.get(i).getStudentId());
+			list.add(messageBean);
 		}
 		return list;
 	}
