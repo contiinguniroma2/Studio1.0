@@ -79,12 +79,12 @@ public class MessageDao extends GenericDao {
 		return messageList;
 	}
 	
-	public int delete(String bibId, String studId) {
+	public int delete(long messageId) {
 		int status = 0;
 		try {
 
-			ps = con.prepareStatement("DELETE FROM Messaggio WHERE mailBiblioteca=? AND mailStudente=?");
-			fillDeleteStatement(ps, bibId, studId);
+			ps = con.prepareStatement("DELETE FROM Messaggio WHERE numeroMessaggio = ?");
+			ps.setLong(1, messageId);
 			
 			status = ps.executeUpdate();
 		}

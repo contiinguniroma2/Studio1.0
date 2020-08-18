@@ -20,11 +20,19 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	private StudentDao studentDao;
 	private List<Message> listMessages;
 	private MessageDao messageDao;
+	private Student student;
 	
 	public SuperviseController() {
 		this.studentDao = new StudentDao();
 		this.messageDao = new MessageDao();
 		this.listStudentBean = new ArrayList<>();
+	}
+	
+	public SuperviseController(Student student) {
+		this.studentDao = new StudentDao();
+		this.messageDao = new MessageDao();
+		this.listStudentBean = new ArrayList<>();
+		this.student = student;
 	}
 
 	@Override
@@ -126,7 +134,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	}
 
 	@Override
-	public void sendMessageInteraction(Student student) {
+	public void sendMessageInteraction(String studentId) {
 		student.stopCountdown();
 		studentDao.updateStudent(student);
 	}
@@ -135,6 +143,12 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	public void sendMessage(MessageBean messageBean) {
 	    Message message = new Message(messageBean.getTitle(), messageBean.getText(), messageBean.getLibrarianId(), messageBean.getStudentId());
 	    message.setId(messageDao.insert(message));
+	}
+
+	@Override
+	public void deleteMessage(long messageId) {
+		messageDao.delete(messageId);
+		
 	}
 
 

@@ -5,7 +5,7 @@ import logic.entity.Message;
 public class NormalState extends AbstractState {
 	private String titleNormal = "Your info account was reported";
     private String titleFeedNormal = "Your feedback was reported";
-    private String textNormal = "Your account has been reported, we ask you to modify\nyour personal information and rewrite it using appropriate language";
+    private String textNormal = "We ask you to modify your personal information\nand rewrite it using appropriate language";
     private String textFeedback = "Your account has been reported\nbecouse your feedback was inappropriate";
 	public NormalState() {
 		state = "Normal";

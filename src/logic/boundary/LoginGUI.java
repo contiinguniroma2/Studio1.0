@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import logic.application.Main;
 import logic.control.LibraryMainPageController;
 import logic.control.StudentMainPageController;
+import logic.control.StudentSuperviseController;
+import logic.control.SuperviseController;
 import logic.pattern.BannedState;
 import logic.pattern.NotifiedState;
 import javafx.scene.control.PasswordField;
@@ -60,7 +62,9 @@ public class LoginGUI extends GuiSUPER {
 					StudentMainPageController.getStudentMainPageController()
 							.setStudInfoB(loginController.getStudentBean());
 					if (loginController.getStudent().getStateMachine().getState() instanceof NotifiedState) {
-						StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI(loginController.getStudentBean());
+						StudentSuperviseController superviseController = new SuperviseController(loginController.getStudent());
+						StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI(loginController.getStudentBean(), superviseController);
+						
 						Scene scene = studentNotifiedGUI.createStudentNotifiedGUI(main);
 						main.stage.setScene(scene);
 						main.stage.show();

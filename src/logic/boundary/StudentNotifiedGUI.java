@@ -30,11 +30,12 @@ public class StudentNotifiedGUI extends GuiSUPER {
 	private StudentBean studentBean;
 	private Button logOutStud;
     
-	public StudentNotifiedGUI (StudentBean studentBean) {
-		superviseController = new SuperviseController();
+	public StudentNotifiedGUI (StudentBean studentBean, StudentSuperviseController superviseController) {
+		this.superviseController = superviseController;
 		messageBeanList = superviseController.getMessages(studentBean.getMail());
 		this.studentBean = studentBean;
 		logOutStud = createBtn("Log out");
+		btnList = new ArrayList<>();
 	}
 	public Scene createStudentNotifiedGUI(Main main) {
 		ImageView studentHomeImg = createImg("src/resources/logo_button2.png");
@@ -73,6 +74,18 @@ public class StudentNotifiedGUI extends GuiSUPER {
         	info.setMinSize(220,50);
         	Button button = new Button("Ok");
             button.setAlignment(Pos.CENTER);
+            btnList.add(button);
+            Long id = messageBeanList.get(i).getId();
+            btnList.get(i).setOnAction((event -> {
+    			superviseController.deleteMessage(id);
+    			superviseController.sendMessageInteraction(studentBean.getMail());
+    			btnList.remove(button);
+    			center.getChildren().remove(hBox);
+    			if (btnList.isEmpty()) {
+    				main.setNewStage(START);
+    			}
+            }));
+    		
         	hBox.getChildren().addAll(messageForm, info, button);
         	hBox.setSpacing(25);
         	center.getChildren().add(hBox);
