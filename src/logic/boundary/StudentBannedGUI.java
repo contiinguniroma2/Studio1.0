@@ -1,6 +1,7 @@
 package logic.boundary;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.geometry.Insets;
@@ -26,11 +27,13 @@ public class StudentBannedGUI extends GuiSUPER {
 	protected Button logOutStud;
 	protected HBox topPanel;
 	protected VBox center;
+	protected List<HBox> hBoxList;
 	
 	public StudentBannedGUI (StudentBean studentBean, StudentSuperviseController superviseController) {
 		messageBeanList = superviseController.getMessages(studentBean.getMail());
 		this.studentBean = studentBean;
 		logOutStud = createBtn("Log out");
+		hBoxList = new ArrayList<>();
 	}
 	
 	String font = "-fx-font:";
@@ -38,21 +41,6 @@ public class StudentBannedGUI extends GuiSUPER {
 	
 	public Scene createBannedGUI(Main main) {
 		createBase(main);
-        for (int i=0; i<messageBeanList.size(); i++) {
-        	HBox hBox = new HBox();                         //Contiene un messaggio per lo studente
-        	Label messageForm = new Label();
-        	messageForm.setText(messageBeanList.get(i).getTitle() +"\n"+ messageBeanList.get(i).getText());
-        	messageForm.setStyle(font + 20 + arial);
-        	Label info = new Label();
-        	info.setText("For explanation contact:\n" + messageBeanList.get(i).getLibrarianId());
-        	info.setStyle(font + 20 + arial);
-        	info.setMinSize(220,50);
-        	messageForm.setPrefWidth(450);
-        	    		
-        	hBox.getChildren().addAll(messageForm, info);
-        	hBox.setSpacing(25);
-        	center.getChildren().add(hBox);
-        }
         HBox bottom = new HBox(logOutStud);
         bottom.setPadding(new Insets(20));
         BorderPane root = new BorderPane(center, topPanel, null, bottom, null);
@@ -87,6 +75,21 @@ public class StudentBannedGUI extends GuiSUPER {
         center.getChildren().add(title);
         center.setSpacing(20);
         center.setPadding(new Insets(20));
+        for (int i=0; i<messageBeanList.size(); i++) {
+        	HBox hBox = new HBox();                         //Contiene un messaggio per lo studente
+        	Label messageForm = new Label();
+        	messageForm.setText(messageBeanList.get(i).getTitle() +"\n"+ messageBeanList.get(i).getText());
+        	messageForm.setStyle(font + 20 + arial);
+        	Label info = new Label();
+        	info.setText("For explanation contact:\n" + messageBeanList.get(i).getLibrarianId());
+        	info.setStyle(font + 20 + arial);
+        	info.setMinSize(220,50);
+        	messageForm.setPrefWidth(450);
+        	hBox.getChildren().addAll(messageForm, info);
+        	hBox.setSpacing(25);
+        	hBoxList.add(hBox);
+        	center.getChildren().add(hBox);
+        }
 	}
 
 }

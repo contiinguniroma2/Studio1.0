@@ -4,7 +4,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import logic.application.Main;
@@ -26,15 +25,7 @@ public class StudentNotifiedGUI extends StudentBannedGUI {
 	public Scene createStudentNotifiedGUI(Main main) {
 		createBase(main);
         for (int i=0; i<messageBeanList.size(); i++) {
-        	HBox hBox = new HBox();                         //Contiene un messaggio per lo studente
-        	Label messageForm = new Label();
-        	messageForm.setText(messageBeanList.get(i).getTitle() +"\n"+ messageBeanList.get(i).getText());
-        	messageForm.setStyle(font + 19 + arial);
-        	Label info = new Label();
-        	info.setText("For explanation contact:\n" + messageBeanList.get(i).getLibrarianId());
-        	info.setStyle(font + 19 + arial);
-        	info.setMinSize(220,50);
-        	messageForm.setPrefWidth(450);
+        	HBox hBox = hBoxList.get(i);
         	Button button = new Button("Ok");
             button.setAlignment(Pos.CENTER);
             btnList.add(button);
@@ -49,9 +40,9 @@ public class StudentNotifiedGUI extends StudentBannedGUI {
     			}
             }));
     		
-        	hBox.getChildren().addAll(messageForm, info, button);
-        	hBox.setSpacing(25);
-        	center.getChildren().add(hBox);
+            hBox.getChildren().add(button);
+            hBox.setSpacing(25);
+        	
         }
         HBox bottom = new HBox(logOutStud);
         bottom.setPadding(new Insets(20));
