@@ -5,8 +5,8 @@ import logic.entity.Message;
 public class NotifiedState extends AbstractState {
     private String titleNotified = "Your info account was reported";
     private String titleFeedNotified = "Your feedback was reported";
-    private String textNotified = "Update your info account, another librarian has reported you";
-    private String textFeedback = "Another feedback is inappropriate, bad behavior causes ban";
+    private String textNotified = "Update your info account,\nanother librarian has reported you";
+    private String textFeedback = "Another feedback is inappropriate,\nbad behavior causes ban";
     
 	public NotifiedState() {
 		state = "Notified";

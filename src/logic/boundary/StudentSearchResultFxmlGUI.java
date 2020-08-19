@@ -74,7 +74,7 @@ public class StudentSearchResultFxmlGUI implements Initializable {
 		myLogger.info("Book");
 		bookSeatController.bookSeat(student, library);
 		prenotazione = bookSeatBean.getPrenotazione();
-		myLogger.info("Book: " + prenotazione.getNumero() + " - " + prenotazione.getOrarioPrenotazione() + " - " + prenotazione.getBiblioteca() + " - " + prenotazione.getUsernameStud());
+		//myLogger.info("Book: " + prenotazione.getNumero() + " - " + prenotazione.getOrarioPrenotazione() + " - " + prenotazione.getBiblioteca() + " - " + prenotazione.getUsernameStud());
 	}
 	
 	@FXML

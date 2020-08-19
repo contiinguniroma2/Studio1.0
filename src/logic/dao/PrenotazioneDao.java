@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -31,7 +32,11 @@ public class PrenotazioneDao extends GenericDao {
 			ps.setString(2, mailS);
 			ps.setString(3, username);
 			status = ps.executeUpdate();
-
+			ps = con.prepareStatement("INSERT INTO recent_student(mailBiblioteca, mailStudent, time) VALUES(?,?,?)");
+			ps.setString(1, mailB);
+			ps.setString(2, mailS);
+			ps.setString(3, LocalDateTime.now().toString());
+			status = ps.executeUpdate();
 		} catch (NotAvalibleSeatsException exc) {
 
 			myLogger.info(exc.toString());

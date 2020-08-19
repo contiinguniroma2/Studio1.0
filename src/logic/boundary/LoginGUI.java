@@ -70,9 +70,15 @@ public class LoginGUI extends GuiSUPER {
 						main.stage.show();
 					}
 						
-					else if (loginController.getStudent().getStateMachine()
-							.getState() instanceof BannedState)
-						main.setNewStage(BANNEDSTUDENT);
+					else if (loginController.getStudent().getStateMachine().getState() instanceof BannedState) {
+						
+					    StudentSuperviseController superviseController = new SuperviseController(loginController.getStudent());
+					    StudentBannedGUI studentBannedGUI = new StudentBannedGUI(loginController.getStudentBean(), superviseController);
+					
+				    	Scene scene = studentBannedGUI.createBannedGUI(main);
+				    	main.stage.setScene(scene);
+				    	main.stage.show();
+					}
 					else {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentGUI.fxml"));
 						StudentFxmlGUI studentFxmlGui = new StudentFxmlGUI(loginController.getStudent());

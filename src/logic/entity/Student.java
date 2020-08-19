@@ -16,8 +16,6 @@ public class Student extends User {
 	private byte reportCounter;
 	private String surname;
 	private StateMachine stateMachine;
-	private Prenotazione prenotazione;
-	private Message message;
 	private LocalDateTime time;
 
 	public Student() {

@@ -66,9 +66,6 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 				studentBean.fillStudBean(listStudents.get(i).getSurname(), listStudents.get(i).isBanned(), listStudents.get(i).getReportCounter());
 				listStudentBean.add(studentBean);
 			}
-			else {
-				System.out.println("Errore: lo studente non è nella lista");
-			}
 		}
 		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, studentBean);
 		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());		
@@ -83,9 +80,6 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		for (i=0; i< listStudents.size(); i++) {
 			if (listStudents.get(i).getMail().equals(studentId)) {
 				student = listStudents.get(i);
-			}
-			else {
-				System.out.println("Errore: lo studente non è nella lista");
 			}
 		}
 		if (student.getStateMachine().getState().getState().equals("Notified")) {

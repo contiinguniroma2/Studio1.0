@@ -9,16 +9,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
 import logic.bean.MessageBean;
 import logic.bean.StudentBean;
-import logic.control.StudentMainPageController;
 import logic.control.StudentSuperviseController;
-import logic.control.SuperviseController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,9 +66,12 @@ public class StudentNotifiedGUI extends GuiSUPER {
         	HBox hBox = new HBox();                         //Contiene un messaggio per lo studente
         	Label messageForm = new Label();
         	messageForm.setText(messageBeanList.get(i).getTitle() +"\n"+ messageBeanList.get(i).getText());
+        	messageForm.setStyle("-fx-font: " + 19 + " arial;");
         	Label info = new Label();
         	info.setText("For explanation contact:\n" + messageBeanList.get(i).getLibrarianId());
+        	info.setStyle("-fx-font: " + 19 + " arial;");
         	info.setMinSize(220,50);
+        	messageForm.setPrefWidth(450);
         	Button button = new Button("Ok");
             button.setAlignment(Pos.CENTER);
             btnList.add(button);
