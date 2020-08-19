@@ -59,9 +59,9 @@ public class LibrarianGUI extends GuiSUPER {
 				supervisePage, statistics, logOut);
 		leftPadding(leftLibrarian, 20);
 
-		setOnActionRefresh(updateSeatsBtn, main, libraryBean);
+		setOnActionRefresh(updateSeatsBtn, main);
 
-		setOnActionRefresh(refresh, main, libraryBean);
+		setOnActionRefresh(refresh, main);
 
 		supervisePage.setOnAction((event -> {
 			try {
@@ -199,7 +199,7 @@ public class LibrarianGUI extends GuiSUPER {
 		main.getStage().show();
 	}
 	
-	public void setOnActionRefresh(Button btn, Main main, LibrBean libraryBean) {
+	public void setOnActionRefresh(Button btn, Main main) {
 		btn.setOnAction((event -> {
 			try {
 				// VA RESETTATA LA PAGINA

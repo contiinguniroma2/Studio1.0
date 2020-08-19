@@ -24,10 +24,6 @@ import javafx.scene.control.PasswordField;
 
 public class LoginGUI extends GuiSUPER {
 	static Logger myLogger = Logger.getLogger("logger");
-    
-	public LoginGUI() {
-          
-	}
 
 	public Scene createLogin(Main main) {
 		Label titleLog = createLabel("Login:", 24);
@@ -88,7 +84,7 @@ public class LoginGUI extends GuiSUPER {
 				        Scene nextScene = new Scene(nextParent, 800, 600);
 						
 				        //This line gets the Stage information
-				        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+				        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				        
 				        window.setScene(nextScene);
 				        window.show();

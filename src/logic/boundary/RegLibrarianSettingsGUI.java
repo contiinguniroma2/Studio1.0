@@ -13,16 +13,10 @@ import logic.application.Main;
 import logic.control.RegistrationController;
 
 public class RegLibrarianSettingsGUI extends GuiSUPER {
-
 	public static final String TITLE_L1 = "Registration 2/2";
 	public static final String TITLE_L2 = "Please insert this information about your library:";
 
-	public RegLibrarianSettingsGUI() {
-
-	}
-
 	public Scene createRegLibrarianSettings(Main main) {
-
 		Button homeBtn = createBtn(PROJ_NAME);
 		Button signUpBtn = createBtn("Sign up");
 		Label t1 = createLabel("Registration librarian:", 24);
@@ -42,9 +36,7 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 		TextField cityField = new TextField();
 		TextField phoneField = new TextField();
 		TextField capacityField = new TextField();
-
 		HBox topPanel = createTopPanel(homeBtn, "Registration");
-
 		VBox content = new VBox();
 		content.getChildren().addAll(t1, username, usernameField, email, emailField, password, passwordField,
 				nameLibrary, nameLibraryField, city, cityField, address, addressField, phone, phoneField, capacity,
@@ -52,7 +44,6 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 		content.setAlignment(Pos.CENTER);
 		content.setSpacing(2);
 		content.setMaxWidth(250);
-
 		homeBtn.setOnAction((event -> {
 			try {
 				main.setNewStage(START);
@@ -60,14 +51,12 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 				e.printStackTrace();
 			}
 		}));
-		// mailBibliotecario,passwordBibliotecario,nomeBiblioteca,indirizzo,telefonoBiblioteca,username,posti,citta
 
 		signUpBtn.setOnAction((event -> {
 			try {
 				RegistrationController.getRegistrationController().registerUser("Biblioteca", emailField.getText(),
 						passwordField.getText(), nameLibraryField.getText(), addressField.getText(),
 						phoneField.getText(), usernameField.getText(), capacityField.getText(), cityField.getText());
-
 				loginController.setLibrary(RegistrationController.getRegistrationController().getLibr());
 				main.setNewStage(START);
 			} catch (Exception e) {

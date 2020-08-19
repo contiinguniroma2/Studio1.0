@@ -90,13 +90,10 @@ public class LibrarianSettingsGUI extends LibrarianGUI {
 			try {
 				LibrBean newLibraryBean = new LibrBean();
 				newLibraryBean.setMail(emailLibrField.getText());
-				System.out.println(libraryBean.getAddress());
 				newLibraryBean.setPassword(passwordLibrField.getText());
 				newLibraryBean.setUsername(usernameLibrField.getText());
 				newLibraryBean.setName(nameLibrField.getText());
-
 				newLibraryBean.setAddress(addressLibrField.getText());
-				System.out.println(libraryBean.getAddress());
 				newLibraryBean.setPhone(phoneLibrField.getText());
 				newLibraryBean.setCity(cityLibrField.getText());
 				if (capacityLibrField.getText().isEmpty())

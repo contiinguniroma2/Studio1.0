@@ -13,13 +13,9 @@ import logic.control.RegistrationController;
 import logic.control.StudentMainPageController;
 
 public class RegStudentSettingsGUI extends GuiSUPER {
-
 	public static final String TITLE_S1 = "Registration 2/2";
 	public static final String TITLE_S2 = "Please insert this information about you:";
 
-	public RegStudentSettingsGUI() {
-
-	}
 
 	public Scene createRegStudentSettings(Main main) { // main serve a setOnAction, NON TOGLIERE!
 

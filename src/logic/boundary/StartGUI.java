@@ -12,10 +12,6 @@ import logic.application.Main;
 
 public class StartGUI extends GuiSUPER {
 
-	public StartGUI() {
-
-	}
-
 	public Scene createStart(Main main) {
 
 		Label titleStart = createLabel("Welcome:", 24);

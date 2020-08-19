@@ -10,22 +10,15 @@ import logic.application.Main;
 
 public class RegistrationGUI extends GuiSUPER {
 
-	public RegistrationGUI() {
-
-	}
-
 	public Scene createRegistration(Main main) {
-
 		Label titleReg = createLabel("Registration:", 24);
 		Button homeBtn = createBtn(PROJ_NAME);
 		Label t1 = new Label("Select user:");
 		Button studBtn = createBtn("Student");
 		Button librarianBtn = createBtn("Librarian");
-
 		HBox topPanel = createTopPanel(homeBtn, "Registration");
-
 		VBox content = createPanel(titleReg, t1, studBtn, librarianBtn);
-
+		
 		homeBtn.setOnAction((event -> {
 			try {
 				main.setNewStage(START);

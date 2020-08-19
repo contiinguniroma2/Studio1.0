@@ -91,9 +91,9 @@ public class StudentSearchLibPageGUI extends StudentSearchSelectGUI {
 		centerContent.setPrefSize(400, 400);
 		centerContent.setPadding(new Insets(20, 20, 20, 20));
 
-		reportIssue.setOnAction((event -> {
-			reportIssueClicked(event);
-		}));
+		reportIssue.setOnAction(event -> 
+			reportIssueClicked(event)
+		);
 
 		backToRes.setOnAction((event -> {
 			try {
