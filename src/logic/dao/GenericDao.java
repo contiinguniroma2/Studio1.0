@@ -127,6 +127,7 @@ public class GenericDao {
 
 		catch (SQLException e) {
 			myLogger.info("Eliminazione fallita");// definire un eccezione apposita con logger serio
+			e.printStackTrace();
 		}finally {
 			try {
 				ps.close();

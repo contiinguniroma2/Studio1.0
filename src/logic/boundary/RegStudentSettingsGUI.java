@@ -57,7 +57,7 @@ public class RegStudentSettingsGUI extends GuiSUPER {
 						phoneField.getText());
 				StudentMainPageController.getStudentMainPageController()
 						.setStudInfo(RegistrationController.getRegistrationController().getStud());
-				main.setNewStage(STUDENT);
+				main.setNewStage(START);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

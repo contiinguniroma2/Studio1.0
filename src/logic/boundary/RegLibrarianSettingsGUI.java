@@ -69,7 +69,7 @@ public class RegLibrarianSettingsGUI extends GuiSUPER {
 						phoneField.getText(), usernameField.getText(), capacityField.getText(), cityField.getText());
 
 				loginController.setLibrary(RegistrationController.getRegistrationController().getLibr());
-				main.setNewStage(LIBRARIAN);
+				main.setNewStage(START);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
