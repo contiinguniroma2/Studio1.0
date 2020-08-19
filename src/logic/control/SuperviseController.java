@@ -18,7 +18,6 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	private List<Student> listStudents;
 	private List<StudentBean> listStudentBean;
 	private StudentDao studentDao;
-	private List<Message> listMessages;
 	private MessageDao messageDao;
 	private Student student;
 	
@@ -74,7 +73,6 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 
 	@Override
 	public void increaseReportingCounter(String studentId, String librarianId, String reason) {
-		Student student = null;
 		Message message = null;
 		int i;
 		for (i=0; i< listStudents.size(); i++) {
@@ -114,6 +112,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	
 	@Override
 	public List<MessageBean> getMessages(String idStud) {
+		List<Message> listMessages = null;
 		try {
 			listMessages = messageDao.getMessagesFromDb(idStud);
 		} catch (SQLException e) {

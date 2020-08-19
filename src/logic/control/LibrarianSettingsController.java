@@ -5,11 +5,8 @@ import java.util.logging.Logger;
 
 import logic.bean.LibrBean;
 import logic.dao.LibraryDao;
-//import logic.entity.Library;
 
 public class LibrarianSettingsController {
-
-//	private Library librInfo;
 	private LibrBean librInfoB;
 	private LibraryDao librDao;
 	static Logger myLogger = Logger.getLogger("logger");
@@ -17,7 +14,6 @@ public class LibrarianSettingsController {
 
 	protected LibrarianSettingsController() {
 		this.librInfoB = new LibrBean();
-		//this.librInfo = LoginController.getLoginController().getLibrary();
 		this.librDao = new LibraryDao();
 	}
 
@@ -31,33 +27,26 @@ public class LibrarianSettingsController {
 		return instance;
 	}
 
-	public void updateLibraryInfo(String LibrarianId) throws SQLException {
+	public void updateLibraryInfo(String librarianId) throws SQLException {
 		if (!librInfoB.getMail().isEmpty())
-			librDao.update("mailBiblioteca", librInfoB.getMail(), LibrarianId);
+			librDao.update("mailBiblioteca", librInfoB.getMail(), librarianId);
 		if (!librInfoB.getPassword().isEmpty())
-			librDao.update("passwordBiblioteca", librInfoB.getPassword(), LibrarianId);
+			librDao.update("passwordBiblioteca", librInfoB.getPassword(), librarianId);
 		if (!librInfoB.getUsername().isEmpty())
-			librDao.update("username", librInfoB.getUsername(), LibrarianId);
+			librDao.update("username", librInfoB.getUsername(), librarianId);
 		if (!librInfoB.getName().isEmpty())
-			librDao.update("nomeBiblioteca", librInfoB.getName(), LibrarianId);
+			librDao.update("nomeBiblioteca", librInfoB.getName(), librarianId);
 		if (!librInfoB.getPhone().isEmpty())
-			librDao.update("telefonoBiblioteca", librInfoB.getPhone(), LibrarianId);
+			librDao.update("telefonoBiblioteca", librInfoB.getPhone(), librarianId);
 		if (librInfoB.getCapacity() != 0)
-			librDao.updatePosti(librInfoB.getCapacity(), LibrarianId, "posti");
+			librDao.updatePosti(librInfoB.getCapacity(), librarianId, "posti");
 		if (!librInfoB.getCity().isEmpty())
-			librDao.update("citta", librInfoB.getCity(), LibrarianId);
+			librDao.update("citta", librInfoB.getCity(), librarianId);
 		if (!librInfoB.getAddress().isEmpty())
-			librDao.update("indirizzo", librInfoB.getAddress(), LibrarianId);
+			librDao.update("indirizzo", librInfoB.getAddress(), librarianId);
 	}
 
-/*	public Library getLibrInfo() {
-		return librInfo;
-	}
 
-	public void setLibrInfo(Library librInfo) {
-		this.librInfo = librInfo;
-	}
-*/
 	public LibrBean getLibrInfoB() {
 		return librInfoB;
 	}

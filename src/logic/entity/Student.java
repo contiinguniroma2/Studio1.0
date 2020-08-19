@@ -122,8 +122,7 @@ public class Student extends User {
 	}
 	
 	public Message notifyStudent(String reason) {
-		Message message = stateMachine.getState().notifyStudent(reason);
-		return message;
+		return stateMachine.getState().notifyStudent(reason);
 	}
 
 	

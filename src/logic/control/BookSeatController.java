@@ -56,7 +56,7 @@ public class BookSeatController {
 	/*
 	 * Metodo per cancellare prenotazione
 	 */
-	public boolean deleteBook(Prenotazione prenotazione) {
+	public boolean deleteBook() {
 		//se prenotazione esiste (sicuro) eliminala
 		return true;
 	}
