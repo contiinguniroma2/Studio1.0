@@ -3,14 +3,11 @@ package logic.application;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import logic.boundary.GuestGUI;
-import logic.boundary.HomeLibrarianGUI;
 import logic.boundary.LoginGUI;
 import logic.boundary.RegLibrarianSettingsGUI;
 import logic.boundary.RegStudentSettingsGUI;
 import logic.boundary.RegistrationGUI;
 import logic.boundary.StartGUI;
-import logic.boundary.StudentBannedGUI;
-import logic.boundary.StudentNotifiedGUI;
 import logic.boundary.StudentSearchInsertGUI;
 import javafx.scene.Scene;
 
@@ -66,13 +63,6 @@ public class Main extends Application implements RequestNewStage {
 		case ("GuestGUI"):
 			GuestGUI guestGUI = new GuestGUI();
 			scene = guestGUI.createGuestGUI(this);
-			break;
-
-		case ("LibrarianGUI"):
-
-			HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI();
-			homeLibrarianGUI.createRootLibrarian(this);
-			scene = homeLibrarianGUI.createLibrarianGUI(this);
 			break;
 
 		case ("StudentGUI"):

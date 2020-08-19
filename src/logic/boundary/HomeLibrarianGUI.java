@@ -31,11 +31,6 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 	ObservableList<Prenotazione> prenotazioni;
 	static Logger myLogger = Logger.getLogger("logger");
 
-	public HomeLibrarianGUI() {
-		add = createBtn("Add");
-		del = createBtn("Del");
-		prenotazioni = FXCollections.observableArrayList();
-	}
 	
 	public HomeLibrarianGUI(LibrBean libraryBean) {
 		super(libraryBean);
@@ -125,11 +120,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 						table.getSelectionModel().getSelectedItems().get(0).getUser(), libraryBean.getMail());
 				delClicked();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-				homeLibrarianGUI.createRootLibrarian(main);
-				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-				main.stage.setScene(scene);
-				main.stage.show();
+				createHomeLibrarian(main);
 			} catch (NoOneSelectedException exc) {
 				exc.createAlert();
 
@@ -149,11 +140,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 						.deletePrenotatione(table.getSelectionModel().getSelectedItems().get(0).getUser());
 				delClicked();
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-				homeLibrarianGUI.createRootLibrarian(main);
-				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-				main.stage.setScene(scene);
-				main.stage.show();
+				createHomeLibrarian(main);
 			} catch (NoOneSelectedException exc) {
 				exc.createAlert();
 
@@ -198,6 +185,14 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 		allBookings = table.getItems();
 		bookSelected = table.getSelectionModel().getSelectedItems();
 		bookSelected.forEach(allBookings::remove);
+	}
+	
+	public void createHomeLibrarian(Main main) {
+		HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+		homeLibrarianGUI.createRootLibrarian(main);
+		Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+		main.stage.setScene(scene);
+		main.stage.show();
 	}
 
 }
