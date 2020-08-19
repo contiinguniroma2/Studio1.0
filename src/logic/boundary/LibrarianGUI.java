@@ -2,10 +2,14 @@ package logic.boundary;
 
 import java.util.NoSuchElementException;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -26,6 +30,7 @@ public class LibrarianGUI extends GuiSUPER {
 	protected Button statistics;
 	protected Button logOut;
 	protected Button refresh;
+	protected LibrBean libraryBean;
 	
 	
 
@@ -44,18 +49,8 @@ public class LibrarianGUI extends GuiSUPER {
 	}
 	
 	protected LibrarianGUI(LibrBean libraryBean) {
-		super(libraryBean);
-		settingImageView = new Button("", createImg("src/resources/guest.png"));
-		updateSeatsBtn = createBtn("Update seats");
-		noticeBoard = createBtn("Notice board");
-		timeTable = createBtn("Time table");
-		services = createBtn("Services");
-		supervisePage = createBtn("Students");
-		statistics = createBtn("Statistics");
-		logOut = createBtn("Log Out");
-		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
-		
-
+		this();
+		this.libraryBean = libraryBean;	
 	}
 
 	public void createRootLibrarian(Main main) {
@@ -64,21 +59,9 @@ public class LibrarianGUI extends GuiSUPER {
 				supervisePage, statistics, logOut);
 		leftPadding(leftLibrarian, 20);
 
-		updateSeatsBtn.setOnAction((event -> {
-			try {
+		setOnActionRefresh(updateSeatsBtn, main, libraryBean);
 
-				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-				homeLibrarianGUI.createRootLibrarian(main);
-				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-				main.stage.setScene(scene);
-				main.stage.show();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}));
-
-		setOnActionRefresh(refresh, main);
+		setOnActionRefresh(refresh, main, libraryBean);
 
 		supervisePage.setOnAction((event -> {
 			try {
@@ -143,27 +126,8 @@ public class LibrarianGUI extends GuiSUPER {
 				e.printStackTrace();
 			}
 		}));
-
-		logOut.setOnAction((event -> {
-			try {
-				// alert conferma log out librarian
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Log out");
-				alert.setHeaderText("Warning!");
-				alert.setContentText("Are you sure you want to log out?");
-				if (alert.showAndWait().get() == ButtonType.OK) {
-					// TORNA A LOGIN GUI
-
-					main.setNewStage(START);
-				}
-			} catch (NoSuchElementException e) {
-				// if this exception is caught, no need to do anything
-			} catch (Exception exc) {
-				exc.printStackTrace();
-			}
-
-		}));
-
+		
+		logOutOnAction(main);
 		root = new BorderPane(null, topPanel, null, null, leftLibrarian);
 
 	}
@@ -175,18 +139,12 @@ public class LibrarianGUI extends GuiSUPER {
 					libraryBean.increaseCapacity();
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("+");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-					homeLibrarianGUI.createRootLibrarian(main);
-					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-					main.stage.setScene(scene);
-					main.stage.show();
+					createHomeLibrarian(main);
 				}
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-
 		}));
-
 	}
 
 	public void delOnAction(Button btn, Main main) {
@@ -196,13 +154,10 @@ public class LibrarianGUI extends GuiSUPER {
 					libraryBean.decreaseCapacity();
 					LibraryMainPageController.getLibraryMainPageController().updateSeats("-");
 					LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-					homeLibrarianGUI.createRootLibrarian(main);
-					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-					main.stage.setScene(scene);
-					main.stage.show();
+					createHomeLibrarian(main);
 				}
-			} catch (Exception e1) {
+			} 
+			catch (Exception e1) {
 				e1.printStackTrace();
 			}
 
@@ -210,11 +165,70 @@ public class LibrarianGUI extends GuiSUPER {
 	}
 	
 	public BorderPane getRoot() {
-		return root;
-		
+		return root;	
 	}
 	
 	public void setRoot(BorderPane root) {
 		this.root = root;
+	}
+	public HBox createLibrTopPanel() {
+		HBox top = new HBox();
+		ImageView img = createImg("src/resources/libraryIcon.png");
+		img.prefWidth(100);
+		VBox titles = createPanel(new Label(libraryBean.getName()),
+				new Label(libraryBean.getAddress()),
+				new Label(libraryBean.getMail()),
+				new Label(libraryBean.getPhone()));
+		titles.setPadding(new Insets(0, 0, 0, 20));
+		titles.setStyle("-fx-font-size: 14");
+		titles.setSpacing(0);
+		titles.setAlignment(Pos.CENTER_LEFT);
+		top.getChildren().addAll(createPanel(img), titles);
+		leftHPadding(top);
+		top.setPrefWidth(600);
+		top.setPrefHeight(100);
+		top.setStyle("-fx-background-color: #52be8c;");
+		return top;
+	}
+	
+	public void createHomeLibrarian(Main main) {
+		HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
+		homeLibrarianGUI.createRootLibrarian(main);
+		Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
+		main.stage.setScene(scene);
+		main.stage.show();
+	}
+	
+	public void setOnActionRefresh(Button btn, Main main, LibrBean libraryBean) {
+		btn.setOnAction((event -> {
+			try {
+				// VA RESETTATA LA PAGINA
+				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
+				createHomeLibrarian(main);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}));
+	}
+	
+	public void logOutOnAction(Main main){
+		logOut.setOnAction((event -> {
+			try {
+				// alert conferma log out librarian
+				Alert alert = new Alert(AlertType.WARNING);
+				alert.setTitle("Log out");
+				alert.setHeaderText("Warning!");
+				alert.setContentText("Are you sure you want to log out?");
+				if (alert.showAndWait().get() == ButtonType.OK) {
+					// TORNA A LOGIN GUI
+					main.setNewStage(START);
+				}
+			} catch (NoSuchElementException e) {
+				// if this exception is caught, no need to do anything
+			} catch (Exception exc) {
+				exc.printStackTrace();
+			}
+
+		}));
 	}
 }

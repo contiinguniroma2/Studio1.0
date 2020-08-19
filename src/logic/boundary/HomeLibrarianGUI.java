@@ -186,13 +186,5 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 		bookSelected = table.getSelectionModel().getSelectedItems();
 		bookSelected.forEach(allBookings::remove);
 	}
-	
-	public void createHomeLibrarian(Main main) {
-		HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-		homeLibrarianGUI.createRootLibrarian(main);
-		Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-		main.stage.setScene(scene);
-		main.stage.show();
-	}
 
 }

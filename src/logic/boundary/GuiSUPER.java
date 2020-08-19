@@ -5,7 +5,6 @@ import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -14,10 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import logic.application.Main;
-import logic.bean.LibrBean;
 import logic.bean.StudentBean;
-import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
 
 
@@ -36,7 +32,6 @@ public class GuiSUPER {
 	public static final String REG_LIBR_SETTINGS = "RegLibrarianSettingsGUI";
 	protected LoginController loginController;
 	protected StudentBean studentBean;
-	protected LibrBean libraryBean;
 
 	public GuiSUPER() {
 		loginController = new LoginController();  
@@ -48,10 +43,6 @@ public class GuiSUPER {
 		this.studentBean = studentBean;
 	}
 	
-	public GuiSUPER(LibrBean libraryBean) {
-		loginController = new LoginController();  
-		this.libraryBean = libraryBean;
-	}
 
 	public void leftPadding(VBox panel, int padding) {
 		panel.setPadding(new Insets(0, 0, 0, padding));
@@ -86,26 +77,6 @@ public class GuiSUPER {
 		HBox.setMargin(btn, new Insets(0, 0, 0, 20));
 		topPanel.setStyle("-fx-background-color: #52be8c;");
 		return topPanel;
-	}
-
-	public HBox createLibrTopPanel() {
-		HBox top = new HBox();
-		ImageView img = createImg("src/resources/libraryIcon.png");
-		img.prefWidth(100);
-		VBox titles = createPanel(new Label(libraryBean.getName()),
-				new Label(libraryBean.getAddress()),
-				new Label(libraryBean.getMail()),
-				new Label(libraryBean.getPhone()));
-		titles.setPadding(new Insets(0, 0, 0, 20));
-		titles.setStyle("-fx-font-size: 14");
-		titles.setSpacing(0);
-		titles.setAlignment(Pos.CENTER_LEFT);
-		top.getChildren().addAll(createPanel(img), titles);
-		leftHPadding(top);
-		top.setPrefWidth(600);
-		top.setPrefHeight(100);
-		top.setStyle("-fx-background-color: #52be8c;");
-		return top;
 	}
 
 	public Button createBtn(String nameBtn) {
@@ -206,25 +177,4 @@ public class GuiSUPER {
 		return content;
 
 	}
-
-	public void setOnActionRefresh(Button btn, Main main) {
-		btn.setOnAction((event -> {
-			try {
-				// VA RESETTATA LA PAGINA
-				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-				homeLibrarianGUI.createRootLibrarian(main);
-				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-				main.stage.setScene(scene);
-				main.stage.show();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}));
-	}
-
-
-
-
-
 }
