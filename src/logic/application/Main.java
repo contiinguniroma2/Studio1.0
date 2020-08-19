@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 
 public class Main extends Application implements RequestNewStage {
 	//prova
-	public Stage stage;
+	private Stage stage;
 	protected Scene scene;
 
 	@Override
@@ -84,5 +84,9 @@ public class Main extends Application implements RequestNewStage {
 	public Scene getScene() {
 		return scene;
 	}
+	
+    public Stage getStage() {
+    	return stage;
+    }
 
 }

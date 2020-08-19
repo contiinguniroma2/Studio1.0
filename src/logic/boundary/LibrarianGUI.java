@@ -195,8 +195,8 @@ public class LibrarianGUI extends GuiSUPER {
 		HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
 		homeLibrarianGUI.createRootLibrarian(main);
 		Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-		main.stage.setScene(scene);
-		main.stage.show();
+		main.getStage().setScene(scene);
+		main.getStage().show();
 	}
 	
 	public void setOnActionRefresh(Button btn, Main main, LibrBean libraryBean) {

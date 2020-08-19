@@ -66,8 +66,8 @@ public class LoginGUI extends GuiSUPER {
 						StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI(loginController.getStudentBean(), superviseController);
 						
 						Scene scene = studentNotifiedGUI.createStudentNotifiedGUI(main);
-						main.stage.setScene(scene);
-						main.stage.show();
+						main.getStage().setScene(scene);
+						main.getStage().show();
 					}
 						
 					else if (loginController.getStudent().getStateMachine().getState() instanceof BannedState) {
@@ -76,8 +76,8 @@ public class LoginGUI extends GuiSUPER {
 					    StudentBannedGUI studentBannedGUI = new StudentBannedGUI(loginController.getStudentBean(), superviseController);
 					
 				    	Scene scene = studentBannedGUI.createBannedGUI(main);
-				    	main.stage.setScene(scene);
-				    	main.stage.show();
+				    	main.getStage().setScene(scene);
+				    	main.getStage().show();
 					}
 					else {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentGUI.fxml"));
@@ -103,8 +103,8 @@ public class LoginGUI extends GuiSUPER {
 					HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(loginController.getLibrBean());
 					homeLibrarianGUI.createRootLibrarian(main);
 					Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-					main.stage.setScene(scene);
-					main.stage.show();
+					main.getStage().setScene(scene);
+					main.getStage().show();
 				}
 
 				t1.setTextFill(Color.web("#ff0000"));

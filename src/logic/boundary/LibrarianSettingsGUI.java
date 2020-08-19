@@ -2,7 +2,6 @@ package logic.boundary;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -108,11 +107,7 @@ public class LibrarianSettingsGUI extends LibrarianGUI {
 				LibrarianSettingsController.getLibrarianSettingsController().setLibrInfoB(newLibraryBean);
 				LibrarianSettingsController.getLibrarianSettingsController().updateLibraryInfo(libraryBean.getMail());
 				LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
-				HomeLibrarianGUI homeLibrarianGUI = new HomeLibrarianGUI(libraryBean);
-				homeLibrarianGUI.createRootLibrarian(main);
-				Scene scene = homeLibrarianGUI.createLibrarianGUI(main);
-				main.stage.setScene(scene);
-				main.stage.show();
+				createHomeLibrarian(main);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
