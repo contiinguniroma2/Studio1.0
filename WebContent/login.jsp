@@ -62,8 +62,8 @@
           <input class="form-control" id="passwordLogin" name="passwordLogin" type="password" 
                value="">
         </div>
-        <input class="btn btn-success mx-auto" role="button" name="loginBtn" type="submit"
-               id="loginBtn" value="Login">
+        <h2 align=center><input class="btn btn-success mx-auto" role="button" name="loginBtn" type="submit"
+               id="loginBtn" value="Login"></h2>
       </form>
       
       
