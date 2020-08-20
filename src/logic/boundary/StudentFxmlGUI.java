@@ -26,7 +26,7 @@ public class StudentFxmlGUI implements Initializable{
 	@FXML protected ImageView ivBtnUserPic;
 	private Student student;
 	private SearchController searchController;
-	//private MessagesController messagesController;
+	//Dichiarazione messagesController
 	
 	public StudentFxmlGUI() {
 	}
@@ -79,9 +79,17 @@ public class StudentFxmlGUI implements Initializable{
 		// logout
 	}
 
+	public SearchController getSearchController() {
+		return searchController;
+	}
+
+	public void setSearchController(SearchController searchController) {
+		this.searchController = searchController;
+	}
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+		// default
 	}
 
 }

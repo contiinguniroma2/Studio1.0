@@ -1,7 +1,6 @@
 package logic.control;
 
 import java.util.logging.Logger;
-
 import logic.bean.StudentBean;
 import logic.dao.StudentDao;
 import logic.entity.Student;
@@ -15,7 +14,6 @@ public class StudentSettingsController {
 
 	protected StudentSettingsController() {
 		this.studInfoB = new StudentBean();
-	//	this.studInfo = LoginController.getLoginController().getStudent();
 		this.studDao = new StudentDao();
 	}
 

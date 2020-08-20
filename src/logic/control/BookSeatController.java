@@ -72,9 +72,9 @@ public class BookSeatController {
 	 * Timer book
 	 */
 	public void timerBook(Prenotazione prenotazione) {
-		//while(timer < 15:00)
+		//mentre il timer < 15:00 
 		//	do nothing
-		//end while: validBook(prenotazione, false)
+		//fine ciclo: valida prenotazione (prenotazione, false)
 	}
 
 	public Library getLibrary() {

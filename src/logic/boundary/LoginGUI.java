@@ -2,6 +2,7 @@ package logic.boundary;
 
 import java.util.logging.Logger;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -84,7 +85,7 @@ public class LoginGUI extends GuiSUPER {
 				        Scene nextScene = new Scene(nextParent, 800, 600);
 						
 				        //This line gets the Stage information
-				        Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+				        Stage window = getNodeStage(getEventNode(event));
 				        
 				        window.setScene(nextScene);
 				        window.show();
@@ -117,5 +118,13 @@ public class LoginGUI extends GuiSUPER {
 		BorderPane root = new BorderPane(content, topPanel, null, null, null);
 		return (new Scene(root, 800, 600));
 
+	}
+	
+	public Node getEventNode(ActionEvent event) {
+		return (Node)event.getSource();
+	}
+	
+	public Stage getNodeStage(Node node) {
+		return (Stage) node.getScene().getWindow();
 	}
 }
