@@ -94,22 +94,23 @@
   if(request.getParameter("loginBtn") != null) { 
     
     try {
-      if (LoginController.getLoginController().validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 's')
+    	LoginController loginController = new LoginController();
+      if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 's')
       {  
     	  StudentMainPageController.getStudentMainPageController()
-			.setStudInfo(LoginController.getLoginController().getStudent());
+			.setStudInfo(loginController.getStudent());
 	StudentMainPageController.getStudentMainPageController()
-			.setStudInfoB(LoginController.getLoginController().getStudBean());
+			.setStudInfoB(loginController.getStudentBean());
 	
 	System.out.println(StudentMainPageController.getStudentMainPageController().getStudInfo().getMail());
       %> <jsp:forward page="studentHome.jsp"/> <% }
      
-      else if (LoginController.getLoginController().validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l')
+      else if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l')
       { 
     	  LibraryMainPageController.getLibraryMainPageController()
-			.setLibrInfo(LoginController.getLoginController().getLibrary());
+			.setLibrInfo(loginController.getLibrary());
 	LibraryMainPageController.getLibraryMainPageController()
-			.setLibrInfoB(LoginController.getLoginController().getLibrBean());
+			.setLibrInfoB(loginController.getLibrBean());
       %> <jsp:forward page="librarianHome.jsp"/> <% }
       }
     catch (Exception e) {

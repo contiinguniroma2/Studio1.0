@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class StudentLoginTest {
 	public static void main(String[] args) {
-		System.setProperty("webdriver.chrome.driver","C:\\Users/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\david\\Documents\\GitHub\\Studio1.0\\Drivers/chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://localhost:8080/studioApp/");
 		driver.findElement(By.xpath("//*[@id=\"user\"]")).click();
