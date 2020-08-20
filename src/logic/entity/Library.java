@@ -118,8 +118,5 @@ public class Library extends User {
 
 	}
 
-	@Override
-	public void notifyObservers() {
-	}
 
 }

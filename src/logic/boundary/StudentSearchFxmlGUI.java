@@ -34,22 +34,22 @@ public class StudentSearchFxmlGUI implements Initializable {
 	private SearchController searchController;
 	private SearchBean searchBean;
 	private List<Library> librariesResult;
-	private int selectListViewIndex;
+	private Integer selectListViewIndex;
 	private StudentSearchResultFxmlGUI studentSearchResultFxmlGUI;
 	static Logger myLogger = Logger.getLogger("logger");
 	
 	public StudentSearchFxmlGUI() {
 		this.searchBean = searchController.getSearchBean();
-		this.lvSearchSeatResults = new ListView<String>();
-		this.librariesResult = new ArrayList<Library>();
+		this.lvSearchSeatResults = new ListView<>();
+		this.librariesResult = new ArrayList<>();
 	}
 	
 	public StudentSearchFxmlGUI(Student student, SearchController searchController) {
 		this.student = student;
 		this.searchController = searchController;
 		this.searchBean = searchController.getSearchBean();
-		this.lvSearchSeatResults = new ListView<String>();
-		this.librariesResult = new ArrayList<Library>();
+		this.lvSearchSeatResults = new ListView<>();
+		this.librariesResult = new ArrayList<>();
 	}
 
 	/*
@@ -110,7 +110,7 @@ public class StudentSearchFxmlGUI implements Initializable {
 		//DBG
 		myLogger.info("Next");
 		if(selectListViewIndex != -1) myLogger.info(librariesResult.get(selectListViewIndex).getName().toString());
-		else myLogger.info(String.valueOf(selectListViewIndex));
+		else myLogger.info(selectListViewIndex.toString());
 		//END DBG
 		
 		// passa a vista risultato
@@ -140,6 +140,14 @@ public class StudentSearchFxmlGUI implements Initializable {
 	 */
 	private void searchLibrariesFromCity(String city) {
 		searchController.searchLibraryFromCity(city);
+	}
+
+	public StudentSearchResultFxmlGUI getStudentSearchResultFxmlGUI() {
+		return studentSearchResultFxmlGUI;
+	}
+
+	public void setStudentSearchResultFxmlGUI(StudentSearchResultFxmlGUI studentSearchResultFxmlGUI) {
+		this.studentSearchResultFxmlGUI = studentSearchResultFxmlGUI;
 	}
 
 }

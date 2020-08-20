@@ -10,7 +10,7 @@ public class SearchBean {
 	
 	public SearchBean() {
 		this.location = "";
-		this.resultLibraries = new ArrayList<Library>();
+		this.resultLibraries = new ArrayList<>();
 	}
 
 	public String getLocation() {

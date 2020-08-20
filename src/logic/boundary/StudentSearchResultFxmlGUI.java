@@ -74,22 +74,22 @@ public class StudentSearchResultFxmlGUI implements Initializable {
 		myLogger.info("Book");
 		bookSeatController.bookSeat(student, library);
 		prenotazione = bookSeatBean.getPrenotazione();
-		//myLogger.info("Book: " + prenotazione.getNumero() + " - " + prenotazione.getOrarioPrenotazione() + " - " + prenotazione.getBiblioteca() + " - " + prenotazione.getUsernameStud());
+		myLogger.info("Book: " + prenotazione.getNumero() + " - " + prenotazione.getOrarioPrenotazione() + " - " + prenotazione.getBiblioteca() + " - " + prenotazione.getUsernameStud());
 	}
 	
 	@FXML
 	private void noticeboard(ActionEvent event) {
-		
+		//da fare
 	}
 	
 	@FXML
 	private void timetable(ActionEvent event) {
-		
+		//da fare
 	}
 	
 	@FXML
 	private void map(ActionEvent event) {
-		
+		//da fare
 	}
 	
 	@FXML
@@ -120,6 +120,16 @@ public class StudentSearchResultFxmlGUI implements Initializable {
 		txMail.setText(library.getMail());
 		txPostiLiberi.setText(String.valueOf(library.getCapacity() - library.getPostiOccupati()));
 	}
+
+	public Prenotazione getPrenotazione() {
+		return prenotazione;
+	}
+
+
+	public void setPrenotazione(Prenotazione prenotazione) {
+		this.prenotazione = prenotazione;
+	}
+
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

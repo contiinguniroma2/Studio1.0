@@ -14,14 +14,14 @@ public class SearchController {
 	SearchBean searchBean;	//BEAN
 	
 	public SearchController() {
-		this.libraries = new ArrayList<Library>();
+		this.libraries = new ArrayList<>();
 		this.libraryDao = new LibraryDao();
 		this.searchBean = new SearchBean();
 	}
 	
 	public SearchController(SearchBean searchBean) {
 		// TODO Auto-generated constructor stub
-		this.libraries = new ArrayList<Library>();
+		this.libraries = new ArrayList<>();
 		this.libraryDao = new LibraryDao();
 		this.searchBean = searchBean;
 	}
