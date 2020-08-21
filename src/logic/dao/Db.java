@@ -16,7 +16,6 @@ public class Db {
 
 	private Db() {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 		} catch (Exception e) {
 			e.printStackTrace();
