@@ -25,34 +25,12 @@
          </children>
       </AnchorPane>
    </top>
-   <left>
-      <AnchorPane prefHeight="300.0" prefWidth="129.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
-         <children>
-            <Button id="btnUserBehavior" fx:id="btnUserBehavior" layoutX="17.0" layoutY="351.0" mnemonicParsing="false" onAction="#userBehaviorClicked" prefHeight="25.0" prefWidth="100.0" text="User behavior" />
-            <Button id="btnStatistics" fx:id="btnStatistics" layoutX="17.0" layoutY="383.0" mnemonicParsing="false" onAction="#statisticsClicked" prefHeight="25.0" prefWidth="100.0" text="Statistics" />
-            <Button id="btnLogout" fx:id="btnLogout" layoutX="17.0" layoutY="415.0" mnemonicParsing="false" onAction="#logoutClicked" prefHeight="25.0" prefWidth="100.0" text="Logout" />
-            <Button id="btnUserPic" fx:id="btnUserPic" layoutX="17.0" layoutY="109.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#userProfileClicked" prefHeight="108.0" prefWidth="100.0">
-               <graphic>
-                  <ImageView id="ivBtnUserPic" fx:id="ivBtnUserPic" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../resources/student.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-            <Button id="btnNoticeBoard" fx:id="btnNoticeBoard" layoutX="17.0" layoutY="258.0" mnemonicParsing="false" onAction="#noticeBoardClicked" prefHeight="25.0" prefWidth="100.0" text="Notice board" />
-            <Button id="btnUpdateSeats" fx:id="btnUpdateSeats" layoutX="17.0" layoutY="225.0" mnemonicParsing="false" onAction="#updateSeatsClicked" prefHeight="25.0" prefWidth="100.0" text="UpdateSeats" />
-            <Button id="btnServices" fx:id="btnServices" layoutX="17.0" layoutY="320.0" mnemonicParsing="false" onAction="#servicesClicked" prefHeight="25.0" prefWidth="100.0" text="Services" />
-            <Button id="btnTimeTable" fx:id="btnTimeTable" layoutX="17.0" layoutY="289.0" mnemonicParsing="false" onAction="#timeTableClicked" prefHeight="25.0" prefWidth="100.0" text="Time table" />
-         </children>
-      </AnchorPane>
-   </left>
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button id="btnBack" fx:id="btnBack" mnemonicParsing="false" onAction="#backClicked" prefHeight="25.0" prefWidth="51.0" text="Back">
                <HBox.margin>
-                  <Insets left="333.0" right="30.0" top="30.0" />
+                  <Insets left="290.0" right="30.0" top="30.0" />
                </HBox.margin>
             </Button>
             <Button id="btnDelete" fx:id="btnDelete" mnemonicParsing="false" onAction="#deleteClicked" text="Delete">
@@ -76,12 +54,12 @@
                   <Font name="Arial" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="230.0" top="20.0" />
+                  <Insets left="310.0" top="20.0" />
                </VBox.margin>
             </Label>
             <ListView id="lvReports" fx:id="lvReports" editable="true" prefHeight="394.0" prefWidth="671.0">
                <VBox.margin>
-                  <Insets left="10.0" right="20.0" top="20.0" />
+                  <Insets left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
             </ListView>
          </children>
