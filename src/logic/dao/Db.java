@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
+
 public class Db {
 	private Connection connection;
 	private static Db dbSingletonInstance;
@@ -15,6 +16,7 @@ public class Db {
 
 	private Db() {
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 		} catch (Exception e) {
 			e.printStackTrace();
