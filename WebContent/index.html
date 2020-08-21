@@ -1,12 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-   
-<%
-  if(request.getParameter("user") != null) { %>
-  	<jsp:forward page="login.jsp"/> <%
-  }
-%>
- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,25 +25,16 @@
     </div>
     <div class="container" align="center">
     
-    
-    
-    
-    
-    
-    <form action="index.jsp" name="indexPage" method="post">
-      <h1 align=center><br><br>LOGIN</h1>
-      <h3 align=center>Please select a user:</h3>
-      <p class="text-center">
-        <input class="btn btn-success mx-auto" role="button" name="user" type="submit"
-               id="user" value="User">
-        <input class="btn btn-success mx-auto" role="button" name="guest" type="submit"
+   
+     <h1 align=center><br><br>LOGIN</h1>
+     <h3 align=center>Please select a user:</h3>
+     <p class="text-center">
+       <a class="btn btn-success mx-auto" href="login.html" role="button" type="submit"
+               id="user"> User</a>
+     
+       <input class="btn btn-success mx-auto" role="button" name="guest" type="submit"
                id="guest" value="Guest">
-      </p>
-    </form>
-    
-    
-    
-    
+     </p>
     
     </div>
     </div>
@@ -61,7 +43,7 @@
     <div class="container">
       <h3 align=center><br>if you are not registered yet:<br></h3>
       <p class="text-center">
-        <a href="signIn_selectUser.html" class="btn btn-success mx-auto" role="button">Sign in</a>
+        <a href="CreateStudent.html" class="btn btn-success mx-auto" role="button">Sign in</a>
       </p>
     </div>
     </div>
