@@ -6,18 +6,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
+import logic.constants.FxmlConstants;
 import logic.control.SearchController;
 import logic.entity.Student;
 
-public class StudentFxmlGUI implements Initializable{
+public class StudentFxmlGUI extends FxmlGUI{
 	
 	@FXML private Button btnSearchSeat;
 	@FXML private Button btnMessages;
@@ -49,18 +44,9 @@ public class StudentFxmlGUI implements Initializable{
 	@FXML
 	public void btnSearchSeatClicked(ActionEvent event) throws IOException {
 		// passa a vista search
-		searchController = new SearchController();
-		
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentSearchGUI.fxml"));
-		StudentSearchFxmlGUI studentSearchFxmlGui = new StudentSearchFxmlGUI(student, searchController);
-		fxmlLoader.setController(studentSearchFxmlGui);
-		BorderPane nextParent = fxmlLoader.load();
-        Scene nextScene = new Scene(nextParent, 800, 600);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(nextScene);
-        window.show();
-		
+		searchController=new SearchController();
+		guiLoader(FxmlConstants.STUDENT_SEARCH_GUI, new StudentSearchFxmlGUI(student, searchController), event);
+
 	}
 	
 	/*
@@ -86,10 +72,20 @@ public class StudentFxmlGUI implements Initializable{
 	public void setSearchController(SearchController searchController) {
 		this.searchController = searchController;
 	}
+	
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// default
 	}
+
+	
 
 }

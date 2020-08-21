@@ -1,17 +1,12 @@
 package logic.boundary;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import logic.bean.ReportBean;
+import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 import logic.exceptions.ReportSaveException;
 
@@ -35,20 +30,9 @@ public class ReportFormBoundary extends IssueBoundary {
 			this.btnSendReport.setText("Try again");
 			e.printStackTrace();
 		}
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/fxml/IssueListStudentGUI.fxml"));
-		loader.setController(this.issueListStudentBoundary);
-		BorderPane nextParent = null;
-		try {
-			nextParent = loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-        Scene nextScene = new Scene(nextParent, 800, 600);
-        
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(nextScene);
-        window.show();
+		
+		guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI,this.issueListStudentBoundary,event);
+
 	}
 
 	

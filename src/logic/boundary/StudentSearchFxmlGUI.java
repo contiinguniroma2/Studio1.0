@@ -5,25 +5,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import logic.bean.SearchBean;
+import logic.constants.FxmlConstants;
 import logic.control.SearchController;
 import logic.entity.Library;
 import logic.entity.Student;
 
-public class StudentSearchFxmlGUI implements Initializable {
+public class StudentSearchFxmlGUI extends FxmlGUI {
 	
 	@FXML private TextField tfSearchSeat;
 	@FXML private Button btnSearchSeat;
@@ -36,7 +29,7 @@ public class StudentSearchFxmlGUI implements Initializable {
 	private List<Library> librariesResult;
 	private Integer selectListViewIndex;
 	private StudentSearchResultFxmlGUI studentSearchResultFxmlGUI;
-	static Logger myLogger = Logger.getLogger("logger");
+	
 	
 	public StudentSearchFxmlGUI() {
 		this.searchBean = searchController.getSearchBean();
@@ -83,21 +76,14 @@ public class StudentSearchFxmlGUI implements Initializable {
 	/*
 	 * Metodo per tornare indietro
 	 */
+	
+	
 	@FXML
 	public void back(ActionEvent event) throws IOException {
 		// passa a vista student
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentGUI.fxml"));
-		StudentFxmlGUI studentFxmlGui = new StudentFxmlGUI(student);
-		fxmlLoader.setController(studentFxmlGui);
 		
-		BorderPane nextParent = fxmlLoader.load();
-        Scene nextScene = new Scene(nextParent, 800, 600);
-		
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(nextScene);
-        window.show();
+		guiLoader(FxmlConstants.STUDENT_GUI, new StudentFxmlGUI(student), event);
+
 	}
 	
 	/*
@@ -105,23 +91,8 @@ public class StudentSearchFxmlGUI implements Initializable {
 	 */
 	@FXML
 	public void next(ActionEvent event) throws IOException {
-		// passa a vista student
-		
-		//DBG
-		myLogger.info("Next");
-		if(selectListViewIndex != -1) myLogger.info(librariesResult.get(selectListViewIndex).getName().toString());
-		else myLogger.info(selectListViewIndex.toString());
-		//END DBG
-		
 		// passa a vista risultato
-		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentSearchResultGUI.fxml"));
-		studentSearchResultFxmlGUI = new StudentSearchResultFxmlGUI(student, librariesResult.get(selectListViewIndex), this);
-		fxmlLoader.setController(studentSearchResultFxmlGUI);	
-		BorderPane nextParent = fxmlLoader.load();
-        Scene nextScene = new Scene(nextParent, 800, 600);
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        window.setScene(nextScene);
-        window.show();
+		guiLoader(FxmlConstants.STUDENT_SEARCH_RESULT_GUI,new StudentSearchResultFxmlGUI(student, librariesResult.get(selectListViewIndex), this), event);
 		
 	}
 

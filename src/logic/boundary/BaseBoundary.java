@@ -5,12 +5,11 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
-public abstract class BaseBoundary implements Initializable{
+public abstract class BaseBoundary extends FxmlGUI{
 	
 	@FXML protected Button btnBack;
 	@FXML protected Button btnLogout;
