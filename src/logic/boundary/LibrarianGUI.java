@@ -1,7 +1,6 @@
 package logic.boundary;
 
 import java.util.NoSuchElementException;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,6 +29,7 @@ public class LibrarianGUI extends GuiSUPER {
 	protected Button statistics;
 	protected Button logOut;
 	protected Button refresh;
+	protected Button reports;
 	protected LibrBean libraryBean;
 	
 	
@@ -43,20 +43,19 @@ public class LibrarianGUI extends GuiSUPER {
 		supervisePage = createBtn("Students");
 		statistics = createBtn("Statistics");
 		logOut = createBtn("Log Out");
+		reports= createBtn("Reports");
 		refresh = new Button("", createImg("src/resources/icons8-aggiorna-30.png"));
-		
-
 	}
 	
 	protected LibrarianGUI(LibrBean libraryBean) {
 		this();
-		this.libraryBean = libraryBean;	
+		this.libraryBean = libraryBean;
 	}
 
 	public void createRootLibrarian(Main main) {
 		HBox topPanel = createLibrTopPanel();
 		VBox leftLibrarian = createPanel(refresh, settingImageView, updateSeatsBtn, noticeBoard, timeTable, services,
-				supervisePage, statistics, logOut);
+				supervisePage, reports, statistics, logOut);
 		leftPadding(leftLibrarian, 20);
 
 		setOnActionRefresh(updateSeatsBtn, main);

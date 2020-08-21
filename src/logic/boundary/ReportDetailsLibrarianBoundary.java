@@ -12,17 +12,20 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 	
 	@FXML private Button btnSolve;
 	@FXML private Button btnReportUser;
+	private IssueListLibraryBoundary issueListLibraryBoundary;
 	
-	public ReportDetailsLibrarianBoundary(ReportIssueController reportIssueController) {
+	public ReportDetailsLibrarianBoundary(ReportIssueController reportIssueController, IssueListLibraryBoundary issueListLibraryBoundary) {
 		super(reportIssueController);
 		this.reportIssueController=reportIssueController;
+		this.issueListLibraryBoundary=issueListLibraryBoundary;
 	}
 	
-	
+	@FXML
 	public void solveClicked(ActionEvent event) {
 		//TODO
 	}
 	
+	@FXML
 	public void reportUserClicked(ActionEvent event) {
 		//TODO
 	}

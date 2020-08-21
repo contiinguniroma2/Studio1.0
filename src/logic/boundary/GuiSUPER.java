@@ -2,6 +2,8 @@ package logic.boundary;
 
 import java.io.File;
 import java.util.logging.Logger;
+
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -13,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import logic.bean.StudentBean;
 import logic.control.LoginController;
 
@@ -176,5 +179,13 @@ public class GuiSUPER {
 		content.setMaxHeight(300);
 		return content;
 
+	}
+	
+	public Node getEventNode(ActionEvent event) {
+		return (Node)event.getSource();
+	}
+	
+	public Stage getNodeStage(Node node) {
+		return (Stage) node.getScene().getWindow();
 	}
 }
