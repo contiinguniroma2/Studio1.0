@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.logging.Logger;
 import logic.bean.ReportBean;
+import logic.constants.ReportConstants;
 import logic.dao.ReportDao;
 import logic.entity.Library;
 import logic.entity.Report;
@@ -73,7 +74,7 @@ public class ReportIssueController{
 	}
 	
 	public void sendReport(ReportBean reportInfo) throws ReportSaveException {
-		Report newReport=new Report(reportInfo.getTitle(),reportInfo.getDescription(), this.sessionUser.getMail(), this.currentLibrary.getMail(), "NOT_READ");
+		Report newReport=new Report(reportInfo.getTitle(),reportInfo.getDescription(), this.sessionUser.getMail(), this.currentLibrary.getMail(), ReportConstants.NOT_READ);
 		try {
 			this.reportDao.saveReportOnDb(newReport);
 		} catch (ReportSaveException e) {
