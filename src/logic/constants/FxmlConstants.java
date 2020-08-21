@@ -7,4 +7,8 @@ public class FxmlConstants {
 	public static final String STUDENT_SEARCH_RESULT_GUI="/logic/fxml/StudentSearchResultGUI.fxml";
 	public static final String ISSUE_GUI="/logic/fxml/IssueGUI.fxml";
 	public static final String REPORT_FORM_GUI= "/logic/fxml/ReportFormGUI.fxml";
+	
+	private FxmlConstants() {
+		//Default
+	}
 }

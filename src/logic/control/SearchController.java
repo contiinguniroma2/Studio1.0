@@ -20,7 +20,7 @@ public class SearchController {
 	}
 	
 	public SearchController(SearchBean searchBean) {
-		// TODO Auto-generated constructor stub
+		//da fare
 		this.libraries = new ArrayList<>();
 		this.libraryDao = new LibraryDao();
 		this.searchBean = searchBean;
@@ -33,7 +33,7 @@ public class SearchController {
 		try {
 			libraries = libraryDao.select(location.toLowerCase(), null);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			///da fare
 			e.printStackTrace();
 		}
 		setSearchBean(libraries);
@@ -51,12 +51,12 @@ public class SearchController {
 	}
 
 	public void getInfoLibrary(Library library) {
-		// TODO Auto-generated method stub
+		//da fare
 		
 	}
 
 	public SearchBean getSearchBean() {
-		// TODO Auto-generated method stub
+		//da fare
 		return searchBean;
 	}
 	

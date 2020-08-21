@@ -24,7 +24,6 @@ public class FxmlGUI implements Initializable {
 		try {
 			nextParent = fxmlLoader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         Scene nextScene = new Scene(nextParent, 800, 600);
