@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import logic.bean.LibrBean;
+import logic.bean.StudentBean;
 import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
 import logic.control.StudentMainPageController;
@@ -26,20 +28,28 @@ public class LoginServlet extends HttpServlet {
     }
     
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 	    	if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 's') {
 	    	    StudentMainPageController.getStudentMainPageController().setStudInfo(loginController.getStudent());
 		        StudentMainPageController.getStudentMainPageController().setStudInfoB(loginController.getStudentBean());
-		        response.sendRedirect("studentHome.jsp");
+		        StudentBean studentBean = loginController.getStudentBean();
+		        request.setAttribute("studentBean", studentBean);
+		        
+		        request.getRequestDispatcher("studentHome.jsp").forward(request, response);
 		        
 	    	}	
 		    else if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l') {
 		    	LibraryMainPageController.getLibraryMainPageController().setLibrInfo(loginController.getLibrary());
 		        LibraryMainPageController.getLibraryMainPageController().setLibrInfoB(loginController.getLibrBean());
-		        response.sendRedirect("librarianHome.jsp");
+		        LibrBean libraryBean = loginController.getLibrBean();
+		        request.setAttribute("libraryBean", libraryBean);
+		        LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
+		        request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
+		        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooks().size());
+		        request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
 	        }
 		    else {
 		    	response.sendRedirect("erroreLogin.html");

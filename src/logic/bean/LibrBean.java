@@ -10,7 +10,9 @@ public class LibrBean extends UserBean {
 	public String getAddress() {
 		return address;
 	}
-
+    public int getFree() {
+    	return capacity-postiOccupati;
+    }
 	public void setAddress(String address) {
 		this.address = address;
 	}

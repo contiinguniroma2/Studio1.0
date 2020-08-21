@@ -3,14 +3,14 @@
    
 <%@ page import="logic.control.LibraryMainPageController" %>   
 <%@ page import="java.lang.String" %>   
-    
+
 <%
   if(request.getParameter("librLogout") != null) { %>
-  	<jsp:forward page="index.jsp"/> <%
+  	<jsp:forward page="index.html"/> <%
   }
 %>   
     
-    
+   
     
 <!DOCTYPE html>
 <html>
@@ -20,18 +20,18 @@
     <link href="css/style.css" type="text/css" rel="stylesheet">
     <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 
-
+    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Num', '% on total'],
-          ['Busy',      14],
-          ['Booked', 4],
-          ['Free', 48]
-        ]);
+        var data = new google.visualization.arrayToDataTable([
+          ['Num', "% on total"],
+          ['Busy', ${libraryBean.getPostiOccupati()}],
+          ['Booked', ${booked}],
+          ['Free', ${free}]
+       ]);
 
         var options = {
           is3D: true,
@@ -41,11 +41,13 @@
         var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
         chart.draw(data, options);
       }
+      
     </script>
 
 
 </head>
  <body>
+ 
 
     <!-- navbar -->
     <div class="container">

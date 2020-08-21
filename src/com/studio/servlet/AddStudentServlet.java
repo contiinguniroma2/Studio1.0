@@ -35,7 +35,7 @@ public class AddStudentServlet extends HttpServlet {
 		    	RegistrationController.getRegistrationController().registerUser("Studente", request.getParameter("emailRegistration"),
 					request.getParameter("passwordRegistration"), request.getParameter("username"), request.getParameter("nameRegistration"), request.getParameter("surnameRegistration"),
 					request.getParameter("phoneRegistration"));
-		    	RequestDispatcher view = request.getRequestDispatcher("studentHome.jsp");
+		    	RequestDispatcher view = request.getRequestDispatcher("login.html");
 			    view.forward(request, response);
 			}
 			else {

@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import logic.control.LibraryMainPageController;
 import logic.control.RegistrationController;
 
 /**
@@ -44,9 +43,9 @@ public class AddLibrarianServlet extends HttpServlet {
 		    	RegistrationController.getRegistrationController().registerUser("Biblioteca", request.getParameter("email"),
 					request.getParameter("password"), request.getParameter("libraryName"), request.getParameter("address"), request.getParameter("phone"),
 					request.getParameter("username"),request.getParameter("capacity"),request.getParameter("city"));
-		    	LibraryMainPageController.getLibraryMainPageController().setLibrInfo(RegistrationController.getRegistrationController().getLibr());
 		    	
-		    	RequestDispatcher view = request.getRequestDispatcher("librarianHome.jsp");
+		    	
+		    	RequestDispatcher view = request.getRequestDispatcher("login.html");
 			    view.forward(request, response);
 			}
 			else {
