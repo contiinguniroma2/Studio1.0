@@ -23,7 +23,7 @@ public class LibrBean extends UserBean {
 		this.city = city;
 	}
 
-	public int getCapacity() {
+	public Integer getCapacity() {
 		return capacity;
 	}
 	
@@ -39,7 +39,7 @@ public class LibrBean extends UserBean {
 		this.capacity = capacity;
 	}
 
-	public int getPostiOccupati() {
+	public Integer getPostiOccupati() {
 		return postiOccupati;
 	}
 

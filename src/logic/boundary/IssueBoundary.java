@@ -30,9 +30,9 @@ public class IssueBoundary extends FxmlGUI {
 		this.reportIssueController=reportIssueController;
 	}
 	
+	@FXML
 	public void backClicked(ActionEvent event) {
-		guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI, this.issueListStudentBoundary, event);
-		
+		guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI, this.issueListStudentBoundary, event);	
 	}
 	
 	

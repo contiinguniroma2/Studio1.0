@@ -1,8 +1,10 @@
 package logic.boundary;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,11 +15,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import logic.application.Main;
 import logic.bean.LibrBean;
 import logic.control.LibraryMainPageController;
+import logic.entity.Library;
 import logic.entity.Prenotazione;
 import logic.exceptions.NoOneSelectedException;
 
@@ -38,6 +43,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 		del = createBtn("Del");
 		prenotazioni = FXCollections.observableArrayList();
 	}
+	
 
 
 	public ObservableList<Prenotazione> getPrenotazione() {
@@ -109,6 +115,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 		buttons.setAlignment(Pos.CENTER_RIGHT);
 
 		posti.getChildren().addAll(graphAndLabels, buttons);
+		
 
 		confirmButton = new Button("", createImg("src/resources/icons8-segno-di-spunta-16.png"));
 		confirmButton.setOnAction((e -> {
@@ -175,6 +182,40 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 
 		root.setCenter(contentPanel);
 		Scene scene = new Scene(root, 800, 600);
+		
+		reports.setOnAction((event -> {
+			
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/IssueListLibraryGUI.fxml"));
+			IssueListLibraryBoundary issueListLibraryBoundary = new IssueListLibraryBoundary(new Library(this.libraryBean.getUsername(),
+					this.libraryBean.getName(),
+					this.libraryBean.getMail(),
+					this.libraryBean.getPassword(),
+					this.libraryBean.getAddress(),
+					this.libraryBean.getCapacity().toString(),
+					this.libraryBean.getPhone(),
+					this.libraryBean.getCity(),
+					this.libraryBean.getPostiOccupati().toString()), 
+					scene, 
+					main);
+			fxmlLoader.setController(issueListLibraryBoundary);
+			
+			BorderPane nextParent = null;
+			try {
+				nextParent = fxmlLoader.load();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	        Scene nextScene = new Scene(nextParent, 800, 600);
+			
+	        //This line gets the Stage information
+	        Stage window = getNodeStage(getEventNode(event));
+	        
+	        window.setScene(nextScene);
+	        window.show();
+			
+			
+		}));
+
 		return (scene);
 
 	}

@@ -93,6 +93,10 @@ public class ReportIssueController{
 		this.sessionUser.setReports(this.reportDao.getReportFromDbByStudent(this.sessionUser, this.currentLibrary));
 	}
 	
+	public void getLibraryReports() {
+		this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
+	}
+	
 	
 	public User getSessionUser() {
 		return sessionUser;
