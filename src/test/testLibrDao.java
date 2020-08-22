@@ -24,6 +24,7 @@ public class testLibrDao {
 
 	// illegal insert the second-last parameter must be a parsable int string
 	@Test
+	@Order(2)
 	void insertTest2() throws SQLException {
 		LibraryDao x = new LibraryDao();
 		assertEquals(0, x.insert("mailBibProva1", "passwordBibProva", "nomeBibProva", "indirizzoBibProva",
@@ -33,6 +34,7 @@ public class testLibrDao {
 
 	// legal update
 	@Test
+	@Order(3)
 	void updateTest1() throws SQLException {
 		LibraryDao x = new LibraryDao();
 		assertEquals(1, x.update("username", "asfd", "mailBibProva1"));
@@ -40,6 +42,7 @@ public class testLibrDao {
 
 	// illegal update not existing library
 	@Test
+	@Order(4)
 	void updateTest2() throws SQLException {
 		LibraryDao x = new LibraryDao();
 		assertEquals(0, x.update("passwordBiblioteca", "newPW", "mailBibProva"));
@@ -48,6 +51,7 @@ public class testLibrDao {
 	
 	// illegal seats update not existing type of seat
 	@Test
+	@Order(5)
 	void updateTest3() throws SQLException {
 		LibraryDao x = new LibraryDao();
 		assertEquals(0, x.updatePosti(50, "mailBibProva1", "tipo non esistente"));
@@ -55,7 +59,7 @@ public class testLibrDao {
 	
 	// legal seats update
 		@Test
-		@Order(2)
+		@Order(6)
 		void updateTest4() throws SQLException {
 			LibraryDao x = new LibraryDao();
 			assertEquals(1, x.updatePosti(50,"mailBibProva1", "postiOccupati"));
@@ -63,6 +67,7 @@ public class testLibrDao {
 
 
 	@Test
+	@Order(7)
 	void clearDb() throws SQLException {
 		LibraryDao x = new LibraryDao();
 		x.delete("Biblioteca", "mailBibProva1", null);

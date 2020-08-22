@@ -46,12 +46,14 @@ public class LibraryDao extends GenericDao {
 	// UPDATE POSTI
 	public int updatePosti(int posti, String mail, String tipo) throws SQLException {
 		int status = 0;
+		ps = null;
 		try {
-			ps = null;
+			
 			if (tipo.equals(CAPACITY))
 				ps = con.prepareStatement("UPDATE Biblioteca SET posti = ? WHERE mailBiblioteca = ?");
-			if (tipo.equals(POSTIO))
+			else if (tipo.equals(POSTIO))
 				ps = con.prepareStatement("UPDATE Biblioteca SET postiOccupati = ? WHERE mailBiblioteca = ?");
+			else return status;
 			ps.setInt(1, posti);
 			ps.setString(2, mail);
 			status = ps.executeUpdate();
@@ -59,9 +61,11 @@ public class LibraryDao extends GenericDao {
 
 		catch (SQLException | NullPointerException e) {
 			myLogger.info("Aggiornamento fallito");// definire un eccezione apposita con logger serio
+			e.printStackTrace();
 			return status;
 		} finally {
-			ps.close();
+			if(ps!=null)
+				ps.close();
 		}
 		return status;
 	}
