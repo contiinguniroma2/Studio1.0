@@ -9,6 +9,7 @@ public class ReportBean {
 	private String studentId;
 	private String status;
 	private String libraryId;
+	private long reportId;
 	
 	public ReportBean() {
 		//default constructor
@@ -74,6 +75,10 @@ public class ReportBean {
 
 	public void setLibraryId(String libraryId) {
 		this.libraryId = libraryId;
+	}
+
+	public long getReportId() {
+		return this.reportId;
 	}
 
 }

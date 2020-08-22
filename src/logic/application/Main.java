@@ -8,7 +8,6 @@ import logic.boundary.RegLibrarianSettingsGUI;
 import logic.boundary.RegStudentSettingsGUI;
 import logic.boundary.RegistrationGUI;
 import logic.boundary.StartGUI;
-import logic.boundary.StudentSearchInsertGUI;
 import javafx.scene.Scene;
 
 public class Main extends Application implements RequestNewStage {
@@ -65,12 +64,12 @@ public class Main extends Application implements RequestNewStage {
 			scene = guestGUI.createGuestGUI(this);
 			break;
 
-		case ("StudentGUI"):
+	/*	case ("StudentGUI"):
 			StudentSearchInsertGUI studentSearchInsertGUI = new StudentSearchInsertGUI();
 			studentSearchInsertGUI.createRootStudentGUI(this);
 			scene = studentSearchInsertGUI.createStudentSearchInsertGUI(this);
 			break;
-
+*/
 
 		default:
 			break;
