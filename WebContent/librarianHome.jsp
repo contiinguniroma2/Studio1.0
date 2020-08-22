@@ -8,6 +8,7 @@
   if(request.getParameter("librLogout") != null) { %>
   	<jsp:forward page="index.html"/> <%
   }
+  
 %>   
     
    
@@ -32,7 +33,7 @@
           ['Booked', ${booked}],
           ['Free', ${free}]
        ]);
-
+ 
         var options = {
           is3D: true,
           colors: ['#B22222', '#FFA500', '#008000']
@@ -55,8 +56,11 @@
         <a class="navbar-brand" href="#">Stud.io</a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto"> <!-- "ml-auto" consente di allineare item a destra-->
+         
             <li class="nav-item active">
-              <a class="nav-link" href="librarianHome.html">Update seats<span class="sr-only">(current)</span></a>
+            <form action="UpdateSeatsServlet" name="UpdateSeatsForm" method="GET">
+              <a><input class="btn btn-success mx-auto" type="submit" role="button" value="Update seats"></a>
+              </form>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="librarianTimetable.html">Time table</a>
@@ -70,31 +74,14 @@
             <li class="nav-item">
               <a class="nav-link" href="librarianStatistics.html">Statistics</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="librarianSettings.html">Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Log out</a>
+            </li>
             <li>
-              <!-- <a class="btn btn-outline-success d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="login.html">GUEST</a> -->
-              
-              
-              
-              
-              
-              
-              
-              
-              <form action="librarianHome.jsp" name="librLogout" method="post">
-	              <div class="dropdown">
-	                <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Username</button>
-	                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-	                  <a class="dropdown-item" href="librSettings.html">Settings</a>
-	                  <input class="dropdown-item" id="librLogout" name="librLogout" type="submit" 
-               value="Log out">
-               </form>   
-               
-               
-               
-               
-               
-               
-               
+                 
                 </div>
               </div>
             </li>
@@ -107,16 +94,7 @@
 
     <!-- CONTENT -->
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <form action="librarianHome.jsp" name=updateSeatsBtn method="post">
+    <form action="${pageContext.request.contextPath}/UpdateSeatsServlet" name=updateSeatsBtn method="post">
     <div class="row" id="updateSeatsContent">
  		<div class="col-6" id="updateSeatsContentColSx">
  			<div class="row">
@@ -129,27 +107,19 @@
 					<div id="piechart_3d" style="width: 700px; height: 350px; align-content: center;">
 					</div>
 					<!-- button + e - da inserire -->
+				    
 					<div class="container" id="buttonUpdateSeats" style=" text-align: center; vertical-align: top;">
-				        <a href="#" class="btn btn-outline-success mx-auto" role="button" style="width: 100px; height: 50px;">+</a>
-				        <a href="#" class="btn btn-outline-danger mx-auto" role="button" style="width: 100px; height: 50px;">-</a>
+					 
+				        <a><input onsubmit="+" class="btn btn-outline-success mx-auto" role="button" type="submit" name ="+" id="addBtn" value="+" style="width: 100px; height: 50px;"></a>		    
+				        <a><input  onsubmit="-" class="btn btn-outline-success mx-auto" role="button" type="submit" name = "-" id="delBtn" value="-" style="width: 100px; height: 50px;"></a>
+				       
 					</div>
+				
 			    </div>
 			
 		</div>
 		</form>
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-
 		<div class="col-6">
 
 			    <div class="container" id="titleBookings">

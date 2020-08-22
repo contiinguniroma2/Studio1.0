@@ -66,7 +66,9 @@ public class LibraryMainPageController extends MainPageController {
 	}
 
 	public void updateSeats(String tipo) {
-		if (tipo.equals("+")) {
+		
+		if (tipo.equals("+") && libraryInfo.getPostiOccupati() < libraryInfo.getCapacity()) {
+			
 			libraryInfo.setPostiOccupati(libraryInfo.getPostiOccupati() + 1, "occupati");
 			try {
 				librDao.updatePosti((libraryInfo.getPostiOccupati()), libraryInfo.getMail(), POSTIO);
@@ -74,8 +76,8 @@ public class LibraryMainPageController extends MainPageController {
 				e.printStackTrace();
 			}
 		}
-		if (tipo.equals("-")) {
-			libraryInfo.setPostiOccupati(libraryInfo.getPostiOccupati() - 1, "occupati");
+		if (tipo.equals("-") && libraryInfo.getPostiOccupati() > 0) {
+		 	libraryInfo.setPostiOccupati(libraryInfo.getPostiOccupati() - 1, "occupati");
 			try {
 				librDao.updatePosti((libraryInfo.getPostiOccupati()), libraryInfo.getMail(), POSTIO);
 			} catch (SQLException e) {
