@@ -53,21 +53,7 @@ public class IssueListStudentBoundary extends IssueListBoundary implements Obser
 				this.lvReports.getItems().add(this.reportIssueController.getSessionUser().getReports().get(i).getMainInfoForStudent());
 		}
 		
-		boolean itsIn;
-		for(int i=0; i<this.lvReports.getItems().size(); i++) {
-			itsIn=false;
-			for(int j=0; j<this.reportIssueController.getSessionUser().getReports().size(); j++) {
-				if(parseReportId(lvReports.getItems().get(i))==this.reportIssueController.getSessionUser().getReports().get(j).getReportId()) {
-					itsIn=true;
-					break;
-				}
-			}
-			if(!itsIn) {
-				lvReports.getItems().remove(i);
-				break;
-			}
-			
-		}
+		updateDelete();
 		
 	}
 	
