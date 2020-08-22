@@ -69,7 +69,7 @@ public class ReportIssueController{
 	
 	public void fillBeanWithSelectedReport(long reportId) {
 		int reportIndex=findReportIndex(reportId);
-		this.reportBean=new ReportBean(this.sessionUser.getReports().get(reportIndex).getTitle(), this.sessionUser.getReports().get(reportIndex).getDescription());		
+		this.reportBean=new ReportBean(this.sessionUser.getReports().get(reportIndex).getTitle(), this.sessionUser.getReports().get(reportIndex).getDescription(), this.sessionUser.getReports().get(reportIndex).getStudentId(),this.sessionUser.getReports().get(reportIndex).getLibraryId(),this.sessionUser.getReports().get(reportIndex).getStatus());		
 		
 	}
 	
