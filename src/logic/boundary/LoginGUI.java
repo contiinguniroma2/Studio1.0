@@ -75,7 +75,7 @@ public class LoginGUI extends GuiSUPER {
 					}
 					else {
 						FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/StudentGUI.fxml"));
-						StudentFxmlGUI studentFxmlGui = new StudentFxmlGUI(loginController.getStudent());
+						StudentFxmlGUI studentFxmlGui = new StudentFxmlGUI(loginController.getStudent(),main);
 						fxmlLoader.setController(studentFxmlGui);
 						
 						BorderPane nextParent = fxmlLoader.load();

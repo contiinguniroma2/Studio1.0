@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import logic.application.Main;
 import logic.bean.SearchBean;
 import logic.constants.FxmlConstants;
 import logic.control.SearchController;
@@ -29,6 +30,7 @@ public class StudentSearchFxmlGUI extends FxmlGUI {
 	private List<Library> librariesResult;
 	private Integer selectListViewIndex;
 	private StudentSearchResultFxmlGUI studentSearchResultFxmlGUI;
+	private Main main;
 	
 	
 	public StudentSearchFxmlGUI() {
@@ -37,12 +39,13 @@ public class StudentSearchFxmlGUI extends FxmlGUI {
 		this.librariesResult = new ArrayList<>();
 	}
 	
-	public StudentSearchFxmlGUI(Student student, SearchController searchController) {
+	public StudentSearchFxmlGUI(Student student, SearchController searchController, Main main) {
 		this.student = student;
 		this.searchController = searchController;
 		this.searchBean = searchController.getSearchBean();
 		this.lvSearchSeatResults = new ListView<>();
 		this.librariesResult = new ArrayList<>();
+		this.main=main;
 	}
 
 	/*
@@ -82,7 +85,7 @@ public class StudentSearchFxmlGUI extends FxmlGUI {
 	public void back(ActionEvent event) throws IOException {
 		// passa a vista student
 		
-		guiLoader(FxmlConstants.STUDENT_GUI, new StudentFxmlGUI(student), event);
+		guiLoader(FxmlConstants.STUDENT_GUI, new StudentFxmlGUI(student,main), event);
 
 	}
 	
