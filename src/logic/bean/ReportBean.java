@@ -24,9 +24,18 @@ public class ReportBean {
 		this.reportId=reportId;
 	}
 	
-	public ReportBean(String title, String description) {
-		this.title=title;
-		this.description=description;
+	public ReportBean(String title, String description) throws EmptyTextFieldException {
+		if (title.trim().equals(""))
+
+			throw new EmptyTextFieldException("Text field can't be empty");
+		else
+			this.title = title;
+
+		if (description.trim().equals(""))
+
+			throw new EmptyTextFieldException("Text field can't be empty");
+		else
+			this.description = description;
 	}
 	
 

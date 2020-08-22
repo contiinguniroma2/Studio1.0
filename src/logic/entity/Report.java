@@ -1,7 +1,11 @@
 // Bisogna aggiungere il riferimento ai feedback nell'entity user, anche dei messaggi. Come per servizi in library
 package logic.entity;
 
-public class Report {
+import java.io.Serializable;
+
+public class Report implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	private String title;
 	private String description;
 	private long reportId;

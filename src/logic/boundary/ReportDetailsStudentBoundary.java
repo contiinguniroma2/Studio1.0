@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 
-public class IssueBoundary extends FxmlGUI {
+public class ReportDetailsStudentBoundary extends ReportDetailsBoundary {
 	
 	@FXML protected TextField tvTitle;
 	@FXML protected TextArea tvDescription;
@@ -21,12 +21,12 @@ public class IssueBoundary extends FxmlGUI {
 	protected ReportIssueController reportIssueController;
 	protected IssueListStudentBoundary issueListStudentBoundary;
 	
-	public IssueBoundary(ReportIssueController reportIssueController, IssueListStudentBoundary issueListStudentBoundary) {
+	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController, IssueListStudentBoundary issueListStudentBoundary) {
 		this.reportIssueController=reportIssueController;
 		this.issueListStudentBoundary=issueListStudentBoundary;
 	}
 	
-	public IssueBoundary(ReportIssueController reportIssueController) {
+	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController) {
 		this.reportIssueController=reportIssueController;
 	}
 	

@@ -1,9 +1,9 @@
 package logic.control;
 
-import java.io.IOException;
+/*import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.UnknownHostException;*/
 import java.util.logging.Logger;
 import logic.bean.ReportBean;
 import logic.constants.ReportConstants;
@@ -21,9 +21,15 @@ public class ReportIssueController{
 	private Library currentLibrary;
 	private ReportBean reportBean;
 	private ReportDao reportDao;
-	//private Socket socket;
-	//private ObjectOutputStream outToServer;
+	/*
+	private Socket socket;
+	private ObjectOutputStream outToServer;
+	private Thread listenerAddThread;
+	private Thread listenerUpdateThread;
+	private Thread listenerDeleteThread;
+	*/
 	static Logger myLogger = Logger.getLogger("logger");
+	
 	
 	
 	public ReportIssueController(){
@@ -33,32 +39,25 @@ public class ReportIssueController{
 	public ReportIssueController(User sessionUser){
 		this.sessionUser=sessionUser;
 		this.reportDao=new ReportDao();
-		/*try {
-			socket = new Socket("127.0.0.1", 4444);
-			outToServer = new ObjectOutputStream(socket.getOutputStream());
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			myLogger.info("Apertura socket fallita");
-		}*/
+		/*ListenerAddThread listenerAddRunnable=new ListenerAddThread(this,7777);
+		this.listenerAddThread=new Thread(listenerAddRunnable);
+		this.listenerAddThread.start();
+		ListenerDeleteThread listenerDeleteRunnable=new ListenerDeleteThread(this,8888);
+		this.listenerDeleteThread=new Thread(listenerDeleteRunnable);
+		this.listenerDeleteThread.start();*/
 	}
 	
 	public ReportIssueController(Student sessionStudent, Library currentLibrary){
 		this.sessionUser=sessionStudent;
 		this.currentLibrary=currentLibrary;
 		this.reportDao=new ReportDao();
-		/*try {
-			socket = new Socket("127.0.0.1", 4444);
-			outToServer = new ObjectOutputStream(socket.getOutputStream());
-		} catch (UnknownHostException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			myLogger.info("Apertura socket fallita");
-		}*/
+		/*ListenerDeleteThread listenerDeleteRunnable=new ListenerDeleteThread(this,5555);
+		this.listenerDeleteThread=new Thread(listenerDeleteRunnable);
+		this.listenerDeleteThread.start();
+		ListenerUpdateThread listenerUpdateRunnable=new ListenerUpdateThread(this,6666);
+		this.listenerUpdateThread=new Thread(listenerUpdateRunnable);
+		this.listenerUpdateThread.start();*/
+		
 	}
 	
 	public void solveIssue() throws ReportUpdateException {
@@ -70,19 +69,15 @@ public class ReportIssueController{
 		}
 	
 		this.sessionUser.getReports().get(findReportIndex(this.reportBean.getReportId())).setStatus(ReportConstants.SOLVED);		
-	
+		//sendOverSocket(solvedReport,6666);
 	}
 	
-	public void readIssue() {
+	public void readIssue() throws ReportUpdateException {
 		if(this.reportBean.getStatus().contentEquals(ReportConstants.NOT_READ)) {
 			Report readedReport=new Report(this.reportBean.getTitle(),this.reportBean.getDescription(),this.reportBean.getReportId(),this.reportBean.getStudentId(),this.sessionUser.getMail(),ReportConstants.READ);
-			try {
-				this.reportDao.updateReport(readedReport);
-			} catch (ReportUpdateException e) {
-				e.printStackTrace();
-			}
+			this.reportDao.updateReport(readedReport);
 			this.sessionUser.getReports().get(findReportIndex(this.reportBean.getReportId())).setStatus(ReportConstants.READ);
-		
+			//sendOverSocket(readedReport,6666);
 		}
 	}
 	
@@ -108,7 +103,7 @@ public class ReportIssueController{
 			throw new ReportSaveException();
 		}
 		this.sessionUser.addReport(newReport);
-		//outToServer.writeObject(newReport);
+		//sendOverSocket(newReport,7777);
 	}
 	
 	public void deleteReport(long reportId) throws ReportDeleteException {
@@ -124,8 +119,7 @@ public class ReportIssueController{
 	public void getLibraryReports() {
 		this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
 	}
-	
-	
+
 	public User getSessionUser() {
 		return sessionUser;
 	}
@@ -147,11 +141,18 @@ public class ReportIssueController{
 		this.currentLibrary = currentLibrary;
 	}
 	
-	public long checkNextReportId() {
-		long maxId=0;
-		for(int i=0;i<this.sessionUser.getReports().size();i++) {
-			if(maxId<this.sessionUser.getReports().get(i).getReportId()) maxId=this.sessionUser.getReports().get(i).getReportId();
+	/*public void sendOverSocket(Report report,int port) {
+		try{
+			socket = new Socket("127.0.0.1", port);
+			outToServer = new ObjectOutputStream(socket.getOutputStream());
+			outToServer.writeObject(report);
+		} catch (UnknownHostException e) {
+			myLogger.info("Apertura socket fallita");
+			e.printStackTrace();
+		} catch (IOException e) {
+			myLogger.info("Apertura stream fallita");
+			e.printStackTrace();
 		}
-		return maxId+1;
-	}
+	}*/
+	
 }

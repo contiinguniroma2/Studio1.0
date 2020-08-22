@@ -16,7 +16,7 @@ import logic.control.ReportIssueController;
 import logic.control.SuperviseController;
 import logic.exceptions.ReportUpdateException;
 
-public class ReportDetailsLibrarianBoundary extends IssueBoundary {
+public class ReportDetailsLibrarianBoundary extends ReportDetailsBoundary {
 	
 	@FXML private Button btnSolve;
 	@FXML private Button btnReportUser;
@@ -24,7 +24,6 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 	private LibrarianSuperviseController superviseController;
 	
 	public ReportDetailsLibrarianBoundary(ReportIssueController reportIssueController, IssueListLibraryBoundary issueListLibraryBoundary) {
-		super(reportIssueController);
 		this.reportIssueController=reportIssueController;
 		this.issueListLibraryBoundary=issueListLibraryBoundary;
 		superviseController = new SuperviseController();
@@ -34,11 +33,12 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 	public void solveClicked(ActionEvent event) {
 		try {
 			this.reportIssueController.solveIssue();
+			this.backClicked(event);
 		} catch (ReportUpdateException e) {
 			this.lbStatus.setText("Report solving failed");
 			e.printStackTrace();
 		}
-		this.backClicked(event);
+		
 	}
 	
 	@FXML
@@ -53,12 +53,13 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 				superviseController.increaseReportingCounter(this.reportIssueController.getReportBean().getStudentId(), this.reportIssueController.getSessionUser().getMail(), "feedback");
 				this.reportIssueController.deleteReport(this.reportIssueController.getReportBean().getReportId());
 			}
+			this.backClicked(event);
 		} catch (NoSuchElementException e) {
 			// if this exception is caught, no need to do anything
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
-		this.backClicked(event);
+		
 	}
 	
 	@Override

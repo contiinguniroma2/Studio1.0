@@ -9,8 +9,10 @@ import logic.application.Main;
 import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 import logic.entity.Library;
+import logic.exceptions.ReportUpdateException;
+import logic.pattern.Observer;
 
-public class IssueListLibraryBoundary extends IssueListBoundary {
+public class IssueListLibraryBoundary extends IssueListBoundary implements Observer{
 
 	private Scene homeLibrarianGuiScene;
 	private Main main;
@@ -25,8 +27,14 @@ public class IssueListLibraryBoundary extends IssueListBoundary {
 	@FXML
 	public void openClicked(ActionEvent event) {
 		this.reportIssueController.fillBeanWithSelectedReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
-		this.reportIssueController.readIssue();
-		guiLoader(FxmlConstants.REPORT_DETAILS_LIBRARIAN_GUI,new ReportDetailsLibrarianBoundary(this.reportIssueController,this),event);
+		try {
+			this.reportIssueController.readIssue();
+			guiLoader(FxmlConstants.REPORT_DETAILS_LIBRARIAN_GUI,new ReportDetailsLibrarianBoundary(this.reportIssueController,this),event);
+		} catch (ReportUpdateException e) {
+			this.lbStatus.setText("Open failed");
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
@@ -42,6 +50,30 @@ public class IssueListLibraryBoundary extends IssueListBoundary {
 		this.lbUser.setText(this.reportIssueController.getSessionUser().getName());
 		this.reportIssueController.getLibraryReports();
 	}
-
+	
+	@Override
+	public void update() {
+		for(int i=0;i<this.reportIssueController.getSessionUser().getReports().size();i++) {
+			if(!lvReports.getItems().contains(this.reportIssueController.getSessionUser().getReports().get(i).getMainInfoForLibrarian())) 
+				this.lvReports.getItems().add(this.reportIssueController.getSessionUser().getReports().get(i).getMainInfoForLibrarian());
+		}
+		
+		boolean itsIn;
+		for(int i=0; i<this.lvReports.getItems().size(); i++) {
+			itsIn=false;
+			for(int j=0; j<this.reportIssueController.getSessionUser().getReports().size(); j++) {
+				if(parseReportId(lvReports.getItems().get(i))==this.reportIssueController.getSessionUser().getReports().get(j).getReportId()) {
+					itsIn=true;
+					break;
+				}
+			}
+			if(!itsIn) {
+				lvReports.getItems().remove(i);
+				break;
+			}
+			
+		}
+		
+	}
 
 }
