@@ -5,25 +5,14 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 import logic.entity.Library;
 import logic.entity.Student;
-import logic.exceptions.ReportDeleteException;
-import logic.pattern.Observer;
 
-public class IssueListStudentBoundary extends FxmlGUI implements Observer{
+public class IssueListStudentBoundary extends IssueListBoundary{
 	
-	@FXML private Button btnDelete;
-	@FXML private Button btnOpen;
 	@FXML private Button btnSendReport;
-	@FXML private Button btnBack;
-	@FXML private Label lbStatus;
-	@FXML private Label lbUser;
-	@FXML private ListView<String> lvReports;
-	private ReportIssueController reportIssueController;
 	private StudentSearchResultFxmlGUI studentSearchResultFxmlGui;
 	
 	public IssueListStudentBoundary(Student sessionStudent, Library currentLibrary, StudentSearchResultFxmlGUI studentSearchResultFxmlGui) {
@@ -38,20 +27,6 @@ public class IssueListStudentBoundary extends FxmlGUI implements Observer{
 		guiLoader(FxmlConstants.ISSUE_GUI,new IssueBoundary(this.reportIssueController,this),event);
 	}
 	
-	private long parseReportId(String selectedItem) {
-		String[] splittedStrings=selectedItem.split("    ");
-		return Long.parseLong(splittedStrings[0]);
-	}
-
-	@FXML
-	public void deleteClicked(ActionEvent event) {
-		try {
-			this.reportIssueController.deleteReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
-		} catch (ReportDeleteException e) {
-			this.lbStatus.setText("Report delete failed");
-			e.printStackTrace();
-		}
-	}
 	
 	@FXML
 	public void backClicked(ActionEvent event) {
@@ -70,31 +45,6 @@ public class IssueListStudentBoundary extends FxmlGUI implements Observer{
 		this.reportIssueController.getStudentReports();
 	}
 
-	@Override
-	public void update() {
-		for(int i=0;i<this.reportIssueController.getSessionUser().getReports().size();i++) {
-			if(!lvReports.getItems().contains(this.reportIssueController.getSessionUser().getReports().get(i).getMainInfoForStudent())) {
-				this.lvReports.getItems().add(this.reportIssueController.getSessionUser().getReports().get(i).getMainInfoForStudent());
-			}
-		}
-		
-		boolean itsIn;
-		for(int i=0; i<this.lvReports.getItems().size(); i++) {
-			itsIn=false;
-			for(int j=0; j<this.reportIssueController.getSessionUser().getReports().size(); j++) {
-				if(parseReportId(lvReports.getItems().get(i))==this.reportIssueController.getSessionUser().getReports().get(j).getReportId()) {
-					itsIn=true;
-					break;
-				}
-			}
-			if(!itsIn) {
-				lvReports.getItems().remove(i);
-				break;
-			}
-			
-		}
-		
-	}
 	
 	
 }
