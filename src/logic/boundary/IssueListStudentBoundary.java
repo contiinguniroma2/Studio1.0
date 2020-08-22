@@ -11,6 +11,7 @@ import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 import logic.entity.Library;
 import logic.entity.Student;
+import logic.exceptions.ReportDeleteException;
 import logic.pattern.Observer;
 
 public class IssueListStudentBoundary extends FxmlGUI implements Observer{
@@ -44,7 +45,12 @@ public class IssueListStudentBoundary extends FxmlGUI implements Observer{
 
 	@FXML
 	public void deleteClicked(ActionEvent event) {
-		this.reportIssueController.deleteReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
+		try {
+			this.reportIssueController.deleteReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
+		} catch (ReportDeleteException e) {
+			this.lbStatus.setText("Report delete failed");
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML

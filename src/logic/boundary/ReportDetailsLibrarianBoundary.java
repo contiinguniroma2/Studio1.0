@@ -10,9 +10,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import logic.constants.FxmlConstants;
 import logic.control.LibrarianSuperviseController;
 import logic.control.ReportIssueController;
 import logic.control.SuperviseController;
+import logic.exceptions.ReportUpdateException;
 
 public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 	
@@ -30,7 +32,13 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 	
 	@FXML
 	public void solveClicked(ActionEvent event) {
-		//TODO
+		try {
+			this.reportIssueController.solveIssue();
+		} catch (ReportUpdateException e) {
+			this.lbStatus.setText("Report solving failed");
+			e.printStackTrace();
+		}
+		this.backClicked(event);
 	}
 	
 	@FXML
@@ -42,7 +50,7 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 			alert.setHeaderText("Warning!");
 			alert.setContentText("Are you sure you want to report account?");
 			if (alert.showAndWait().get() == ButtonType.OK) {
-				superviseController.increaseReportingCounter(this.reportIssueController.getReportBean().getStudentId(), this.reportIssueController.getCurrentLibrary().getMail(), "feedback");
+				superviseController.increaseReportingCounter(this.reportIssueController.getReportBean().getStudentId(), this.reportIssueController.getSessionUser().getMail(), "feedback");
 				this.reportIssueController.deleteReport(this.reportIssueController.getReportBean().getReportId());
 			}
 		} catch (NoSuchElementException e) {
@@ -50,19 +58,21 @@ public class ReportDetailsLibrarianBoundary extends IssueBoundary {
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
+		this.backClicked(event);
 	}
 	
 	@Override
 	public void backClicked(ActionEvent event) {
-		// TODO Auto-generated method stub
+		guiLoader(FxmlConstants.ISSUE_LIST_LIBRARY_GUI, this.issueListLibraryBoundary, event);	
 		
 	}
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//Riempire la label lbUser con nome dell utente
-		//passare il controller in qualche modo
+		this.lbUser.setText(this.reportIssueController.getSessionUser().getName());
+		this.tvTitle.setText(this.reportIssueController.getReportBean().getTitle());
+		this.tvDescription.setText(this.reportIssueController.getReportBean().getDescription());
 		
 	}
 

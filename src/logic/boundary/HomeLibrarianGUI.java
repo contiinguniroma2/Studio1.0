@@ -21,6 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import logic.application.Main;
 import logic.bean.LibrBean;
+import logic.constants.FxmlConstants;
 import logic.control.LibraryMainPageController;
 import logic.entity.Library;
 import logic.entity.Prenotazione;
@@ -185,7 +186,7 @@ public class HomeLibrarianGUI extends LibrarianGUI {
 		
 		reports.setOnAction((event -> {
 			
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/logic/fxml/IssueListLibraryGUI.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(FxmlConstants.ISSUE_LIST_LIBRARY_GUI));
 			IssueListLibraryBoundary issueListLibraryBoundary = new IssueListLibraryBoundary(new Library(this.libraryBean.getUsername(),
 					this.libraryBean.getName(),
 					this.libraryBean.getMail(),

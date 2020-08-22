@@ -12,6 +12,7 @@ import logic.application.Main;
 import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 import logic.entity.Library;
+import logic.exceptions.ReportDeleteException;
 import logic.pattern.Observer;
 
 public class IssueListLibraryBoundary extends FxmlGUI implements Observer {
@@ -36,12 +37,18 @@ public class IssueListLibraryBoundary extends FxmlGUI implements Observer {
 	@FXML
 	public void openClicked(ActionEvent event) {
 		this.reportIssueController.fillBeanWithSelectedReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
+		this.reportIssueController.readIssue();
 		guiLoader(FxmlConstants.REPORT_DETAILS_LIBRARIAN_GUI,new ReportDetailsLibrarianBoundary(this.reportIssueController,this),event);
 	}
 	
 	@FXML
 	public void deleteClicked(ActionEvent event) {
-		this.reportIssueController.deleteReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
+		try {
+			this.reportIssueController.deleteReport(parseReportId(this.lvReports.getSelectionModel().getSelectedItem()));
+		} catch (ReportDeleteException e) {
+			this.lbStatus.setText("Report delete failed");
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -57,7 +64,7 @@ public class IssueListLibraryBoundary extends FxmlGUI implements Observer {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.lbUser.setText(this.reportIssueController.getSessionUser().getUsername());
+		this.lbUser.setText(this.reportIssueController.getSessionUser().getName());
 		this.reportIssueController.getLibraryReports();
 	}
 

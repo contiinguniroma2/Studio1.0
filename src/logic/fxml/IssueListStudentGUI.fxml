@@ -55,12 +55,12 @@
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Your reports:">
+            <Label text="Your reports for this library:">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
                <VBox.margin>
-                  <Insets left="310.0" top="20.0" />
+                  <Insets left="260.0" top="20.0" />
                </VBox.margin>
             </Label>
             <ListView id="lvReports" fx:id="lvReports" editable="true" prefHeight="394.0" prefWidth="671.0">

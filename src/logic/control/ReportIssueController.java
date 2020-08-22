@@ -12,7 +12,9 @@ import logic.entity.Library;
 import logic.entity.Report;
 import logic.entity.Student;
 import logic.entity.User;
+import logic.exceptions.ReportDeleteException;
 import logic.exceptions.ReportSaveException;
+import logic.exceptions.ReportUpdateException;
 
 public class ReportIssueController{
 	private User sessionUser;
@@ -59,6 +61,31 @@ public class ReportIssueController{
 		}*/
 	}
 	
+	public void solveIssue() throws ReportUpdateException {
+		Report solvedReport=new Report(this.reportBean.getTitle(),this.reportBean.getDescription(),this.reportBean.getReportId(),this.reportBean.getStudentId(),this.sessionUser.getMail(),ReportConstants.SOLVED);
+		try {
+			this.reportDao.updateReport(solvedReport);
+		} catch (ReportUpdateException e) {
+			throw new ReportUpdateException();
+		}
+	
+		this.sessionUser.getReports().get(findReportIndex(this.reportBean.getReportId())).setStatus(ReportConstants.SOLVED);		
+	
+	}
+	
+	public void readIssue() {
+		if(this.reportBean.getStatus().contentEquals(ReportConstants.NOT_READ)) {
+			Report readedReport=new Report(this.reportBean.getTitle(),this.reportBean.getDescription(),this.reportBean.getReportId(),this.reportBean.getStudentId(),this.sessionUser.getMail(),ReportConstants.READ);
+			try {
+				this.reportDao.updateReport(readedReport);
+			} catch (ReportUpdateException e) {
+				e.printStackTrace();
+			}
+			this.sessionUser.getReports().get(findReportIndex(this.reportBean.getReportId())).setStatus(ReportConstants.READ);
+		
+		}
+	}
+	
 	public int findReportIndex(long reportId) {
 		int i;
 		for(i=0;i<this.sessionUser.getReports().size();i++) {
@@ -84,7 +111,7 @@ public class ReportIssueController{
 		//outToServer.writeObject(newReport);
 	}
 	
-	public void deleteReport(long reportId) {
+	public void deleteReport(long reportId) throws ReportDeleteException {
 		int reportIndex=findReportIndex(reportId);
 		this.reportDao.deleteReportFromDb(this.sessionUser.getReports().get(reportIndex));
 		this.sessionUser.removeReport(this.sessionUser.getReports().get(reportIndex));

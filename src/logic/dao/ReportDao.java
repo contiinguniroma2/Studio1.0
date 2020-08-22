@@ -12,7 +12,9 @@ import logic.constants.ReportConstants;
 import logic.entity.Library;
 import logic.entity.Report;
 import logic.entity.User;
+import logic.exceptions.ReportDeleteException;
 import logic.exceptions.ReportSaveException;
+import logic.exceptions.ReportUpdateException;
 
 public class ReportDao {
 	private PreparedStatement ps;
@@ -83,7 +85,7 @@ public class ReportDao {
 		return reportList;
 	}
 
-	public int deleteReportFromDb(Report report) {
+	public int deleteReportFromDb(Report report) throws ReportDeleteException {
 		int status = 0;
 		try {
 
@@ -91,8 +93,7 @@ public class ReportDao {
 			ps.setLong(1, report.getReportId());
 			status = ps.executeUpdate();
 		} catch (Exception e) {
-			myLogger.info("Eliminazione report fallita");
-			e.printStackTrace();
+			throw new ReportDeleteException();
 		} finally {
 			closeStatement(ps);
 		}
@@ -132,7 +133,7 @@ public class ReportDao {
 		return status;
 	}
 
-	public int updateReportOnDb(Report report) {
+	public int updateReport(Report report) throws ReportUpdateException {
 		int status = 0;
 		try {
 
@@ -143,8 +144,7 @@ public class ReportDao {
 			ps.setLong(4, report.getReportId());
 			status = ps.executeUpdate();
 		} catch (Exception e) {
-			myLogger.info("Eliminazione report fallita");
-			e.printStackTrace();
+			throw new ReportUpdateException();
 		} finally {
 			closeStatement(ps);
 		}
