@@ -15,12 +15,18 @@ public class ReportBean {
 		//default constructor
 	}
 	
-	public ReportBean(String title, String description, String studentId, String libraryId, String status) {
+	public ReportBean(String title, String description, String studentId, String libraryId, String status, long reportId) {
 		this.title=title;
 		this.description=description;
 		this.studentId=studentId;
 		this.libraryId=libraryId;
 		this.status=status;
+		this.reportId=reportId;
+	}
+	
+	public ReportBean(String title, String description) {
+		this.title=title;
+		this.description=description;
 	}
 	
 
@@ -81,7 +87,11 @@ public class ReportBean {
 	}
 
 	public long getReportId() {
-		return this.reportId;
+		return reportId;
+	}
+
+	public void setReportId(long reportId) {
+		this.reportId = reportId;
 	}
 
 }
