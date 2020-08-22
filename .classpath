@@ -24,5 +24,6 @@
 	<classpathentry kind="lib" path="C:/Users/david/Documents/GitHub/Studio1.0/jars/guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="C:/Users/david/Documents/GitHub/Studio1.0/jars/okhttp-3.11.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/david/Documents/GitHub/Studio1.0/jars/okio-1.14.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/david/Downloads/jstl-1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

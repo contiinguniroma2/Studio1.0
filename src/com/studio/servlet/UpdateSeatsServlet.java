@@ -38,7 +38,7 @@ public class UpdateSeatsServlet extends HttpServlet {
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
 		request.setAttribute("libraryBean", libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
-        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooks().size());
+        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>
         request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
 		
 	}
@@ -64,8 +64,8 @@ public class UpdateSeatsServlet extends HttpServlet {
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
 		request.setAttribute("libraryBean", libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
-        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooks().size());
-        request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
+		request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>       
+		request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
 	}
 
 }

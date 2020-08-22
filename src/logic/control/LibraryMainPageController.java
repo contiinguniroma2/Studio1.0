@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import logic.bean.BookSeatBean;
 import logic.bean.LibrBean;
 import logic.dao.LibraryDao;
 import logic.dao.PrenotazioneDao;
@@ -90,6 +91,20 @@ public class LibraryMainPageController extends MainPageController {
 
 	public List<Prenotazione> getBooks() {
 		return books;
+	}
+	
+	public List<BookSeatBean> getBooksBean(){
+		try {
+			books = bookDao.select(libraryInfo.getMail(), "mainB");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		List<BookSeatBean> list = new ArrayList<>();
+		for (int i=0; i<books.size(); i++) {
+			BookSeatBean bookSeatBean = new BookSeatBean(books.get(i).getNumero(), books.get(i).getBiblioteca(), books.get(i).getUser(), books.get(i).getOrarioPrenotazione(), books.get(i).getUsernameStud());
+			list.add(bookSeatBean);
+		}
+		return list;
 	}
 
 	public void setBooks(List<Prenotazione> books) {

@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		        request.setAttribute("libraryBean", libraryBean);
 		        LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 		        request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
-		        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooks().size());
+		        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>
 		        request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
 	        }
 		    else {

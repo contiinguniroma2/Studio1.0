@@ -3,16 +3,16 @@
    
 <%@ page import="logic.control.LibraryMainPageController" %>   
 <%@ page import="java.lang.String" %>   
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %> 
 <%
   if(request.getParameter("librLogout") != null) { %>
   	<jsp:forward page="index.html"/> <%
   }
   
 %>   
-    
+     
    
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +30,7 @@
         var data = new google.visualization.arrayToDataTable([
           ['Num', "% on total"],
           ['Busy', ${libraryBean.getPostiOccupati()}],
-          ['Booked', ${booked}],
+          ['Booked', ${booked.size()}],
           ['Free', ${free}]
        ]);
  
@@ -69,7 +69,9 @@
               <a class="nav-link" href="librarianNoticeboard.html">Noticeboard</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="librarianCheckBehavior.html">Check behavior</a>
+             <form action="SuperviseServlet" name="SuperviseForm" method="GET">
+              <a><input class="btn btn-success mx-auto" type="submit" role="button" value="Recent students"></a>
+              </form>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="librarianStatistics.html">Statistics</a>
@@ -80,15 +82,10 @@
             <li class="nav-item">
               <a class="nav-link" href="index.html">Log out</a>
             </li>
-            <li>
-                 
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </div>
+           </ul>
+          </div>
+        </nav>
+     </div>
     <!-- END navbar -->
 
 
@@ -110,16 +107,17 @@
 				    
 					<div class="container" id="buttonUpdateSeats" style=" text-align: center; vertical-align: top;">
 					 
-				        <a><input onsubmit="+" class="btn btn-outline-success mx-auto" role="button" type="submit" name ="+" id="addBtn" value="+" style="width: 100px; height: 50px;"></a>		    
-				        <a><input  onsubmit="-" class="btn btn-outline-success mx-auto" role="button" type="submit" name = "-" id="delBtn" value="-" style="width: 100px; height: 50px;"></a>
+				        <a><input class="btn btn-outline-success mx-auto" role="button" type="submit" name ="+" id="addBtn" value="+" style="width: 100px; height: 50px;"></a>		    
+				        <a><input class="btn btn-outline-success mx-auto" role="button" type="submit" name = "-" id="delBtn" value="-" style="width: 100px; height: 50px;"></a>
 				       
 					</div>
 				
 			    </div>
 			
 		</div>
-		</form>
-		
+	
+	</form>
+	
 		<div class="col-6">
 
 			    <div class="container" id="titleBookings">
@@ -138,80 +136,19 @@
 					      <th>Check</th>
 					    </tr>
 					  </thead>
-
+               
 					  <tbody>
-
-					    <tr>
+                       <c:forEach items="${booked}" var= "username">
+                        <tr>
 					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username1</button>
+					        <label>${username.getUsernameStud()}</label>
 					      </td>
-					      <td>12.34</td>
+					      <td>
+					      <label>${username.getOrarioPrenotazione()}</label>
+					      </td>
 					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
 					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username2</button>
-					      </td>
-					      <td>12.36</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username3</button>
-					      </td>
-					      <td>12.37</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username4</button>
-					      </td>
-					      <td>12.37</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username5</button>
-					      </td>
-					      <td>12.38</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username6</button>
-					      </td>
-					      <td>12.40</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username7</button>
-					      </td>
-					      <td>12.42</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username8</button>
-					      </td>
-					      <td>12.43</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
-
-					    <tr>
-					      <td>
-					        <button type="button" class="btn btn-teal btn-rounded btn-sm m-0">Username9</button>
-					      </td>
-					      <td>12.45</td>
-					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
-					    </tr>
+                       </c:forEach>
 
 					  </tbody>
 

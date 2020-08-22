@@ -37,7 +37,6 @@ public class SuperviseGUI extends LibrarianGUI {
 	public VBox createSuperviseGUI() {
 		Label titleSupervisePage = createLabel("Studenti con cui hai interagito recentemente", 24);
 		titleSupervisePage.setPadding(new Insets(50, 0, 15, 0));
-		VBox content;
 		ScrollPane spUsers = new ScrollPane();
 	    for (int i=0; i<usernameList.size(); i++) {
 	    	infoAccountBtnList.add(createBtnSupervise(usernameList.get(i)));
@@ -65,7 +64,7 @@ public class SuperviseGUI extends LibrarianGUI {
 		spUsers.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 		spUsers.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
-		
+		VBox content;
 		content = createPanel(titleSupervisePage, spUsers);
 		content.setMaxWidth(475);
 		content.setAlignment(Pos.TOP_CENTER);
