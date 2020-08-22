@@ -1,4 +1,4 @@
-package com.studio.servlet;
+package logic.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
