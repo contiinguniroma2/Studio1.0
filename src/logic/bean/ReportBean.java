@@ -15,9 +15,12 @@ public class ReportBean {
 		//default constructor
 	}
 	
-	public ReportBean(String title, String description) {
+	public ReportBean(String title, String description, String studentId, String libraryId, String status) {
 		this.title=title;
 		this.description=description;
+		this.studentId=studentId;
+		this.libraryId=libraryId;
+		this.status=status;
 	}
 	
 

@@ -11,6 +11,7 @@ public class BookSeatBean {
 	private String usernameStud;
 	
 	public BookSeatBean() {
+		//Default
 	}
 	
 	public BookSeatBean(long numero, String librarianId, String studentId,String orarioPrenotazione, String usernameStud) {
