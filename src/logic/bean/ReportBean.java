@@ -27,13 +27,13 @@ public class ReportBean {
 	public ReportBean(String title, String description) throws EmptyTextFieldException {
 		if (title.trim().equals(""))
 
-			throw new EmptyTextFieldException("Text field can't be empty");
+			throw new EmptyTextFieldException();
 		else
 			this.title = title;
 
 		if (description.trim().equals(""))
 
-			throw new EmptyTextFieldException("Text field can't be empty");
+			throw new EmptyTextFieldException();
 		else
 			this.description = description;
 	}
@@ -43,7 +43,7 @@ public class ReportBean {
 
 		if (title.trim().equals(""))
 
-			throw new EmptyTextFieldException("Text field can't be empty");
+			throw new EmptyTextFieldException();
 		else
 			this.title = title;
 
@@ -59,7 +59,7 @@ public class ReportBean {
 
 		if (description.trim().equals(""))
 
-			throw new EmptyTextFieldException("Text field can't be empty");
+			throw new EmptyTextFieldException();
 		else
 			this.description = description;
 
