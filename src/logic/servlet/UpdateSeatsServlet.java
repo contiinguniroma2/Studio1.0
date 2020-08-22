@@ -22,7 +22,6 @@ public class UpdateSeatsServlet extends HttpServlet {
      */
     public UpdateSeatsServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -32,7 +31,6 @@ public class UpdateSeatsServlet extends HttpServlet {
 		try {
 			LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
