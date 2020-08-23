@@ -1,29 +1,44 @@
 package logic.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logic.bean.LibrBean;
+import logic.control.LibrarianSuperviseController;
+import logic.control.SuperviseController;
 
 /**
  * Servlet implementation class SuperviseServlet
  */
 public class SuperviseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private LibrarianSuperviseController superviseController;
+	private List<String> usernameList;
+   
     /**
      * @see HttpServlet#HttpServlet()
      */
     public SuperviseServlet() {
         super();
+        superviseController = new SuperviseController();
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		LibrBean libraryBean = (LibrBean)request.getSession().getAttribute("libraryB");
+		
+		System.out.println(libraryBean.getMail());
+		usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
+		request.setAttribute("usernameList", usernameList);
+		request.getRequestDispatcher("SupervisePage.jsp").forward(request, response);
 	}
 
 	/**
