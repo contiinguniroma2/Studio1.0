@@ -111,7 +111,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		message.setStudentId(studentId);
 	
 	    updateBean(studentId);
-		studentDao.updateStudentState(student);
+		studentDao.updateStudent(student);
 		message.setId(messageDao.insert(message));
 	}
 	

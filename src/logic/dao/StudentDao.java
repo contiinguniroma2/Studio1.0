@@ -46,43 +46,15 @@ public class StudentDao extends GenericDao {
 	public int updateStudent(Student student) {
 		int status = 0;
 		try {
-			ps = con.prepareStatement("UPDATE Studente SET password = ?, username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
-			
-			ps.setString(1, student.getPassword());
-			ps.setString(2, student.getUsername());
-			ps.setString(3, student.getName());
-			ps.setString(4, student.getSurname());
-			ps.setString(5,  student.getPhone());
-			ps.setByte(6, student.getReportCounter());
-			ps.setBoolean(7, student.isBanned());
-			ps.setString(8, student.getCountdown());
-			ps.setString(9, student.getMail());
-			status=ps.executeUpdate();
-		}
-		catch (Exception e) {
-			 myLogger.info("Aggiornamento fallito");
-			 return status;
-		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
-			
-		}
-		return status;
-	}
-	
-	public int updateStudentState(Student student) {
-		int status = 0;
-		try {
-			ps = con.prepareStatement("UPDATE Studente SET reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
-			
-			ps.setByte(1, student.getReportCounter());
-			ps.setBoolean(2, student.isBanned());
-			ps.setString(3, student.getCountdown());
-			ps.setString(4, student.getMail());
+			ps = con.prepareStatement("UPDATE Studente SET username = ?, nome = ?, cognome = ?, telefono = ?, reportCounter = ?, isBan = ?, timeStartCountdown = ? WHERE mailStudente = ?");
+            ps.setString(1, student.getUsername());
+			ps.setString(2, student.getName());
+			ps.setString(3, student.getSurname());
+			ps.setString(4,  student.getPhone());
+			ps.setByte(5, student.getReportCounter());
+			ps.setBoolean(6, student.isBanned());
+			ps.setString(7, student.getCountdown());
+			ps.setString(8, student.getMail());
 			status=ps.executeUpdate();
 		}
 		catch (Exception e) {
