@@ -86,6 +86,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 			for (i=0; i< listStudents.size(); i++) {
 				if (listStudents.get(i).getMail().equals(studentId)) {
 					student = listStudents.get(i);
+					break;
 				}
 			}
 		}
@@ -109,14 +110,19 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		message.setLibrarianId(librarianId);
 		message.setStudentId(studentId);
 	
-		for (i=0; i<listStudentBean.size(); i++) {
-	    	if (listStudentBean.get(i).getMail().equals(studentId)) {
-	    		listStudentBean.get(i).increaseReportingCounter();
-	    		listStudentBean.get(i).setBanned(student.isBanned());	    		
-	    	}
-	    }
+	    updateBean(studentId);
 		studentDao.updateStudentState(student);
 		message.setId(messageDao.insert(message));
+	}
+	
+	public void updateBean(String studentId) {
+		for (int i=0; i<listStudentBean.size(); i++) {
+	    	if (listStudentBean.get(i).getMail().equals(studentId)) {
+	    		listStudentBean.get(i).increaseReportingCounter();
+	    		listStudentBean.get(i).setBanned(student.isBanned());
+	    		break;
+	    	}
+	    }
 	}
 	
 	
