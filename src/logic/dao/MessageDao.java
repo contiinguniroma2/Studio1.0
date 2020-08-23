@@ -54,7 +54,7 @@ public class MessageDao extends GenericDao {
 	
 
 
-	public List<Message> getMessagesFromDb(String idStudent) throws Exception {
+	public List<Message> getMessagesFromDb(String idStudent) throws SQLException {
 		ResultSet rs = null;
 		List<Message> messageList = new ArrayList<>();
 		try {
@@ -65,7 +65,7 @@ public class MessageDao extends GenericDao {
 				messageList.add(new Message(rs.getLong(1), rs.getString(TITOLOM), rs.getString(TESTOM),
 						rs.getString(MAILB), rs.getString(MAIL)));
 			}
-			rs.close();
+			
 			return messageList;
             
 		}
@@ -73,6 +73,9 @@ public class MessageDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Select messaggio fallito");// definire un eccezione apposita con logger serio
 		} finally {
+			if(rs!=null) {
+				rs.close();
+			}
 			ps.close();
 		}
 		return messageList;
