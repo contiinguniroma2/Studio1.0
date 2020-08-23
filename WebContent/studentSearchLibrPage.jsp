@@ -91,7 +91,7 @@
 			<p class="text-center">
 				<input class="btn btn-success mx-auto" role="button" id="bookSeat" name="bookSeat" type="submit" 
                value="Book seat">
-				<a href="" class="btn btn-success mx-auto" role="button">Send feedback</a>
+				<a href="ReportListStudent.html" class="btn btn-success mx-auto" role="button">Report issue</a>
 				<a href="" class="btn btn-success mx-auto" role="button">Timetable</a>
 				<a href="" class="btn btn-success mx-auto" role="button">Noticeboard</a>
 				<a href="" class="btn btn-success mx-auto" role="button">Map</a>
