@@ -64,10 +64,7 @@
               <a class="btn btn-secondary" href="librarianNoticeboard.html">Noticeboard</a>
             </li>
             <li class="nav-item">
-            <%
-              LibrBean libraryB = (LibrBean)request.getAttribute("libraryBean");
-      		  session.setAttribute("libraryB", libraryB); %>
-             <form action="${pageContext.request.contextPath}/SuperviseServlet" name="SuperviseForm" method="GET">
+             <form action="SuperviseServlet" name="SuperviseForm" method="GET">
               
               <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
               </form>
@@ -137,13 +134,13 @@
 					  </thead>
                
 					  <tbody>
-                       <c:forEach items="${booked}" var= "username">
+                       <c:forEach items="${booked}" var= "bookBean">
                         <tr>
 					      <td>
-					        <label>${username.getUsernameStud()}</label>
+					        <label>${bookBean.getUsernameStud()}</label>
 					      </td>
 					      <td>
-					      <label>${username.getOrarioPrenotazione()}</label>
+					      <label>${bookBean.getOrarioPrenotazione()}</label>
 					      </td>
 					      <td><button type="button" class="btn btn-outline-success btn-rounded btn-sm m-0">V</button><button type="button" class="btn btn-outline-danger btn-rounded btn-sm m-0">X</button></td>
 					    </tr>

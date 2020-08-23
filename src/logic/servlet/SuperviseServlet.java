@@ -33,9 +33,7 @@ public class SuperviseServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		LibrBean libraryBean = (LibrBean)request.getSession().getAttribute("libraryB");
-		
-		System.out.println(libraryBean.getMail());
+		LibrBean libraryBean = (LibrBean)request.getSession().getAttribute("libraryBean");
 		usernameList = superviseController.fillSupervisePage(libraryBean.getMail());
 		request.setAttribute("usernameList", usernameList);
 		request.getRequestDispatcher("SupervisePage.jsp").forward(request, response);

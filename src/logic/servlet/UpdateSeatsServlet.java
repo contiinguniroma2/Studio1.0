@@ -34,6 +34,7 @@ public class UpdateSeatsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
+		request.getSession().setAttribute("libraryBean", libraryBean);
 		request.setAttribute("libraryBean", libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
         request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>
@@ -60,6 +61,7 @@ public class UpdateSeatsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
+		request.getSession().setAttribute("libraryBean", libraryBean);
 		request.setAttribute("libraryBean", libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
 		request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>       
