@@ -54,7 +54,7 @@ public class MessageDao extends GenericDao {
 	
 
 
-	public List<Message> getMessagesFromDb(String idStudent) throws SQLException {
+	public List<Message> getMessagesFromDb(String idStudent) throws Exception {
 		ResultSet rs = null;
 		List<Message> messageList = new ArrayList<>();
 		try {
