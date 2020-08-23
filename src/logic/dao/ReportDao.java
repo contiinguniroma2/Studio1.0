@@ -45,8 +45,13 @@ public class ReportDao {
 		catch (Exception e) {
 			myLogger.info("Select report fallito");
 		} finally {
-			ps.close();
-			rs.close();
+			try {
+				ps.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		
 		}
 		return reportList;
 	}
@@ -72,8 +77,13 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 
 		} finally {
-			ps.close();
-			rs.close();
+			try {
+				ps.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		return reportList;
 	}
@@ -88,8 +98,11 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportDeleteException();
 		} finally {
-			ps.close();
-			rs.close();
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return status;
 	}
@@ -121,8 +134,11 @@ public class ReportDao {
 		} catch (SQLException e) {
 			 throw new ReportSaveException();
 		}finally {
-			ps.close();
-			rs.close();
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return status;
@@ -141,8 +157,11 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportUpdateException();
 		} finally {
-			ps.close();
-			rs.close();
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return status;
 	}
