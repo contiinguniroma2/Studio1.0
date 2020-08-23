@@ -19,11 +19,11 @@ public class ReportListStudentServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-		
+		//Da fare
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
-		
+		//Da fare
 	}
 
 }
