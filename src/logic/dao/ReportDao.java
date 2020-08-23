@@ -24,14 +24,6 @@ public class ReportDao {
 	public ReportDao() {
 		conn = Db.getInstance().getConnection();
 	}
-
-	public void closeStatement(PreparedStatement ps) {
-		try {
-			ps.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	
 	public List<Report> getReportFromDbByLibrary(User user) {
@@ -53,7 +45,7 @@ public class ReportDao {
 		catch (Exception e) {
 			myLogger.info("Select report fallito");
 		} finally {
-			closeStatement(ps);
+			ps.close();
 		}
 		return reportList;
 	}
@@ -79,7 +71,7 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 
 		} finally {
-			closeStatement(ps);
+			ps.close();
 		}
 		return reportList;
 	}
@@ -94,7 +86,7 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportDeleteException();
 		} finally {
-			closeStatement(ps);
+			ps.close();
 		}
 		return status;
 	}
@@ -126,7 +118,7 @@ public class ReportDao {
 		} catch (SQLException e) {
 			 throw new ReportSaveException();
 		}finally {
-			closeStatement(ps);
+			ps.close();
 		}
 		
 		return status;
@@ -145,7 +137,7 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportUpdateException();
 		} finally {
-			closeStatement(ps);
+			ps.close();
 		}
 		return status;
 	}
