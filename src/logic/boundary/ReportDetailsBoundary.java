@@ -11,23 +11,25 @@ import javafx.scene.control.TextField;
 import logic.control.ReportIssueController;
 
 public abstract class ReportDetailsBoundary extends FxmlGUI {
-	
-	@FXML protected TextField tvTitle;
-	@FXML protected TextArea tvDescription;
-	@FXML protected Button btnBack;
-	@FXML protected Label lbUser;
-	@FXML protected Label lbStatus;
+
+	@FXML
+	protected TextField tvTitle;
+	@FXML
+	protected TextArea tvDescription;
+	@FXML
+	protected Button btnBack;
+	@FXML
+	protected Label lbUser;
+	@FXML
+	protected Label lbStatus;
 	protected ReportIssueController reportIssueController;
-	
-	
+
 	@FXML
 	public abstract void backClicked(ActionEvent event);
-	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		//Default
+		// Default
 	}
-	
-	
+
 }

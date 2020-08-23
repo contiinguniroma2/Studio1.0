@@ -1,9 +1,8 @@
 package test;
 //Davide
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.sql.SQLException;
-
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import logic.dao.StudentDao;
 
@@ -11,6 +10,7 @@ public class TestStudDao {
 	// legal insert test
 	StudentDao studentDao = new StudentDao();
 	@Test
+	@Order(1)
 	void insertTest1() {		
 		try {
 			assertEquals(1, studentDao.insert("mailProva1@live.it", "password", "usernameProva1", "nomeProva1", "cognomeProva1",
@@ -19,9 +19,10 @@ public class TestStudDao {
 			e.printStackTrace();
 		}
 	}
-
-	@Test
+	
 	// illegal insert test in db mail attribute is primary key
+	@Test
+	@Order(2)
 	void insertTest2() {
 		try {
 			assertEquals(0, studentDao.insert("mailProva1@live.it", "passwordProva1", "usernameProva1", "nomeProva1",
@@ -31,8 +32,16 @@ public class TestStudDao {
 		}
 
 	}
+	
+	// legal delete test
+	@Test
+	@Order(3)
+	void deleteTest1() {
+		assertEquals(1, studentDao.delete("Studente", "mailProva1@live.it", null));
+	}
 
 	@Test
+	@Order(4)
 	// illegal insert test in db phone attribute is VARCHAR(10)
 	void insertTest3() {
 		try {
@@ -43,13 +52,9 @@ public class TestStudDao {
 		}
 	}
 
-	// legal delete test
-	@Test
-	void deleteTest1() {
-		assertEquals(1, studentDao.delete("Studente", "mailProva1@live.it", null));
-	}
 
 	@Test
+	@Order(5)
 	// illegal delete test of a not existing student
 	void deleteTest2() {
 		assertEquals(0, studentDao.delete("Studente", "mailProva3@live.it", null));

@@ -3,8 +3,8 @@ package logic.entity;
 
 import java.io.Serializable;
 
-public class Report implements Serializable{
-	
+public class Report implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private String title;
 	private String description;
@@ -24,7 +24,7 @@ public class Report implements Serializable{
 		this.libraryId = libraryId;
 		this.status = status;
 	}
-	
+
 	public Report(String title, String description, String studentId, String libraryId, String status) {
 		this.title = title;
 		this.description = description;
@@ -32,8 +32,6 @@ public class Report implements Serializable{
 		this.libraryId = libraryId;
 		this.status = status;
 	}
-
-	
 
 	public String getTitle() {
 		return title;
@@ -82,13 +80,15 @@ public class Report implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	public String getMainInfoForLibrarian() {
-		return String.valueOf(this.reportId).concat("    ".concat(this.title.concat("    ".concat(this.studentId.concat("    ".concat(this.status))))));
+		return String.valueOf(this.reportId).concat(
+				"    ".concat(this.title.concat("    ".concat(this.studentId.concat("    ".concat(this.status))))));
 	}
-	
+
 	public String getMainInfoForStudent() {
-		return String.valueOf(this.reportId).concat("    ".concat(this.title.concat("    ".concat("    ".concat(this.status)))));
+		return String.valueOf(this.reportId)
+				.concat("    ".concat(this.title.concat("    ".concat("    ".concat(this.status)))));
 	}
 
 }

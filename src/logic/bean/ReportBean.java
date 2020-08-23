@@ -10,20 +10,21 @@ public class ReportBean {
 	private String status;
 	private String libraryId;
 	private long reportId;
-	
+
 	public ReportBean() {
-		//default constructor
+		// default constructor
 	}
-	
-	public ReportBean(String title, String description, String studentId, String libraryId, String status, long reportId) {
-		this.title=title;
-		this.description=description;
-		this.studentId=studentId;
-		this.libraryId=libraryId;
-		this.status=status;
-		this.reportId=reportId;
+
+	public ReportBean(String title, String description, String studentId, String libraryId, String status,
+			long reportId) {
+		this.title = title;
+		this.description = description;
+		this.studentId = studentId;
+		this.libraryId = libraryId;
+		this.status = status;
+		this.reportId = reportId;
 	}
-	
+
 	public ReportBean(String title, String description) throws EmptyTextFieldException {
 		if (title.trim().equals(""))
 
@@ -37,9 +38,8 @@ public class ReportBean {
 		else
 			this.description = description;
 	}
-	
 
-	public void setTitle(String title) throws EmptyTextFieldException  {
+	public void setTitle(String title) throws EmptyTextFieldException {
 
 		if (title.trim().equals(""))
 
