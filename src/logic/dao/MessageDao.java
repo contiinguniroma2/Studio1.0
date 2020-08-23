@@ -73,7 +73,7 @@ public class MessageDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Select messaggio fallito");// definire un eccezione apposita con logger serio
 		} finally {
-			
+			rs.close();
 			ps.close();
 		}
 		return messageList;

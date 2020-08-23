@@ -58,6 +58,7 @@ public class BookMarkDao extends GenericDao {
 		catch (SQLException e) {
 			myLogger.info("Select bookmark fallito");
 		} finally {
+			rs.close();
 			ps.close();
 		}
 		return bookList;

@@ -54,7 +54,6 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 		} finally {
 			closeStatement(ps);
-			
 		}
 		return reportList;
 	}

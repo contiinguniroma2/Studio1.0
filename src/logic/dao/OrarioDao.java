@@ -91,6 +91,7 @@ public class OrarioDao extends GenericDao {
 			myLogger.info("Select orari fallito");// definire un eccezione apposita con logger serio
 		}finally {
 			try {
+				rs.close();
 				ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
