@@ -24,8 +24,15 @@ public class ReportDao {
 	public ReportDao() {
 		conn = Db.getInstance().getConnection();
 	}
-	
-	
+
+	public void closeStatement(PreparedStatement ps) {
+		try {
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public List<Report> getReportFromDbByLibrary(User user) {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
@@ -45,13 +52,7 @@ public class ReportDao {
 		catch (Exception e) {
 			myLogger.info("Select report fallito");
 		} finally {
-			try {
-				ps.close();
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		
+			closeStatement(ps);
 		}
 		return reportList;
 	}
@@ -60,7 +61,8 @@ public class ReportDao {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
-			ps = conn.prepareStatement("SELECT * FROM mydb.report WHERE  mailStudente = ? AND mailBiblioteca = ? ORDER BY numero");
+			ps = conn.prepareStatement(
+					"SELECT * FROM mydb.report WHERE  mailStudente = ? AND mailBiblioteca = ? ORDER BY numero");
 			ps.setString(1, sessionUser.getMail());
 			ps.setString(2, library.getMail());
 			rs = ps.executeQuery();
@@ -77,13 +79,8 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 
 		} finally {
-			try {
-				ps.close();
-				rs.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			
+			closeStatement(ps);
+
 		}
 		return reportList;
 	}
@@ -98,11 +95,7 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportDeleteException();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			closeStatement(ps);
 		}
 		return status;
 	}
@@ -111,36 +104,34 @@ public class ReportDao {
 		int status = 0;
 		try {
 			ps = conn.prepareStatement(
-					"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+					"INSERT INTO mydb.report(testo,mailStudente,mailBiblioteca,titolo,stato) VALUES(?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, report.getDescription());
 			ps.setString(2, report.getStudentId());
 			ps.setString(3, report.getLibraryId());
 			ps.setString(4, report.getTitle());
 			ps.setString(5, report.getStatus());
-			status=ps.executeUpdate();
-			
-	        if (status == 0) {
-	        	throw new ReportSaveException();
-	        }
+			status = ps.executeUpdate();
 
-	        try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
-	            if (generatedKeys.next()) {
-	                report.setReportId(generatedKeys.getLong(1));
-	            }
-	            else {
-	            	throw new ReportSaveException();
-	            }
-	        }
-		} catch (SQLException e) {
-			 throw new ReportSaveException();
-		}finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
+			if (status == 0) {
+				throw new ReportSaveException();
 			}
+
+			try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+				if (generatedKeys.next()) {
+					report.setReportId(generatedKeys.getLong(1));
+				} else {
+					throw new ReportSaveException();
+				}
+			}
+		} catch (SQLException e) {
+			throw new ReportSaveException();
+		} finally {
+
+			closeStatement(ps);
+
 		}
-		
+
 		return status;
 	}
 
@@ -157,11 +148,9 @@ public class ReportDao {
 		} catch (Exception e) {
 			throw new ReportUpdateException();
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+
+			closeStatement(ps);
+
 		}
 		return status;
 	}
