@@ -77,5 +77,10 @@ public class User extends AbstractObservable{
 		this.reports.remove(report);
 		notifyObservers();
 	}
+	
+	public void updateReportStatus(int index,String status) {
+		this.reports.get(index).setStatus(status);
+		notifyObservers();
+	}
 
 }

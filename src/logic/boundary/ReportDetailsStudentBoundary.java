@@ -8,30 +8,29 @@ import logic.constants.FxmlConstants;
 import logic.control.ReportIssueController;
 
 public class ReportDetailsStudentBoundary extends ReportDetailsBoundary {
-	
+
 	protected IssueListStudentBoundary issueListStudentBoundary;
-	
-	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController, IssueListStudentBoundary issueListStudentBoundary) {
-		this.reportIssueController=reportIssueController;
-		this.issueListStudentBoundary=issueListStudentBoundary;
+
+	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController,
+			IssueListStudentBoundary issueListStudentBoundary) {
+		this.reportIssueController = reportIssueController;
+		this.issueListStudentBoundary = issueListStudentBoundary;
 	}
-	
+
 	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController) {
-		this.reportIssueController=reportIssueController;
+		this.reportIssueController = reportIssueController;
 	}
-	
+
 	@FXML
 	public void backClicked(ActionEvent event) {
-		guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI, this.issueListStudentBoundary, event);	
+		guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI, this.issueListStudentBoundary, event);
 	}
-	
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.lbUser.setText(this.reportIssueController.getSessionUser().getUsername());
 		this.tvTitle.setText(this.reportIssueController.getReportBean().getTitle());
 		this.tvDescription.setText(this.reportIssueController.getReportBean().getDescription());
 	}
-	
-	
+
 }
