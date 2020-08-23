@@ -37,8 +37,8 @@ public class LoginServlet extends HttpServlet {
 		        StudentMainPageController.getStudentMainPageController().setStudInfoB(loginController.getStudentBean());
 		        StudentBean studentBean = loginController.getStudentBean();
 		        request.setAttribute("studentBean", studentBean);
-		        
 		        request.getRequestDispatcher("studentHome.jsp").forward(request, response);
+		        request.getSession().setAttribute("sessionUser", loginController.getStudent());
 		        
 	    	}	
 		    else if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l') {
