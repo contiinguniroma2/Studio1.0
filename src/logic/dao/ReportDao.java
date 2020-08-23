@@ -46,6 +46,7 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 		} finally {
 			ps.close();
+			rs.close();
 		}
 		return reportList;
 	}
@@ -72,6 +73,7 @@ public class ReportDao {
 
 		} finally {
 			ps.close();
+			rs.close();
 		}
 		return reportList;
 	}
@@ -87,6 +89,7 @@ public class ReportDao {
 			throw new ReportDeleteException();
 		} finally {
 			ps.close();
+			rs.close();
 		}
 		return status;
 	}
@@ -119,6 +122,7 @@ public class ReportDao {
 			 throw new ReportSaveException();
 		}finally {
 			ps.close();
+			rs.close();
 		}
 		
 		return status;
@@ -138,6 +142,7 @@ public class ReportDao {
 			throw new ReportUpdateException();
 		} finally {
 			ps.close();
+			rs.close();
 		}
 		return status;
 	}
