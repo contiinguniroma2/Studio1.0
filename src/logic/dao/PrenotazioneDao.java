@@ -76,7 +76,9 @@ public class PrenotazioneDao extends GenericDao {
 		catch (Exception e) {
 			myLogger.info("Select prenotazione fallito");// definire un eccezione apposita con logger serio
 		} finally {
-			rs.close();
+			if(rs!=null) {
+				rs.close();
+			}
 			ps.close();
 		}
 		return bookList;

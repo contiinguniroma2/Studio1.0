@@ -64,7 +64,9 @@ public class ServizioDao extends GenericDao {
 			myLogger.info("Select servizi fallito");// definire un eccezione apposita con logger serio
 		}finally {
 			try {
-				rs.close();
+				if(rs!=null) {
+					rs.close();
+				}
 				ps.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

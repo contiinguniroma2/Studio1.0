@@ -152,6 +152,9 @@ public class LibraryDao extends GenericDao {
 		catch (SQLException e) {
 			myLogger.info("Select biblioteca fallito");// definire un eccezione apposita con logger serio
 		}finally {
+			if(rs!=null) {
+				rs.close();
+			}
 			ps.close();
 		}
 		return libraryList;
