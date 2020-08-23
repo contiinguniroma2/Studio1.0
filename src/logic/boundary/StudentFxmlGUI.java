@@ -3,6 +3,7 @@ package logic.boundary;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,11 +74,13 @@ public class StudentFxmlGUI extends FxmlGUI{
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Log out");
 			alert.setHeaderText("Warning!");
-			alert.setContentText("Are you sure you want to log out?"
-					+ "\nReply your messages");
+			alert.setContentText("Are you sure you want to log out?");
 			if (alert.showAndWait().get() == ButtonType.OK) {
 				main.setNewStage("StartGUI");
 			}
+		}
+		catch (NoSuchElementException exc) {
+			//Nothing to do
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

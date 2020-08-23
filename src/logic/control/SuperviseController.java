@@ -47,7 +47,11 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		}
 		return list;
 	}
-
+	
+	
+    /*
+     * Istanzia la pagina contente le info di uno studente
+     */
 	@Override
 	public void getInfoStudent(String username, SuperviseGUI superviseGUI) {
 		int i;
@@ -75,11 +79,17 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	public void increaseReportingCounter(String studentId, String librarianId, String reason) {
 		Message message = null;
 		int i;
-		for (i=0; i< listStudents.size(); i++) {
-			if (listStudents.get(i).getMail().equals(studentId)) {
-				student = listStudents.get(i);
+		if (listStudents == null) {
+			student = studentDao.select(studentId, null);
+		}
+		else {
+			for (i=0; i< listStudents.size(); i++) {
+				if (listStudents.get(i).getMail().equals(studentId)) {
+					student = listStudents.get(i);
+				}
 			}
 		}
+		
 		if (student.getStateMachine().getState().getState().equals("Notified")) {
 			message = student.notifyStudent(reason);
 		}

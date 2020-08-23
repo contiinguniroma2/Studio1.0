@@ -6,35 +6,35 @@
   	</description>
   	<display-name>AddStudentServlet</display-name>
   	<servlet-name>AddStudentServlet</servlet-name>
-  	<servlet-class>com.studio.servlet.AddStudentServlet</servlet-class>
+  	<servlet-class>logic.servlet.AddStudentServlet</servlet-class>
   </servlet>
   <servlet>
   	<description>
   	</description>
   	<display-name>LoginServlet</display-name>
   	<servlet-name>LoginServlet</servlet-name>
-  	<servlet-class>com.studio.servlet.LoginServlet</servlet-class>
+  	<servlet-class>logic.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet>
   	<description>
   	</description>
   	<display-name>AddLibrarianServlet</display-name>
   	<servlet-name>AddLibrarianServlet</servlet-name>
-  	<servlet-class>com.studio.servlet.AddLibrarianServlet</servlet-class>
+  	<servlet-class>logic.servlet.AddLibrarianServlet</servlet-class>
   </servlet>
   <servlet>
   	<description>
   	</description>
   	<display-name>UpdateSeatsServlet</display-name>
   	<servlet-name>UpdateSeatsServlet</servlet-name>
-  	<servlet-class>com.studio.servlet.UpdateSeatsServlet</servlet-class>
+  	<servlet-class>logic.servlet.UpdateSeatsServlet</servlet-class>
   </servlet>
   <servlet>
   	<description>
   	</description>
   	<display-name>SuperviseServlet</display-name>
   	<servlet-name>SuperviseServlet</servlet-name>
-  	<servlet-class>com.studio.servlet.SuperviseServlet</servlet-class>
+  	<servlet-class>logic.servlet.SuperviseServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>AddStudentServlet</servlet-name>

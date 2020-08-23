@@ -3,6 +3,7 @@ package logic.boundary;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -62,7 +63,11 @@ public class StudentBannedGUI extends GuiSUPER {
 				if (alert.showAndWait().get() == ButtonType.OK) {
 					main.setNewStage(START);
 				}
-			} catch (Exception e) {
+			}
+			catch (NoSuchElementException exc) {
+				//Nothing to do
+			}
+			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}));
