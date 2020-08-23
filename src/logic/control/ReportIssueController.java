@@ -25,7 +25,7 @@ public class ReportIssueController {
 
 	public ReportIssueController(User sessionUser) {
 		this.sessionUser = sessionUser;
-		this.reportDao = new ReportDao();	 
+		this.reportDao = new ReportDao();
 	}
 
 	public ReportIssueController(Student sessionStudent, Library currentLibrary) {
@@ -126,6 +126,5 @@ public class ReportIssueController {
 	public void setCurrentLibrary(Library currentLibrary) {
 		this.currentLibrary = currentLibrary;
 	}
-
 
 }
