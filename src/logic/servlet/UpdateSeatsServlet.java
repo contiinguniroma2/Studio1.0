@@ -16,6 +16,7 @@ import logic.control.LibraryMainPageController;
  */
 public class UpdateSeatsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private String bean = "libraryBean";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -34,8 +35,8 @@ public class UpdateSeatsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
-		request.getSession().setAttribute("libraryBean", libraryBean);
-		request.setAttribute("libraryBean", libraryBean);
+		request.getSession().setAttribute(bean, libraryBean);
+		request.setAttribute(bean, libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
         request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>
         request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
@@ -61,8 +62,8 @@ public class UpdateSeatsServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
-		request.getSession().setAttribute("libraryBean", libraryBean);
-		request.setAttribute("libraryBean", libraryBean);
+		request.getSession().setAttribute(bean, libraryBean);
+		request.setAttribute(bean, libraryBean);
 		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
 		request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>       
 		request.getRequestDispatcher("librarianHome.jsp").forward(request, response);

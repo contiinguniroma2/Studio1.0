@@ -1,7 +1,8 @@
 <%@ page import="logic.control.StudentSearchInsertController"%>
 <%@ page import="logic.control.LoginController"%>
-<%@ page import="logic.control.StudentMainPageController"%>
+<%@ page import="logic.bean.StudentBean"%>
 <%@ page import="logic.control.LibraryMainPageController"%>
+
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -20,38 +21,28 @@
 	<!-- navbar -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Stud.io</a>
+			<a class="navbar-brand" href="#">${studentBean.getName()} ${studentBean.getSurname()}</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<!-- "ml-auto" consente di allineare item a destra-->
-					<li class="nav-item active"><a class="nav-link"
-						href="studentHome.html">Search<span class="sr-only">(current)</span></a>
+					<li class="nav-link"><a class="btn btn-success mx-auto"
+						href="studentHome.jsp">Search<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-link"><a class="btn btn-secondary"
 						href="studentBookmarks.html">Bookmarks</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-link"><a class="btn btn-secondary"
 						href="studentMessages.html">Messages</a></li>
 					<li>
-
-						<form action="studentHome.jsp" name="studLogout" method="post">
-							<div class="dropdown">
-								<input class="btn btn-outline-success dropdown-toggle"
-									type="button" name="studId" id="dropdownMenuButton"
-									data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"
-									value="<%out.println(StudentMainPageController.getStudentMainPageController().getStudInfo().getUsername());%>" />
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="studentSettings.html">Settings</a>
-									<input class="dropdown-item" id="studLogout" name="studLogout"
-										type="submit" value="Log out">
-						</form>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="studentMessages.html">Settings</a></li>
+					<li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="index.html">Log out</a></li>
+				</ul>
 			</div>
+		</nav>
 	</div>
-	</li>
-	</ul>
-	</div>
-	</nav>
-	</div>
+
 	<!-- END navbar -->
 
 	<div class="row">
@@ -91,15 +82,6 @@
 
 </body>
 </html>
-
-
-<%
-  if(request.getParameter("studLogout") != null) { %>
-<jsp:forward page="index.jsp" />
-<%
-  }
-%>
-
 
 
 <%
