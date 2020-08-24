@@ -74,7 +74,7 @@
 						<th>Report id</th>
 						<th>Object</th>
 
-						<th><button type="button" class="btn btn-success mr-auto">Send
+						<th><button onclick="location.href='ReportForm.jsp'" type="button" class="btn btn-success mr-auto">Send
 								report</button></th>
 					</tr>
 				</thead>
