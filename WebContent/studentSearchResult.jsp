@@ -20,34 +20,28 @@
 	<!-- navbar -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Stud.io</a>
+			<a class="navbar-brand" href="#">${studentBean.getName()} ${studentBean.getSurname()}</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<!-- "ml-auto" consente di allineare item a destra-->
-					<li class="nav-item active"><a class="nav-link"
-						href="studentHome.html">Search<span class="sr-only">(current)</span></a>
+					<li class="nav-link"><a class="btn btn-success mx-auto"
+						href="studentHome.jsp">Search<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-link"><a class="btn btn-secondary"
 						href="studentBookmarks.html">Bookmarks</a></li>
-					<li class="nav-item"><a class="nav-link"
+					<li class="nav-link"><a class="btn btn-secondary"
 						href="studentMessages.html">Messages</a></li>
 					<li>
-						<!-- <a class="btn btn-outline-success d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="login.html">GUEST</a> -->
-						<div class="dropdown">
-							<input class="btn btn-outline-success dropdown-toggle"
-								type="button" id="dropdownMenuButton" data-toggle="dropdown"
-								aria-haspopup="true" aria-expanded="false"
-								value="<%out.println(StudentMainPageController.getStudentMainPageController().getStudInfo().getUsername());%>" />>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" href="studentSettings.html">Settings</a>
-								<a class="dropdown-item" href="index.html">Logout</a>
-							</div>
-						</div>
-					</li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="studentMessages.html">Settings</a></li>
+					<li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="index.html">Log out</a></li>
 				</ul>
 			</div>
 		</nav>
 	</div>
+
 	<!-- END navbar -->
 
 	<div class="row">

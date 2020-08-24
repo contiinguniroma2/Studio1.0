@@ -65,7 +65,6 @@ public class LoginServlet extends HttpServlet {
 		        LibraryMainPageController.getLibraryMainPageController().setLibrInfoB(loginController.getLibrBean());
 		        LibrBean libraryBean = loginController.getLibrBean();
 		        request.getSession().setAttribute("libraryBean", libraryBean);
-		        request.setAttribute("libraryBean", libraryBean);
 		        LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 		        request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
 		        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>
