@@ -45,22 +45,29 @@
 		<div class="container" id="Report details:">
 			<h1 align=center>
 				<br>
-				<br>Report details:
+				<br>Report form:
 			</h1>
 		</div>
 
 		<div class="container" id="Report details:">
+			<form action="${pageContext.request.contextPath}/ReportFormServlet" name="reportForm" method="POST">
 			<label for="reportTitle">Title</label> 
 			<input
-				readonly class="form-control" id="reportTitle" name="reportTitle" type="text"
-				value="<%out.println(((ReportBean)request.getSession().getAttribute("selectedReport")).getTitle());%>">
+				 class="form-control" id="reportFormTitle" name="reportFormTitle" type="text"
+				value="">
 		
 			<div class="form-group">
 				<label for="reportDescription">Description</label>
 				 <textarea
-				readonly class="form-control" id="reportDescription" name="reportDescription"><%=((ReportBean)request.getSession().getAttribute("selectedReport")).getDescription()%></textarea>
+				 class="form-control" id="reportFormDescription" name="reportFormDescription"></textarea>
+			</div> 
+			<div id="divBtnSendReport">
+				<input class="btn btn-success mx-auto" role="button" name="btnSendReport" type="submit"
+               id="btnSendReport" value="Send report">
 			</div>
+			</form>
 		</div>
+		
 
 	</div>
 

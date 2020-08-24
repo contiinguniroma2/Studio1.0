@@ -59,7 +59,16 @@ display: block;
 #reportDescription{
 	height:550px;
 }
-#divStudentDetailsBack{
+#reportFormDescription{
+	height:550px;
+}
+
+#divBtnSendReport{
 	padding-top:30px;
 	text-align:center;
+}
+
+#tableReportsDiv{
+	padding-left:30px;
+	padding-right:30px;
 }
