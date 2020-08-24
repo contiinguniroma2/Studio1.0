@@ -26,15 +26,9 @@ public class ReportFormServlet extends HttpServlet {
 			try {
 				reportIssueController.sendReport(new ReportBean(request.getParameter("reportFormTitle"),request.getParameter("reportFormDescription")));
 				request.getRequestDispatcher("ReportListStudent.jsp").forward(request, response);
-			} catch (ReportSaveException e) {
+			} catch (ReportSaveException|EmptyTextFieldException|ServletException|IOException e) {
 				e.printStackTrace();
-			} catch (EmptyTextFieldException e) {
-				e.printStackTrace();
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			} 
 		}
 	}
 
