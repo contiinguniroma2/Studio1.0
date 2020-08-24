@@ -56,3 +56,10 @@ display: block;
 #nomeBib{
   padding-top: 50px;
 }
+#reportDescription{
+	height:550px;
+}
+#divStudentDetailsBack{
+	padding-top:30px;
+	text-align:center;
+}

@@ -1,7 +1,6 @@
 package logic.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,11 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 import logic.control.ReportIssueController;
 import logic.exceptions.ReportDeleteException;
 
-public class ReportListStudentServlet extends HttpServlet {
+public class ReportListLibraryServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ReportListStudentServlet() {
+	public ReportListLibraryServlet() {
 		super();
 	}
 	
@@ -22,12 +21,12 @@ public class ReportListStudentServlet extends HttpServlet {
 		for (Integer i=0; i<reportIssueController.getSessionUser().getReports().size(); i++) {
 			if (request.getParameter("btnOpen".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				request.getSession().setAttribute("selectedReport",(reportIssueController.getSessionUser().getReports().get(i).getReportId()));
-				request.getRequestDispatcher("StudentReportDetails.jsp").forward(request, response);
+				request.getRequestDispatcher("ReportLibraryDetails.jsp").forward(request, response);
 			}
 			if (request.getParameter("btnDelete".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				try {
 					reportIssueController.deleteReport(reportIssueController.getSessionUser().getReports().get(i).getReportId());
-					request.getRequestDispatcher("ReportListStudent.jsp").forward(request, response);
+					request.getRequestDispatcher("ReportListLibrary.jsp").forward(request, response);
 				} catch (ReportDeleteException e) {
 					e.printStackTrace();
 				}
@@ -38,6 +37,5 @@ public class ReportListStudentServlet extends HttpServlet {
 		
 		
 	}
-	
 
 }

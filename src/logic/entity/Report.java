@@ -49,7 +49,7 @@ public class Report implements Serializable {
 		this.description = description;
 	}
 
-	public long getReportId() {
+	public Long getReportId() {
 		return reportId;
 	}
 

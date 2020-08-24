@@ -7,10 +7,7 @@
 	<%@page import="logic.entity.User"%>
 	<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 
-<%
- 	request.getSession().setAttribute("reportIssueController", new ReportIssueController((Student)request.getSession().getAttribute("sessionUser"),(Library)request.getSession().getAttribute("currentLibrary")));
-	((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getStudentReports();
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,7 +65,7 @@
 		<div class="table-wrapper-scroll-y my-custom-scrollbar"
 			id="tableReportsDiv">
 
-			<table id="tableBookings"
+			<table id="tableReports"
 				class="table table-striped table-bordered table-sm"
 				style="text-align: center;" cellspacing="20" width="100%">
 
@@ -81,16 +78,27 @@
 								report</button></th>
 					</tr>
 				</thead>
-
-				<tbody>
-					<% for(int i = 0; i < ((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().size(); i++) { %>
-		       			<tr>
-							<td><label><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()%></label></td>
-							<td><label><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getTitle()%></label></td>
-							<td><button type="button"
-									class="btn btn-outline-success btn-rounded btn-sm m-0">Open</button>
-								<button type="button"
-									class="btn btn-outline-danger btn-rounded btn-sm m-0">Delete</button></td>
+				
+				<!-- creazione controller e inizializzazione della lista di report -->
+					<%
+					 	request.getSession().setAttribute("reportIssueController", new ReportIssueController((Student)request.getSession().getAttribute("sessionUser"),(Library)request.getSession().getAttribute("currentLibrary")));
+						((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getStudentReports();
+					%>
+					
+					<tbody>
+					<% for(Integer i = 0; i < ((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().size(); i++) { %>
+		       			<tr id="<%="report".concat(i.toString())%>">
+							<td><label id="<%="reportId".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()%></label></td>
+							<td><label id="<%="reportObject".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getTitle()%></label></td>
+							<td><form action="${pageContext.request.contextPath}/ReportListStudentServlet" name="btnReport" method="GET">
+									<input class="btn btn-outline-success btn-rounded btn-sm m-0"
+									id="<%="btnOpenReport".concat(i.toString())%>"
+									role="button" name="<%="btnOpen".concat(i.toString())%>" type="submit"
+									value="Open">
+									<input class="btn btn-outline-danger btn-rounded btn-sm m-0"
+									id="<%="btnDeleteReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"
+									role="button" name="<%="btnDelete".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>" type="submit"
+									value="Delete"></form></td>
 						</tr>
 	   				<% } %>
 
@@ -100,7 +108,7 @@
 		</div>
 	</div>
 
-	</div>
+
 
 	<!-- jQuery e plugin JavaScript  -->
 	<script src="http://code.jquery.com/jquery.js"></script>

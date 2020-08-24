@@ -19,6 +19,13 @@
 %>
 
 <%
+  if(request.getParameter("bookSeat") != null) { %>
+<jsp:forward page="studentHome.jsp" />
+<%
+  }
+%>
+
+<%
 	request.getSession().setAttribute("currentLibrary", StudentMainPageController.getStudentMainPageController().getLibrInfo());
 %>
 
@@ -129,8 +136,8 @@
 					<input class="btn btn-success mx-auto" role="button" id="bookSeat"
 						name="bookSeat" type="submit" value="Book seat"> <a
 						href="ReportListStudent.jsp" class="btn btn-success mx-auto"
-						role="button">Report issue</a> <a href=""
-						class="btn btn-success mx-auto" role="button">Timetable</a> <a
+						role="button">Report issue</a> 
+						<a href=""class="btn btn-success mx-auto" role="button">Timetable</a> <a
 						href="" class="btn btn-success mx-auto" role="button">Noticeboard</a>
 					<a href="" class="btn btn-success mx-auto" role="button">Map</a>
 				</p>
