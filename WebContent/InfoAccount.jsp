@@ -1,8 +1,7 @@
 <%@page import="logic.bean.LibrBean"%>
+<%@page import="logic.bean.StudentBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,42 +48,38 @@
         </nav>
      </div>
     <!-- END navbar -->
-    <h1 align=center><br><br>Recent students</h1>
-    <br>
-    
-    <form action="${pageContext.request.contextPath}/SuperviseServlet" name="SuperviseForm" method="GET">
-     <div id="supervise" class="form-group" >
-       <c:forEach items="${usernameList}" var= "usernameList">
-        <button class="btn btn-outline-success mx-auto" role="button" type="submit"  name ="${usernameList}" style="width: 300px; height: 90px;"> <font style="verdana" size = "6" > ${usernameList}</font></button>		    
-             
-        </c:forEach>
-       
+    <h1 align="center"><br><br>Info student</h1>
+    <form action="${pageContext.request.contextPath}/SuperviseServlet" name="InfoForm" method="POST">
+     
+      <%StudentBean studentBean = (StudentBean) session.getAttribute("studentBean"); %>
+      <div class="container">
+       <div class="form-group" align="center">
+       <br>
+        <h2>Name: <%out.println(studentBean.getName()); %></h2>
        </div>
-       </form>
+       <div class="form-group" align="center">
+        <h2>Surname: <%out.println(studentBean.getSurname()); %></h2>
+       </div>
+       <div class="form-group" align="center">
+        <h2>Username: <%out.println(studentBean.getUsername()); %></h2>
+       </div>
+      <div class="form-group" align="center">
+        <h2>Email: <%out.println(studentBean.getMail()); %></h2>
+       </div>
+       <div class="form-group" align="center">
+        <h2>Phone: <%out.println(studentBean.getPhone()); %></h2>
+       </div>
+       <div class="form-group" align="center">
+        <h2><%if(studentBean.isBanned()) { out.println("Utente bannato");}
+		else { out.println("Utente attivo"); } %></h2>
+       </div>
+       <div class="form-group" align="center">
+       <br>
+        <button class="btn btn-outline-success mx-auto" role="button" type="submit"  name ="Report Account" style="width: 300px; height: 80px;"> <font style="verdana" size = "6" > Report account</font></button>		    
+       </div>
+      </div>
+     </form>
     
- 
-
+    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
