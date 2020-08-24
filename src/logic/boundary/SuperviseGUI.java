@@ -43,7 +43,8 @@ public class SuperviseGUI extends LibrarianGUI {
 	    	String studentId = infoAccountBtnList.get(i).getText();
 	    	infoAccountBtnList.get(i).setOnAction((event -> {
 				try {
-					superviseController.getInfoStudent(studentId, this);					                
+					InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(this, superviseController.getInfoStudent(studentId));
+					root.setCenter(infoAccountSelectedGUI.createInfoAccountGUI());					                
 				} 
 				catch (Exception e) {
 					e.printStackTrace();

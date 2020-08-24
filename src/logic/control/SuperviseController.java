@@ -6,8 +6,6 @@ import java.util.List;
 
 import logic.bean.MessageBean;
 import logic.bean.StudentBean;
-import logic.boundary.InfoAccountSelectedGUI;
-import logic.boundary.SuperviseGUI;
 import logic.dao.MessageDao;
 import logic.dao.StudentDao;
 import logic.entity.Message;
@@ -50,15 +48,14 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	
 	
     /*
-     * Istanzia la pagina contente le info di uno studente
+     * Ritorna la StudentBean relativa a uno studente di cui si conosce lo username
      */
 	@Override
-	public void getInfoStudent(String username, SuperviseGUI superviseGUI) {
+	public StudentBean getInfoStudent(String username) {
 		int i;
 	    for (i=0; i<listStudentBean.size(); i++) {
 	    	if (listStudentBean.get(i).getUsername().equals(username)) {
-	    		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, listStudentBean.get(i));
-	    		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());
+	    		return listStudentBean.get(i);
 	    	}
 	    }
 	    StudentBean studentBean = new StudentBean();
@@ -70,8 +67,8 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 				listStudentBean.add(studentBean);
 			}
 		}
-		InfoAccountSelectedGUI infoAccountSelectedGUI = new InfoAccountSelectedGUI(superviseGUI, studentBean);
-		superviseGUI.getRoot().setCenter(infoAccountSelectedGUI.createInfoAccountGUI());		
+		return studentBean;
+			
 	}
 	
 
