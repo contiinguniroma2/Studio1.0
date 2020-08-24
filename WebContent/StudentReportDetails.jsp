@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@page import="logic.bean.ReportBean"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,52 +15,27 @@
 	<!-- navbar -->
 	<div class="container">
 		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Stud.io</a>
+			<a class="navbar-brand" href="#">${studentBean.getName()} ${studentBean.getSurname()}</a>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
 					<!-- "ml-auto" consente di allineare item a destra-->
-					<li class="nav-item"><a class="nav-link"
-						href="librarianHome.html">Update seats<span class="sr-only">(current)</span></a>
+					<li class="nav-link"><a class="btn btn-success mx-auto"
+						href="studentHome.jsp">Search<span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianTimetable.html">Time table</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianNoticeboard.html">Noticeboard</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="ReportListLibrarian.html">Reports</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianCheckBehavior.html">Check behavior</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianStatistics.html">Statistics</a></li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="studentBookmarks.html">Bookmarks</a></li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="studentMessages.html">Messages</a></li>
 					<li>
-						<!-- <a class="btn btn-outline-success d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="login.html">GUEST</a> -->
-
-
-
-
-
-
-
-
-						<form action="librarianHome.html" name="librLogout" method="post">
-							<div class="dropdown">
-								<button class="btn btn-outline-success dropdown-toggle"
-									type="button" id="dropdownMenuButton" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">Username</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="librSettings.html">Settings</a>
-									<input class="dropdown-item" id="librLogout" name="librLogout"
-										type="submit" value="Log out">
-						</form>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="studentMessages.html">Settings</a></li>
+					<li>
+					<li class="nav-link"><a class="btn btn-secondary"
+						href="index.html">Log out</a></li>
+				</ul>
 			</div>
+		</nav>
 	</div>
-	</li>
-	</ul>
-	</div>
-	</nav>
-	</div>
-	<!-- END navbar -->
-
 
 	<!-- CONTENT -->
 
@@ -77,16 +53,16 @@
 			<label for="reportTitle">Title</label> 
 			<input
 				readonly class="form-control" id="reportTitle" name="reportTitle" type="text"
-				value="">
+				value="<%out.println(((ReportBean)request.getSession().getAttribute("selectedReport")).getTitle());%>">
 		
 			<div class="form-group">
 				<label for="reportDescription">Description</label>
 				 <textarea
-				readonly class="form-control" id="reportDescription" name="reportDescription"></textarea>
+				readonly class="form-control" id="reportDescription" name="reportDescription"><%=((ReportBean)request.getSession().getAttribute("selectedReport")).getDescription()%></textarea>
 			</div>
 		</div>
 		<div id="divStudentDetailsBack">
-			<button id="btnStudentDetailsBack" name="btnStudentDetailsBack" type="button" class="btn btn-success mr-auto">Back</button>
+			<button onclick="location.href='ReportListStudent.jsp'" id="btnStudentDetailsBack" name="btnStudentDetailsBack" type="button" class="btn btn-success mr-auto">Back</button>
 		</div>
 
 	</div>
@@ -99,8 +75,4 @@
 </body>
 </html>
 
-<%
- if(request.getParameter("add") != null) {%>
- <jsp:forward page="ReportListStudent.jsp"/> <%
- }%>
 

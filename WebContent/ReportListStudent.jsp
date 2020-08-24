@@ -92,8 +92,8 @@
 							<td><label id="<%="reportObject".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getTitle()%></label></td>
 							<td><form action="${pageContext.request.contextPath}/ReportListStudentServlet" name="btnReport" method="GET">
 									<input class="btn btn-outline-success btn-rounded btn-sm m-0"
-									id="<%="btnOpenReport".concat(i.toString())%>"
-									role="button" name="<%="btnOpen".concat(i.toString())%>" type="submit"
+									id="<%="btnOpenReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"
+									role="button" name="<%="btnOpen".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>" type="submit"
 									value="Open">
 									<input class="btn btn-outline-danger btn-rounded btn-sm m-0"
 									id="<%="btnDeleteReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"
