@@ -64,6 +64,13 @@
   	<servlet-name>ReportFormServlet</servlet-name>
   	<servlet-class>logic.servlet.ReportFormServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>ReportDetailsLibraryServlet</display-name>
+  	<servlet-name>ReportDetailsLibraryServlet</servlet-name>
+  	<servlet-class>logic.servlet.ReportDetailsLibraryServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AddStudentServlet</servlet-name>
   	<url-pattern>/AddStudentServlet</url-pattern>
@@ -99,6 +106,10 @@
   <servlet-mapping>
   	<servlet-name>ReportFormServlet</servlet-name>
   	<url-pattern>/ReportFormServlet</url-pattern>
+  </servlet-mapping>
+   <servlet-mapping>
+  	<servlet-name>ReportDetailsLibraryServlet</servlet-name>
+  	<url-pattern>/ReportDetailsLibraryServlet</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

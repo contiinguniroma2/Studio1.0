@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="logic.control.StudentMainPageController"%>
 	<%@page import="logic.control.ReportIssueController"%>
 	<%@page import="logic.entity.Student" %>
 	<%@page import="logic.entity.Library"%>
 	<%@page import="logic.entity.User"%>
-	<%@taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE html>
@@ -70,6 +68,7 @@
 					<tr>
 						<th>Report id</th>
 						<th>Object</th>
+						<th>Status</th>
 
 						<th><button onclick="location.href='ReportForm.jsp'" type="button" class="btn btn-success mr-auto">Send
 								report</button></th>
@@ -87,6 +86,7 @@
 		       			<tr id="<%="report".concat(i.toString())%>">
 							<td><label id="<%="reportId".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()%></label></td>
 							<td><label id="<%="reportObject".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getTitle()%></label></td>
+							<td><label id="<%="reportStatus".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getStatus()%></label></td>
 							<td><form action="${pageContext.request.contextPath}/ReportListStudentServlet" name="btnReport" method="GET">
 									<input class="btn btn-outline-success btn-rounded btn-sm m-0"
 									id="<%="btnOpenReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"

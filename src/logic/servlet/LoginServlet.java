@@ -16,6 +16,7 @@ import logic.control.LoginController;
 import logic.control.StudentMainPageController;
 import logic.control.StudentSuperviseController;
 import logic.control.SuperviseController;
+import logic.entity.Library;
 import logic.entity.Student;
 import logic.pattern.NotifiedState;
 
@@ -63,8 +64,10 @@ public class LoginServlet extends HttpServlet {
 		    else if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l') {
 		    	LibraryMainPageController.getLibraryMainPageController().setLibrInfo(loginController.getLibrary());
 		        LibraryMainPageController.getLibraryMainPageController().setLibrInfoB(loginController.getLibrBean());
+		        Library library = loginController.getLibrary();
 		        LibrBean libraryBean = loginController.getLibrBean();
 		        request.getSession().setAttribute("libraryBean", libraryBean);
+		        request.getSession().setAttribute("sessionUser", library);
 		        LibraryMainPageController.getLibraryMainPageController().updateLibraryMainPage();
 		        request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
 		        request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>

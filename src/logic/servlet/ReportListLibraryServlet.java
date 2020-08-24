@@ -5,8 +5,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import logic.bean.ReportBean;
 import logic.control.ReportIssueController;
+import logic.exceptions.EmptyTextFieldException;
 import logic.exceptions.ReportDeleteException;
+import logic.exceptions.ReportUpdateException;
 
 public class ReportListLibraryServlet extends HttpServlet {
 
@@ -20,8 +24,20 @@ public class ReportListLibraryServlet extends HttpServlet {
 		ReportIssueController reportIssueController=(ReportIssueController) request.getSession().getAttribute("reportIssueController");
 		for (Integer i=0; i<reportIssueController.getSessionUser().getReports().size(); i++) {
 			if (request.getParameter("btnOpen".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
-				request.getSession().setAttribute("selectedReport",(reportIssueController.getSessionUser().getReports().get(i).getReportId()));
-				request.getRequestDispatcher("ReportLibraryDetails.jsp").forward(request, response);
+				ReportBean selectedReport=null;
+				try {
+					selectedReport = new ReportBean(reportIssueController.getSessionUser().getReports().get(i).getTitle(),reportIssueController.getSessionUser().getReports().get(i).getDescription());
+				} catch (EmptyTextFieldException e) {
+					e.printStackTrace();
+				}
+				reportIssueController.fillBeanWithSelectedReport(reportIssueController.getSessionUser().getReports().get(i).getReportId());
+				try {
+					reportIssueController.readIssue();
+				} catch (ReportUpdateException e) {
+					e.printStackTrace();
+				}
+				request.getSession().setAttribute("selectedReport",selectedReport);
+				request.getRequestDispatcher("LibraryReportDetails.jsp").forward(request, response);
 			}
 			if (request.getParameter("btnDelete".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				try {

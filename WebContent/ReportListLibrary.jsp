@@ -1,3 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+	<%@page import="logic.control.ReportIssueController"%>
+	<%@page import="logic.entity.Student" %>
+	<%@page import="logic.entity.Library"%>
+	<%@page import="logic.entity.User"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,35 +83,34 @@
 						<th>Report id</th>
 						<th>Object</th>
 						<th>User</th>
+						<th>Status</th>
 						<th></th>
 					</tr>
 				</thead>
-
-				<tbody>
-
-					<tr>
-						<td>1234</td>
-						<td>Bagno rotto</td>
-						<td>Bobbe</td>
-						<td>
-							<button type="button"
-								class="btn btn-outline-success btn-rounded btn-sm m-0">Open</button>
-							<button type="button"
-								class="btn btn-outline-danger btn-rounded btn-sm m-0">Delete</button>
-						</td>
-					</tr>
-
-					<tr>
-						<td>1235</td>
-						<td>Montascale rotto</td>
-						<td>Malle</td>
-						<td>
-							<button type="button"
-								class="btn btn-outline-success btn-rounded btn-sm m-0">Open</button>
-							<button type="button"
-								class="btn btn-outline-danger btn-rounded btn-sm m-0">Delete</button>
-						</td>
-					</tr>
+				<!-- creazione controller e inizializzazione della lista di report -->
+					<%
+					 	request.getSession().setAttribute("reportIssueController", new ReportIssueController((Library)request.getSession().getAttribute("sessionUser")));
+						((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getLibraryReports();
+					%>
+					
+					<tbody>
+					<% for(Integer i = 0; i < ((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().size(); i++) { %>
+		       			<tr id="<%="report".concat(i.toString())%>">
+							<td><label id="<%="reportId".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()%></label></td>
+							<td><label id="<%="reportObject".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getTitle()%></label></td>
+							<td><label id="<%="reportUser".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getStudentId()%></label></td>
+							<td><label id="<%="reportStatus".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"><%=((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getStatus()%></label></td>
+							<td><form action="${pageContext.request.contextPath}/ReportListLibraryServlet" name="btnReport" method="GET">
+									<input class="btn btn-outline-success btn-rounded btn-sm m-0"
+									id="<%="btnOpenReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"
+									role="button" name="<%="btnOpen".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>" type="submit"
+									value="Open">
+									<input class="btn btn-outline-danger btn-rounded btn-sm m-0"
+									id="<%="btnDeleteReport".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>"
+									role="button" name="<%="btnDelete".concat((((ReportIssueController)request.getSession().getAttribute("reportIssueController")).getSessionUser().getReports().get(i).getReportId()).toString())%>" type="submit"
+									value="Delete"></form></td>
+						</tr>
+	   				<% } %>
 
 				</tbody>
 

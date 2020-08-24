@@ -63,6 +63,10 @@ display: block;
 	height:550px;
 }
 
+#reportLibraryDetailsDescription{
+	height:550px;
+}
+
 #divBtnSendReport{
 	padding-top:30px;
 	text-align:center;
