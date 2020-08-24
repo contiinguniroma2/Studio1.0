@@ -3,15 +3,12 @@ package logic.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import logic.bean.ReportBean;
 import logic.control.ReportIssueController;
-import logic.exceptions.EmptyTextFieldException;
 import logic.exceptions.ReportDeleteException;
 
-public class ReportListStudentServlet extends HttpServlet {
+public class ReportListStudentServlet extends ReportListServlet {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -23,16 +20,9 @@ public class ReportListStudentServlet extends HttpServlet {
 		ReportIssueController reportIssueController=(ReportIssueController) request.getSession().getAttribute("reportIssueController");
 		for (Integer i=0; i<reportIssueController.getSessionUser().getReports().size(); i++) {
 			if (request.getParameter("btnOpen".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
-					ReportBean selectedReport=null;
-					try {
-						selectedReport = new ReportBean(reportIssueController.getSessionUser().getReports().get(i).getTitle(),reportIssueController.getSessionUser().getReports().get(i).getDescription());
-					} catch (EmptyTextFieldException e) {
-						e.printStackTrace();
-					}
-					request.getSession().setAttribute("selectedReport",selectedReport);
-					request.getRequestDispatcher("StudentReportDetails.jsp").forward(request, response);
+				createBean(request,reportIssueController,i);
+				request.getRequestDispatcher("StudentReportDetails.jsp").forward(request, response);
 				
-			
 			}
 			if (request.getParameter("btnDelete".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				try {
