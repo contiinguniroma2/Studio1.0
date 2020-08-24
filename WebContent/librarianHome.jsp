@@ -68,11 +68,7 @@
               <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
              </form>
             <li class="nav-link">
-<<<<<<< HEAD
              <a class="btn btn-secondary" href="ReportListLibrary.jsp">Reports</a>
-=======
-             <a class="btn btn-secondary" href="ReportListLibrarian.html">Reports</a>
->>>>>>> Davide
             </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
