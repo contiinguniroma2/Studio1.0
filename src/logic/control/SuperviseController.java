@@ -17,12 +17,14 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	private List<StudentBean> listStudentBean;
 	private StudentDao studentDao;
 	private MessageDao messageDao;
+	private List<MessageBean> messageBeanList;
 	private Student student;
 	
 	public SuperviseController() {
 		this.studentDao = new StudentDao();
 		this.messageDao = new MessageDao();
 		this.listStudentBean = new ArrayList<>();
+		messageBeanList = new ArrayList<>();
 	}
 	
 	public SuperviseController(Student student) {
@@ -30,6 +32,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		this.messageDao = new MessageDao();
 		this.listStudentBean = new ArrayList<>();
 		this.student = student;
+		messageBeanList = new ArrayList<>();
 	}
 
 	@Override
@@ -131,12 +134,11 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		List<MessageBean> list = new ArrayList<>();
 		for (int i=0; i< listMessages.size(); i++) {
 			MessageBean messageBean = new MessageBean(listMessages.get(i).getId(), listMessages.get(i).getTitle(), listMessages.get(i).getText(), listMessages.get(i).getLibrarianId(), listMessages.get(i).getStudentId());
-			list.add(messageBean);
+			messageBeanList.add(messageBean);
 		}
-		return list;
+		return messageBeanList;
 	}
 
 	@Override
@@ -155,6 +157,13 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 	public void deleteMessage(long messageId) {
 		messageDao.delete(messageId);
 		
+	}
+
+	@Override
+	public void deleteAllUploadedMessages() {
+        for	(int i=0; i<messageBeanList.size(); i++) {
+        	messageDao.delete(messageBeanList.get(i).getId());	
+        }
 	}
 
 
