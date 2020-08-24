@@ -11,4 +11,5 @@ public interface StudentSuperviseController {
 	List<MessageBean> getMessages(String idStud);
 
 	public void deleteMessage(long id);
+	public void deleteAllUploadedMessages();
 }

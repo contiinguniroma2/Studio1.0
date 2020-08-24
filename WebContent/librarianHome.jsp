@@ -68,7 +68,7 @@
               <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
              </form>
             <li class="nav-link">
-             <a class="btn btn-secondary" href="ReportListLibrarian.html">Reports</a></li>
+             <a class="btn btn-secondary" href="ReportListLibrarian.html">Reports</a>
             </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
@@ -88,8 +88,8 @@
 
     <!-- CONTENT -->
     
-    <form action="${pageContext.request.contextPath}/UpdateSeatsServlet" name=updateSeatsBtn method="post">
-    <div class="row" id="updateSeatsContent">
+   
+     <div class="row">
  		<div class="col-6" id="updateSeatsContentColSx">
  			<div class="row">
 			    <div class="container" id="titleUpdateSeats">
@@ -101,19 +101,18 @@
 					<div id="piechart_3d" style="width: 700px; height: 350px; align-content: center;">
 					</div>
 					<!-- button + e - da inserire -->
-				    
+				    <form action="${pageContext.request.contextPath}/UpdateSeatsServlet" name=updateSeatsBtn method="post">
 					<div class="container" id="buttonUpdateSeats" style=" text-align: center; vertical-align: top;">
-					 
-				        <a><input class="btn btn-outline-success mx-auto" role="button" type="submit" name ="+" id="addBtn" value="+" style="width: 100px; height: 50px;"></a>		    
-				        <a><input class="btn btn-outline-success mx-auto" role="button" type="submit" name = "-" id="delBtn" value="-" style="width: 100px; height: 50px;"></a>
-				       
+					    <button class="btn btn-outline-success mx-auto" type="submit" value="+" role="button" type="submit" name ="+" style="width: 140px; height: 60px;"> <font style="verdana" size = "5" >+</font></button>
+				        <button class="btn btn-outline-success mx-auto" type="submit" value="-" role="button" type="submit" name ="-" style="width: 140px; height: 60px;"> <font style="verdana" size = "5" >-</font></button>
 					</div>
-				
+				    </form>
 			    </div>
 			
 		</div>
+	 
 	
-	</form>
+	
 	
 		<div class="col-6">
 
@@ -124,7 +123,7 @@
 
 			    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="tableBookingsDiv">
 
-				    <table id="tableBookings" class="table table-striped table-bordered table-sm" style="text-align: center;" cellspacing="20" width="100%">
+				    <table id="tableBookings" class="table table-striped table-bordered table-sm" style="text-align: center;">
 
 					  <thead>
 					    <tr>
@@ -151,9 +150,9 @@
 
 					</table>
 				</div>
-			</div>
+		</div>
+      </div>
 
-	</div>
 
     <!-- jQuery e plugin JavaScript  -->
    <script src="http://code.jquery.com/jquery.js"></script>

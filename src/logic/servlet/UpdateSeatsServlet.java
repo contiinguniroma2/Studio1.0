@@ -61,12 +61,8 @@ public class UpdateSeatsServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		LibrBean libraryBean = LibraryMainPageController.getLibraryMainPageController().getLibrInfoB();
-		request.getSession().setAttribute(bean, libraryBean);
-		request.setAttribute(bean, libraryBean);
-		request.setAttribute("free", libraryBean.getCapacity()-libraryBean.getPostiOccupati()-LibraryMainPageController.getLibraryMainPageController().getBooks().size());
-		request.setAttribute("booked", LibraryMainPageController.getLibraryMainPageController().getBooksBean());   //Ritorna List<BookSeatBean>       
-		request.getRequestDispatcher("librarianHome.jsp").forward(request, response);
+		doGet(request,response);
+		
 	}
 
 }

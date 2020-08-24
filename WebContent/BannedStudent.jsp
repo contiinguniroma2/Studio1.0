@@ -1,7 +1,7 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,7 @@
 					<!-- "ml-auto" consente di allineare item a destra-->
 					
 					<li class="nav-link"><a class="btn btn-success mx-auto"
-						href="studentMessages.html">Messages</a></li>
+						href="#">Messages</a></li>
 					<li>
 					<li class="nav-link"><a class="btn btn-secondary"
 						href="index.html">Log out</a></li>
@@ -32,6 +32,46 @@
 	</div>
 
 	<!-- END navbar -->
+	
+	<h1 align="center"><br><br>Banned account</h1>
+     <br>
+     <form action="StudentStateServlet" name="NotifiedForm" method="POST">
+     <div id="supervise" class="form-group" >
+      	
+
+			    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+
+				    <table class="table table-striped table-bordered table-sm" style="text-align: center;">
+
+					  <thead>
+					    <tr>
+					      <th><font style="verdana" size = "5" >Title</font> </th>
+					      <th><font style="verdana" size = "5" >Text</font> </th>
+					      <th><font style="verdana" size = "5" >For explanations</font></th>
+					    </tr>
+					  </thead>
+               
+					  <tbody>
+                       <c:forEach items="${messages}" var= "messages">
+                        <tr>
+					      <td>
+					        <font style="verdana" size = "5" > ${messages.getTitle()}</font> 
+					      </td>
+					      <td>
+					      <font style="verdana" size = "5" > ${messages.getText()}</font> 
+					      </td>
+					      <td>
+                           <font style="verdana" size = "5" > ${messages.getLibrarianId()}</font>
+                          </td>
+					    </tr>
+                       </c:forEach>
+
+					  </tbody>
+
+					</table>
+				</div>
+			</div>
+		</form>
 
 </body>
 </html>

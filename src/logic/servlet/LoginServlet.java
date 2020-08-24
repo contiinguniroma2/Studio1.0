@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 					request.getRequestDispatcher("NotifiedStudent.jsp").forward(request, response);
 					return;
 				}
-		    	if (student.getStateMachine().getState() instanceof NotifiedState) {
+		    	if (student.getStateMachine().getState().getState().equals("Banned")) {
 		    		getMessages(student, request);
 					request.getRequestDispatcher("BannedStudent.jsp").forward(request, response);
                     return;
@@ -82,6 +82,8 @@ public class LoginServlet extends HttpServlet {
 	public void getMessages(Student student, HttpServletRequest request) {
 		StudentSuperviseController superviseController = new SuperviseController(student);
 		List<MessageBean> messages = superviseController.getMessages(student.getMail());
+		request.getSession().setAttribute("studentBean", loginController.getStudentBean());
+		request.getSession().setAttribute("superviseController", superviseController);
 		request.setAttribute("messages", messages);
 	}
 
