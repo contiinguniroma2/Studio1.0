@@ -11,22 +11,24 @@ public class ReportListLibraryServlet extends ReportListServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	public ReportListLibraryServlet() {
-		super();
-	}
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		ReportIssueController reportIssueController=(ReportIssueController) request.getSession().getAttribute("reportIssueController");
 		for (Integer i=0; i<reportIssueController.getSessionUser().getReports().size(); i++) {
 			if (request.getParameter("btnOpen".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				createBean(request,reportIssueController,i);
-				request.getRequestDispatcher("LibraryReportDetails.jsp").forward(request, response);
+				try {
+					request.getRequestDispatcher("LibraryReportDetails.jsp").forward(request, response);
+				} catch (ServletException|IOException e) {
+					e.printStackTrace();
+				} 
 			}
 			if (request.getParameter("btnDelete".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				try {
 					reportIssueController.deleteReport(reportIssueController.getSessionUser().getReports().get(i).getReportId());
 					request.getRequestDispatcher("ReportListLibrary.jsp").forward(request, response);
-				} catch (ReportDeleteException e) {
+				} catch (ReportDeleteException | ServletException | IOException e) {
 					e.printStackTrace();
 				}
 				
@@ -36,5 +38,7 @@ public class ReportListLibraryServlet extends ReportListServlet {
 		
 		
 	}
-
+	public ReportListLibraryServlet() {
+		super();
+	}
 }
