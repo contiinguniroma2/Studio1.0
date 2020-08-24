@@ -37,7 +37,7 @@
               <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
               </form>
             </li>
-            <li class="nav-item active">
+             <li class="nav-link">
              <a class="btn btn-success mx-auto" href="ReportListLibrarY.jsp">Reports</a></li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
