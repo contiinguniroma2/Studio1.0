@@ -7,55 +7,48 @@
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
 </head>
 <body>
+    <!-- navbar -->
+    <div class="container">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand">Biblioteca ${libraryBean.getName()}</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  
+          <ul class="navbar-nav ml-auto"> <!-- "ml-auto" consente di allineare item a destra-->
+         
+            <li class="nav-link active">
+            <form action="UpdateSeatsServlet" name="UpdateSeatsForm" method="GET">
+              <a><input class="btn btn-secondary" type="submit" role="button" value="Update seats"></a>
+              </form>
+            </li>
+            <li class="nav-link">
+              <a class="btn btn-secondary" href="librarianTimetable.html">Time table</a>
+            </li>
+            <li class="nav-link">
+              <a class="btn btn-secondary" href="librarianNoticeboard.html">Noticeboard</a>
+            </li>
+            <li class="nav-link">
+             <form action="SuperviseServlet" name="SuperviseForm" method="GET">
+              
+              <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
+              </form>
+            </li>
+            <li class="nav-item active">
+             <a class="btn btn-success mx-auto" href="ReportListLibrarian.html">Reports</a></li>
+            <li class="nav-link">
+              <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
+            </li>
+            <li class="nav-link">
+              <a class="btn btn-secondary" href="librarianSettings.html">Settings</a>
+            </li>
+            <li class="nav-link">
+              <a class="btn btn-secondary" href="index.html">Log out</a>
+            </li>
+           </ul>
+          </div>
+        </nav>
+     </div>
+    <!-- END navbar -->
 
-	<!-- navbar -->
-	<div class="container">
-		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Stud.io</a>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav ml-auto">
-					<!-- "ml-auto" consente di allineare item a destra-->
-					<li class="nav-item"><a class="nav-link"
-						href="librarianHome.html">Update seats<span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianTimetable.html">Time table</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianNoticeboard.html">Noticeboard</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="ReportListLibrarian.html">Reports</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianCheckBehavior.html">Check behavior</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="librarianStatistics.html">Statistics</a></li>
-					<li>
-						<!-- <a class="btn btn-outline-success d-none d-lg-inline-block mb-3 mb-md-0 ml-md-3" href="login.html">GUEST</a> -->
-
-
-
-
-
-
-
-
-						<form action="librarianHome.html" name="librLogout" method="post">
-							<div class="dropdown">
-								<button class="btn btn-outline-success dropdown-toggle"
-									type="button" id="dropdownMenuButton" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">Username</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" href="librSettings.html">Settings</a>
-									<input class="dropdown-item" id="librLogout" name="librLogout"
-										type="submit" value="Log out">
-						</form>
-			</div>
-	</div>
-	</li>
-	</ul>
-	</div>
-	</nav>
-	</div>
-	<!-- END navbar -->
 
 
 	<!-- CONTENT -->

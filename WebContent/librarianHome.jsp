@@ -65,9 +65,10 @@
             </li>
             <li class="nav-link">
              <form action="SuperviseServlet" name="SuperviseForm" method="GET">
-              
               <a><input class="btn btn-secondary" type="submit" role="button" value="Recent students"></a>
-              </form>
+             </form>
+            <li class="nav-link">
+             <a class="btn btn-secondary" href="ReportListLibrarian.html">Reports</a></li>
             </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
