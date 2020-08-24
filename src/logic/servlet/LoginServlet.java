@@ -1,22 +1,29 @@
 package logic.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import logic.bean.LibrBean;
+import logic.bean.MessageBean;
 import logic.bean.StudentBean;
 import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
 import logic.control.StudentMainPageController;
+import logic.control.StudentSuperviseController;
+import logic.control.SuperviseController;
+import logic.entity.Student;
+import logic.pattern.NotifiedState;
 
 /**
  * Servlet implementation class LoginServlet
  */
 public class LoginServlet extends HttpServlet {
-	LoginController loginController; 
+	private LoginController loginController; 
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -25,6 +32,7 @@ public class LoginServlet extends HttpServlet {
     public LoginServlet() {
         super();
         loginController = new LoginController();
+        
     }
     
 	/**
@@ -33,13 +41,24 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 	    	if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 's') {
-	    	    StudentMainPageController.getStudentMainPageController().setStudInfo(loginController.getStudent());
-		        StudentMainPageController.getStudentMainPageController().setStudInfoB(loginController.getStudentBean());
-		        StudentBean studentBean = loginController.getStudentBean();
-		        request.setAttribute("studentBean", studentBean);
-		        request.getRequestDispatcher("studentHome.jsp").forward(request, response);
-		        request.getSession().setAttribute("sessionUser", loginController.getStudent());
-		        
+	    		Student student = loginController.getStudent();
+	    		StudentBean studentBean = loginController.getStudentBean();
+	    	    StudentMainPageController.getStudentMainPageController().setStudInfo(student);
+		        StudentMainPageController.getStudentMainPageController().setStudInfoB(studentBean);
+		        request.getSession().setAttribute("studentBean", studentBean);
+		        request.getSession().setAttribute("sessionUser", student);
+		        		        
+		    	if (student.getStateMachine().getState() instanceof NotifiedState) {
+		    		getMessages(student, request);
+					request.getRequestDispatcher("NotifiedStudent.jsp").forward(request, response);
+					return;
+				}
+		    	if (student.getStateMachine().getState() instanceof NotifiedState) {
+		    		getMessages(student, request);
+					request.getRequestDispatcher("BannedStudent.jsp").forward(request, response);
+                    return;
+		    	}
+		    	request.getRequestDispatcher("studentHome.jsp").forward(request, response);
 	    	}	
 		    else if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 'l') {
 		    	LibraryMainPageController.getLibraryMainPageController().setLibrInfo(loginController.getLibrary());
@@ -59,6 +78,12 @@ public class LoginServlet extends HttpServlet {
 	    catch (Exception e) {
 	      e.printStackTrace();
 	    }
+	}
+	
+	public void getMessages(Student student, HttpServletRequest request) {
+		StudentSuperviseController superviseController = new SuperviseController(student);
+		List<MessageBean> messages = superviseController.getMessages(student.getMail());
+		request.setAttribute("messages", messages);
 	}
 
 }
