@@ -1,9 +1,6 @@
 language: java
 jdk: openjdk8
 addons:
- apt:
-  packages:
-   - ant
  sonarcloud:
   organization: contiinguniroma2
   token: ea4d286515130672a821d0f6936b4ccfef329a05
