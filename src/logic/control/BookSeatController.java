@@ -2,6 +2,9 @@ package logic.control;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
+
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 import logic.dao.PrenotazioneDao;
 import logic.entity.Library;
 import logic.entity.Prenotazione;
@@ -35,8 +38,10 @@ public class BookSeatController {
 			}
 		} catch (StudentAlreadyBookedException e) {
 			myLogger.info(e.toString());
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			//Nothing to do
+		} catch (SQLException exc) {
+			exc.printStackTrace();
 		}
 		
 	}
