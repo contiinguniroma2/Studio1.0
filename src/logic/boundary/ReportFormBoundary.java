@@ -21,12 +21,15 @@ public class ReportFormBoundary extends ReportDetailsStudentBoundary {
 		super(reportIssueController, issueListStudentBoundary);
 		this.issueListStudentBoundary = issueListStudentBoundary;
 		this.reportIssueController = reportIssueController;
+		this.reportBean=new ReportBean();
 	}
 
 	@FXML
 	public void sendReportClicked(ActionEvent event) {
 		try {
-			this.reportIssueController.sendReport(new ReportBean(tvTitle.getText(), tvDescription.getText()));
+			this.reportBean.setTitle(tvTitle.getText());
+			this.reportBean.setDescription(tvTitle.getText());
+			this.reportIssueController.sendReport(this.reportBean);
 			guiLoader(FxmlConstants.ISSUE_LIST_STUDENT_GUI, this.issueListStudentBoundary, event);
 		} catch (ReportSaveException e) {
 			this.lbStatus.setText("Report send failed check the fields and try again.");

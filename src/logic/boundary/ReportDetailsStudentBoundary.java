@@ -15,6 +15,7 @@ public class ReportDetailsStudentBoundary extends ReportDetailsBoundary {
 			IssueListStudentBoundary issueListStudentBoundary) {
 		this.reportIssueController = reportIssueController;
 		this.issueListStudentBoundary = issueListStudentBoundary;
+		this.reportBean=reportIssueController.getReportBean();
 	}
 
 	public ReportDetailsStudentBoundary(ReportIssueController reportIssueController) {
@@ -29,8 +30,8 @@ public class ReportDetailsStudentBoundary extends ReportDetailsBoundary {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.lbUser.setText(this.reportIssueController.getSessionUser().getUsername());
-		this.tvTitle.setText(this.reportIssueController.getReportBean().getTitle());
-		this.tvDescription.setText(this.reportIssueController.getReportBean().getDescription());
+		this.tvTitle.setText(this.reportBean.getTitle());
+		this.tvDescription.setText(this.reportBean.getDescription());
 	}
 
 }

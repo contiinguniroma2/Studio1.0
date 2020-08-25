@@ -58,6 +58,36 @@ public class ReportIssueController {
 			this.sessionUser.updateReportStatus(findReportIndex(this.reportBean.getReportId()), ReportConstants.READ);
 		}
 	}
+	
+	public void deleteReport(long reportId) throws ReportDeleteException {
+		int reportIndex = findReportIndex(reportId);
+		this.reportDao.deleteReportFromDb(this.sessionUser.getReports().get(reportIndex));
+		this.sessionUser.removeReport(this.sessionUser.getReports().get(reportIndex));
+	}
+	
+	public void sendReport(ReportBean reportInfo) throws ReportSaveException {
+		Report newReport = new Report(reportInfo.getTitle(), reportInfo.getDescription(), this.sessionUser.getMail(),
+				this.currentLibrary.getMail(), ReportConstants.NOT_READ);
+		try {
+			this.reportDao.saveReportOnDb(newReport);
+		} catch (ReportSaveException e) {
+			throw new ReportSaveException();
+		}
+		this.sessionUser.addReport(newReport);
+	}
+	
+	
+	public void getStudentReports() {
+		this.sessionUser.setReports(this.reportDao.getReportFromDbByStudent(this.sessionUser, this.currentLibrary));
+	}
+
+	public void getLibraryReports() {
+		try {
+			this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public int findReportIndex(long reportId) {
 		int i;
@@ -79,34 +109,6 @@ public class ReportIssueController {
 
 	}
 
-	public void sendReport(ReportBean reportInfo) throws ReportSaveException {
-		Report newReport = new Report(reportInfo.getTitle(), reportInfo.getDescription(), this.sessionUser.getMail(),
-				this.currentLibrary.getMail(), ReportConstants.NOT_READ);
-		try {
-			this.reportDao.saveReportOnDb(newReport);
-		} catch (ReportSaveException e) {
-			throw new ReportSaveException();
-		}
-		this.sessionUser.addReport(newReport);
-	}
-
-	public void deleteReport(long reportId) throws ReportDeleteException {
-		int reportIndex = findReportIndex(reportId);
-		this.reportDao.deleteReportFromDb(this.sessionUser.getReports().get(reportIndex));
-		this.sessionUser.removeReport(this.sessionUser.getReports().get(reportIndex));
-	}
-
-	public void getStudentReports() {
-		this.sessionUser.setReports(this.reportDao.getReportFromDbByStudent(this.sessionUser, this.currentLibrary));
-	}
-
-	public void getLibraryReports() {
-		try {
-			this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public User getSessionUser() {
 		return sessionUser;
