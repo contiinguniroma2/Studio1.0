@@ -46,7 +46,7 @@
 				<br>
 				<br>SEARCH A SEAT
 			</h1>
-			<h3 align=center>Enter your address and look for the place to
+			<h3 align=center>Enter your city and look for the place to
 				study closest to you:</h3>
 
 
