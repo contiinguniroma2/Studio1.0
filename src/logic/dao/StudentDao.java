@@ -89,8 +89,9 @@ public class StudentDao extends GenericDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 			    student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						    rs.getString(MAIL), rs.getString(TELEFONOS), rs.getString(PASSWORD), rs.getBoolean("isBan"),
-		    				rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));			    
+						    rs.getString(MAIL),   rs.getBoolean("isBan"), rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));
+			    student.setPassword(rs.getString(PASSWORD));
+			    student.setPhone(rs.getString(TELEFONOS));
 		    }			
 		}
 		catch (SQLException e) {
@@ -116,9 +117,11 @@ public class StudentDao extends GenericDao {
 			fillSelectStatement(ps, idBiblio, null);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				studentList.add(new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
-						rs.getString(MAIL), rs.getString(TELEFONOS), "****", rs.getBoolean("isBan"),
-						rs.getByte("reportCounter"), rs.getString("timeStartCountdown")));
+				Student student = new Student(rs.getString(NOMES), rs.getString(COGNOMES), rs.getString(USERNAME),
+						rs.getString(MAIL), rs.getBoolean("isBan"), rs.getByte("reportCounter"), rs.getString("timeStartCountdown"));
+				student.setPassword("****");
+				student.setPhone(rs.getString(TELEFONOS));
+				studentList.add(student);
 			}
 			return studentList;
 

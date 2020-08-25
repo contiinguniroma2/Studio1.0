@@ -23,17 +23,14 @@ public class Student extends User {
 		this.observers=new ArrayList<>();
 	}
 
-	public Student(String name, String surname, String userName, String mail, String phone, String password, boolean isBanned,
-			byte reportCounter, String time) {
+	public Student(String name, String surname, String userName, String mail, boolean isBanned, byte reportCounter, String time) {
 
 		this.name = name;
 		this.surname = surname;
 		this.mail = mail;
-		this.password = password;
 		this.userName = userName;
 		this.isBanned = isBanned;
 		this.reportCounter = reportCounter;
-		this.phone = phone;
 		this.observers=new ArrayList<>();
 		if (isBanned) {
 			this.stateMachine = new StateMachine(new BannedState());
