@@ -3,8 +3,6 @@ package logic.control;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
-
 import logic.dao.PrenotazioneDao;
 import logic.entity.Library;
 import logic.entity.Prenotazione;
@@ -32,15 +30,14 @@ public class BookSeatController {
 	public void bookSeat(Student student, Library library) {
 		try {
 			if (prenotazioneDao.select(student.getMail(), "mainS").isEmpty()) {
-				prenotazioneDao.insert(library.getMail(), student.getMail(), student.getName());
+				prenotazioneDao.insert(library.getMail(), student.getMail(), student.getUsername());
 			} else {
 				throw new StudentAlreadyBookedException("non puoi prenotarti due volte");
 			}
 		} catch (StudentAlreadyBookedException e) {
 			myLogger.info(e.toString());
-		} catch (MySQLIntegrityConstraintViolationException e) {
-			//Nothing to do
-		} catch (SQLException exc) {
+		} 
+		catch (SQLException exc) {
 			exc.printStackTrace();
 		}
 		

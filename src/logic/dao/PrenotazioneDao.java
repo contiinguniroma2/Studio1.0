@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import logic.entity.Prenotazione;
 import logic.exceptions.NotAvalibleSeatsException;
 
@@ -40,6 +42,9 @@ public class PrenotazioneDao extends GenericDao {
 		} catch (NotAvalibleSeatsException exc) {
 
 			myLogger.info(exc.toString());
+		} 
+		catch (MySQLIntegrityConstraintViolationException e) {
+			//Nothing to do
 		} finally {
 			
 			ps.close();
