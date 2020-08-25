@@ -26,10 +26,10 @@
               </form>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianTimetable.html">Time table</a>
+              <a class="btn btn-secondary" href="#">Time table</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianNoticeboard.html">Noticeboard</a>
+              <a class="btn btn-secondary" href="#">Noticeboard</a>
             </li>
             <li class="nav-link">
              <form action="SuperviseServlet" name="SuperviseForm" method="GET">
@@ -41,10 +41,10 @@
              <a class="btn btn-success mx-auto" href="ReportListLibrary.jsp">Reports</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
+              <a class="btn btn-secondary" href="#">Statistics</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianSettings.html">Settings</a>
+              <a class="btn btn-secondary" href="#">Settings</a>
             </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="index.html">Log out</a>

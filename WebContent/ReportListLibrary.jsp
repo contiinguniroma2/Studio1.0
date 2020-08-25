@@ -28,10 +28,10 @@
               </form>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianTimetable.html">Time table</a>
+              <a class="btn btn-secondary" href="#">Time table</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianNoticeboard.html">Noticeboard</a>
+              <a class="btn btn-secondary" href="#">Noticeboard</a>
             </li>
             <li class="nav-link">
              <form action="SuperviseServlet" name="SuperviseForm" method="GET">
@@ -43,10 +43,10 @@
              <a class="btn btn-success mx-auto" href="ReportListLibrary.jsp">Reports</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
+              <a class="btn btn-secondary" href="#">Statistics</a>
             </li>
             <li class="nav-link">
-              <a class="btn btn-secondary" href="librarianSettings.html">Settings</a>
+              <a class="btn btn-secondary" href="#">Settings</a>
             </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="index.html">Log out</a>
@@ -77,7 +77,7 @@
 
 			<table id="tableBookings"
 				class="table table-striped table-bordered table-sm"
-				style="text-align: center;" cellspacing="20" width="100%">
+				style="text-align: center;">
 
 				<thead>
 					<tr>
@@ -119,7 +119,7 @@
 		</div>
 	</div>
 
-	</div>
+
 
 	<!-- jQuery e plugin JavaScript  -->
 	<script src="http://code.jquery.com/jquery.js"></script>

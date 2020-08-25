@@ -28,12 +28,12 @@
 						href="studentHome.jsp">Search<span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-link"><a class="btn btn-secondary"
-						href="studentBookmarks.html">Bookmarks</a></li>
+						href="#">Bookmarks</a></li>
 					<li class="nav-link"><a class="btn btn-secondary"
-						href="studentMessages.html">Messages</a></li>
+						href="#">Messages</a></li>
 					<li>
 					<li class="nav-link"><a class="btn btn-secondary"
-						href="studentMessages.html">Settings</a></li>
+						href="#">Settings</a></li>
 					<li>
 					<li class="nav-link"><a class="btn btn-secondary"
 						href="index.html">Log out</a></li>
