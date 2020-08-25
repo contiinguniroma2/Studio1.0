@@ -3,6 +3,7 @@
 <%@ page import="logic.control.StudentMainPageController"%>
 <%@ page import="java.util.List"%>
 <%@ page import="logic.entity.Library"%>
+<%@ page import="logic.bean.SearchBean"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -53,9 +54,6 @@
 		</div>
 	</div>
 
-
-	<form action="studentSearchResult.jsp" name="studentResultList"
-		method="post">
 		<div class="row">
 			<div class="container" id="listLib">
 
@@ -74,14 +72,19 @@
 						<tbody>
 
 							<% 
-					  	List<Library> biblioteche = StudentSearchInsertController.getStudentSearchInsertController().getLibrInfo();
+					  	List<Library> biblioteche = (List<Library>)((SearchBean)request.getAttribute("searchBean")).getResultLibraries();
   
 					  	for(int i=0; i<biblioteche.size(); i++){
 					        %><tr>
-								<td><input class="btn btn-success mx-auto"
-									id="<%out.println(biblioteche.get(i).getName());%>"
-									role="button" name="bib" type="submit"
+					        	
+								<td>
+								<form action="${pageContext.request.contextPath}/StudentSearchResultServlet" name="studentResultList" id="studentResultList" method="GET">
+								<input class="btn btn-success mx-auto"
+									id="<%="lib".concat(biblioteche.get(i).getMail())%>"
+									name="<%="lib".concat(biblioteche.get(i).getMail())%>"
+									role="button" type="submit"
 									value="<%out.println(biblioteche.get(i).getName());%>">
+								</form>
 								</td>
 								<td>
 									<%out.println(biblioteche.get(i).getCapacity());%>
@@ -95,7 +98,6 @@
 				</div>
 			</div>
 		</div>
-	</form>
 
 
 	<script src="http://code.jquery.com/jquery.js"></script>
@@ -104,15 +106,4 @@
 </body>
 </html>
 
-
-<%		
-	  if(request.getParameter("bib") != null) { 
-		  StudentMainPageController.getStudentMainPageController().setLibrInfo(biblioteche.get(0));
-			  %>
-<jsp:forward page="studentSearchLibrPage.jsp" />
-<%
-	  }
-	  
-	
-%>
 

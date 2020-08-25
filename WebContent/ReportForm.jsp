@@ -54,12 +54,12 @@
 			<label for="reportTitle">Title</label> 
 			<input
 				 class="form-control" id="reportFormTitle" name="reportFormTitle" type="text"
-				value="">
+				value="" placeholder="Insert object (max 256 chars)">
 		
 			<div class="form-group">
 				<label for="reportDescription">Description</label>
 				 <textarea
-				 class="form-control" id="reportFormDescription" name="reportFormDescription"></textarea>
+				 class="form-control" id="reportFormDescription" name="reportFormDescription" placeholder="Insert issue's description (max 1024 chars)"></textarea>
 			</div> 
 			<div id="divBtnSendReport">
 				<input class="btn btn-success mx-auto" role="button" name="btnSendReport" type="submit"

@@ -1,34 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="logic.control.StudentMainPageController"
-	import="logic.entity.User"%>
+import="logic.entity.User"
+import="logic.entity.Library"%>
 
 <%
-  if(request.getParameter("studLogout") != null) { %>
-<jsp:forward page="index.jsp" />
-<%
-  }
+	Library selectedLibrary=(Library)request.getAttribute("selectedLibrary");
+	request.getSession().setAttribute("currentLibrary", selectedLibrary);
 %>
-
-
-<%
-  if(request.getParameter("bookSeat") != null) { %>
-<jsp:forward page="studentHome.jsp" />
-<%
-  }
-%>
-
-<%
-  if(request.getParameter("bookSeat") != null) { %>
-<jsp:forward page="studentHome.jsp" />
-<%
-  }
-%>
-
-<%
-	request.getSession().setAttribute("currentLibrary", StudentMainPageController.getStudentMainPageController().getLibrInfo());
-%>
-
 
 <!DOCTYPE html>
 <html>
@@ -71,7 +50,7 @@
 
 
 
-	<form action="studentResultLibrPage.jsp" name="bookBtn" method="post">
+	<form action="${pageContext.request.contextPath}/StudentSearchLibrServlet" name="bookBtn" method="GET">
 		<div class="row" align="center">
 			<div class="container" id="listAttr" align="center">
 
@@ -89,37 +68,37 @@
 							<tr>
 								<td><p class="text-justify" align="center">
 										Name:
-										<%out.println(StudentMainPageController.getStudentMainPageController().getLibrInfo().getName());%>
+										<%out.println(selectedLibrary.getName());%>
 									</td>
 							</tr>
 							<tr>
 								<td><p class="text-justify" align="center">
 										Address:
-										<%out.println(StudentMainPageController.getStudentMainPageController().getLibrInfo().getIndirizzo());%>
+										<%out.println(selectedLibrary.getIndirizzo());%>
 									</td>
 							</tr>
 							<tr>
 								<td><p class="text-justify" align="center">
 										City:
-										<% out.println(StudentMainPageController.getStudentMainPageController().getLibrInfo().getCity());%>
+										<% out.println(selectedLibrary.getCity());%>
 									</td>
 							</tr>
 							<tr>
 								<td><p class="text-justify" align="center">
 										Mail:
-										<%out.println(StudentMainPageController.getStudentMainPageController().getLibrInfo().getMail());%>
+										<%out.println(selectedLibrary.getMail());%>
 									</td>
 							</tr>
 							<tr>
 								<td><p class="text-justify" align="center">
 										Phone:
-										<% out.println(StudentMainPageController.getStudentMainPageController().getLibrInfo().getPhone());%>
+										<% out.println(selectedLibrary.getPhone());%>
 									</td>
 							</tr>
 							<tr>
 								<td><p class="text-justify" align="center">
 										Capacity:
-										<%out.println(String.valueOf(StudentMainPageController.getStudentMainPageController().getLibrInfo().getCapacity()));%>
+										<%out.println(String.valueOf(selectedLibrary.getCapacity()));%>
 									</td>
 							</tr>
 						</tbody>

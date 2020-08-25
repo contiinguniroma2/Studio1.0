@@ -1,12 +1,7 @@
-<%@ page import="logic.control.StudentSearchInsertController"%>
-<%@ page import="logic.control.LoginController"%>
-<%@ page import="logic.bean.StudentBean"%>
-<%@ page import="logic.control.LibraryMainPageController"%>
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
+<%@ page import="logic.control.LoginController"%>
+<%@ page import="logic.bean.StudentBean"%>
 
 <!DOCTYPE html>
 <html>
@@ -55,8 +50,8 @@
 				study closest to you:</h3>
 
 
-			<form class="form-inline my-2 my-lg-0" action="studentHome.jsp"
-				name="studLogout" method="post">
+			<form class="form-inline my-2 my-lg-0" action="${pageContext.request.contextPath}/StudentHomeServlet"
+				name="studSearch" id="studSearch" method="GET">
 				<input class="form-control ml-auto mr-1" id="searchField"
 					name="searchField" type="text" value=""
 					placeholder="Insert your position..."> <input
@@ -84,20 +79,3 @@
 </html>
 
 
-<%
-
-  if(request.getParameter("searchBtn") != null) { 
-    
-    try {
-    	StudentSearchInsertController.getStudentSearchInsertController()
-		.searchLibrariesWithCity(request.getParameter("searchField"));
-    	 %><jsp:forward page="studentSearchResult.jsp" />
-<%
-      }
-    catch (Exception e) {
-      e.printStackTrace();
-    }
-    
-  }
-
-%>
