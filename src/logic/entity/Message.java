@@ -28,6 +28,9 @@ public class Message {
 	}
 
 
+	public Message() {
+		
+	}
 	public long getId() {
 		return messageId;
 	}
