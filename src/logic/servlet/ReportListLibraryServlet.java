@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import logic.control.ReportIssueController;
 import logic.exceptions.ReportDeleteException;
+import logic.exceptions.ReportUpdateException;
 
 public class ReportListLibraryServlet extends ReportListServlet {
 
@@ -19,8 +20,9 @@ public class ReportListLibraryServlet extends ReportListServlet {
 			if (request.getParameter("btnOpen".concat((reportIssueController.getSessionUser().getReports().get(i).getReportId()).toString())) != null) {
 				createBean(request,reportIssueController,i);
 				try {
+					reportIssueController.readIssue();
 					request.getRequestDispatcher("LibraryReportDetails.jsp").forward(request, response);
-				} catch (ServletException|IOException e) {
+				} catch (ServletException|IOException|ReportUpdateException e) {
 					e.printStackTrace();
 				} 
 			}

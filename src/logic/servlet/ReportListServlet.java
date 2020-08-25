@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import logic.bean.ReportBean;
 import logic.control.ReportIssueController;
 import logic.exceptions.EmptyTextFieldException;
-import logic.exceptions.ReportUpdateException;
 
 public class ReportListServlet extends HttpServlet {
 
@@ -22,11 +21,6 @@ public class ReportListServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		reportIssueController.fillBeanWithSelectedReport(reportIssueController.getSessionUser().getReports().get(i).getReportId());
-		try {
-			reportIssueController.readIssue();
-		} catch (ReportUpdateException e) {
-			e.printStackTrace();
-		}
 		request.getSession().setAttribute("selectedReport",selectedReport);
 	}
 }
