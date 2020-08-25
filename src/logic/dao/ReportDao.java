@@ -81,7 +81,11 @@ public class ReportDao {
 
 		} finally {
 			closeStatement(ps);
-
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		return reportList;
 	}
