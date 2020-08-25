@@ -1,5 +1,6 @@
 package logic.control;
 
+import java.sql.SQLException;
 import java.util.logging.Logger;
 import logic.bean.ReportBean;
 import logic.constants.ReportConstants;
@@ -100,7 +101,11 @@ public class ReportIssueController {
 	}
 
 	public void getLibraryReports() {
-		this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
+		try {
+			this.sessionUser.setReports(this.reportDao.getReportFromDbByLibrary(this.sessionUser));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public User getSessionUser() {

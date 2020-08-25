@@ -33,7 +33,7 @@ public class ReportDao {
 		}
 	}
 
-	public List<Report> getReportFromDbByLibrary(User user) {
+	public List<Report> getReportFromDbByLibrary(User user) throws SQLException {
 		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
@@ -53,6 +53,7 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 		} finally {
 			closeStatement(ps);
+			rs.close();
 		}
 		return reportList;
 	}
