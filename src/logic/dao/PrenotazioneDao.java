@@ -40,12 +40,6 @@ public class PrenotazioneDao extends GenericDao {
 		} catch (NotAvalibleSeatsException exc) {
 
 			myLogger.info(exc.toString());
-		}
-
-		catch (Exception e) {
-
-			myLogger.info("Salvataggio prenotazione fallito");// definire un eccezione apposita con logger serio
-
 		} finally {
 			
 			ps.close();
