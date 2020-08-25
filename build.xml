@@ -95,7 +95,6 @@
         <copy includeemptydirs="false" todir="build/classes">
             <fileset dir="src">
                 <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -137,6 +136,16 @@
             <classpath refid="studioApp1.0.classpath"/>
         </java>
     </target>
+    <target name="SendReportTest">
+        <java classname="testSelenium.SendReportTest" failonerror="true" fork="yes">
+            <classpath refid="studioApp1.0.classpath"/>
+        </java>
+    </target>
+    <target name="StudentLoginTest">
+        <java classname="testSelenium.StudentLoginTest" failonerror="true" fork="yes">
+            <classpath refid="studioApp1.0.classpath"/>
+        </java>
+    </target>
     <target name="studioApp1.0 (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
@@ -150,6 +159,15 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="test.testLibrDao" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="studioApp1.0.classpath"/>
+        </junit>
+    </target>
+    <target name="TestLogin">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestLogin" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="studioApp1.0.classpath"/>
         </junit>
