@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="logic.control.StudentMainPageController"
-import="logic.entity.User"
+<%@ page import="logic.entity.User"
 import="logic.entity.Library"%>
 
 <%
@@ -63,7 +62,7 @@ import="logic.entity.Library"%>
 
 					<table id="tableLib"
 						class="table table-striped table-bordered table-sm"
-						style="content-align: center;" cellspacing="20" width="100%">
+						style="content-align: center;">
 						<tbody>
 							<tr>
 								<td><p class="text-justify" align="center">

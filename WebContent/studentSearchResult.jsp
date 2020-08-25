@@ -1,6 +1,5 @@
 <%@ page import="logic.control.StudentSearchInsertController"%>
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="logic.control.StudentMainPageController"%>
 <%@ page import="java.util.List"%>
 <%@ page import="logic.entity.Library"%>
 <%@ page import="logic.bean.SearchBean"%>
@@ -61,7 +60,7 @@
 
 					<table id="tableBookings"
 						class="table table-striped table-bordered table-sm"
-						style="text-align: center;" cellspacing="20" width="100%">
+						style="text-align: center;">
 						<thead>
 							<tr>
 								<th>Library:</th>

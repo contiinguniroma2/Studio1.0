@@ -66,7 +66,7 @@
 	<div class="row">
 		<div class="container" id="logo">
 			<p>
-				<img src="img/logo3.jpg" align=center>
+				<img src="img/logo3.jpg" >
 			</p>
 		</div>
 	</div>
