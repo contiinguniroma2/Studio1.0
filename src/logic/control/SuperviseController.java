@@ -77,7 +77,7 @@ public class SuperviseController implements StudentSuperviseController, Libraria
 
 	@Override
 	public void increaseReportingCounter(String studentId, String librarianId, String reason) {
-		Message message = new Message();
+		Message message = null;
 		int i;
 		if (listStudents == null) {
 			student = studentDao.select(studentId, null);

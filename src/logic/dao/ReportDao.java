@@ -59,7 +59,7 @@ public class ReportDao {
 	}
 
 	public List<Report> getReportFromDbByStudent(User sessionUser, Library library) {
-		ResultSet rs;
+		ResultSet rs = null;
 		List<Report> reportList = new ArrayList<>();
 		try {
 			ps = conn.prepareStatement(
@@ -80,6 +80,11 @@ public class ReportDao {
 			myLogger.info("Select report fallito");
 
 		} finally {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			closeStatement(ps);
 		}
 		return reportList;
