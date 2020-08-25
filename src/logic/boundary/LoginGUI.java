@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import logic.application.Main;
 import logic.control.LibraryMainPageController;
-import logic.control.StudentMainPageController;
 import logic.control.StudentSuperviseController;
 import logic.control.SuperviseController;
 import logic.pattern.BannedState;
@@ -51,10 +50,6 @@ public class LoginGUI extends GuiSUPER {
 				// valore per fare aprire lo stage STUDENT o il LIBRARIAN
 				if (loginController.validateUser(emailField.getText(),
 						passwordField.getText()) == 's') {
-					StudentMainPageController.getStudentMainPageController()
-							.setStudInfo(loginController.getStudent());
-					StudentMainPageController.getStudentMainPageController()
-							.setStudInfoB(loginController.getStudentBean());
 					if (loginController.getStudent().getStateMachine().getState() instanceof NotifiedState) {
 						StudentSuperviseController superviseController = new SuperviseController(loginController.getStudent());
 						StudentNotifiedGUI studentNotifiedGUI = new StudentNotifiedGUI(loginController.getStudentBean(), superviseController);

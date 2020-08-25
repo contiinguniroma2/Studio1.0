@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.application.Main;
 import logic.control.RegistrationController;
-import logic.control.StudentMainPageController;
 
 public class RegStudentSettingsGUI extends GuiSUPER {
 	public static final String TITLE_S1 = "Registration 2/2";
@@ -51,8 +50,7 @@ public class RegStudentSettingsGUI extends GuiSUPER {
 				RegistrationController.getRegistrationController().registerUser("Studente", emailField.getText(),
 						passwordField.getText(), usernameField.getText(), nameField.getText(), surnameField.getText(),
 						phoneField.getText());
-				StudentMainPageController.getStudentMainPageController()
-						.setStudInfo(RegistrationController.getRegistrationController().getStud());
+				
 				main.setNewStage(START);
 			} catch (Exception e) {
 				e.printStackTrace();

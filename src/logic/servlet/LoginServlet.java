@@ -13,7 +13,6 @@ import logic.bean.MessageBean;
 import logic.bean.StudentBean;
 import logic.control.LibraryMainPageController;
 import logic.control.LoginController;
-import logic.control.StudentMainPageController;
 import logic.control.StudentSuperviseController;
 import logic.control.SuperviseController;
 import logic.entity.Library;
@@ -44,8 +43,6 @@ public class LoginServlet extends HttpServlet {
 	    	if (loginController.validateUser(request.getParameter("emailLogin"), request.getParameter("passwordLogin")) == 's') {
 	    		Student student = loginController.getStudent();
 	    		StudentBean studentBean = loginController.getStudentBean();
-	    	    StudentMainPageController.getStudentMainPageController().setStudInfo(student);
-		        StudentMainPageController.getStudentMainPageController().setStudInfoB(studentBean);
 		        request.getSession().setAttribute("studentBean", studentBean);
 		        request.getSession().setAttribute("sessionUser", student);
 		        		        
