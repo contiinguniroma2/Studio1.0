@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import logic.bean.LibrBean;
 import logic.bean.StudentBean;
 import logic.control.LibrarianSuperviseController;
+import logic.control.ReportIssueController;
 import logic.control.SuperviseController;
+import logic.exceptions.ReportDeleteException;
 
 /**
  * Servlet implementation class SuperviseServlet
@@ -55,6 +57,17 @@ public class SuperviseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("btnReportUser")!=null) {
+			ReportIssueController reportIssueController=(ReportIssueController)request.getSession().getAttribute("reportIssueController");
+			superviseController.increaseReportingCounter(reportIssueController.getReportBean().getStudentId(), reportIssueController.getSessionUser().getMail(), "feedback");
+			try {
+				reportIssueController.deleteReport(reportIssueController.getReportBean().getReportId());
+				response.sendRedirect("LibraryReportDetails.jsp");
+				return;
+			} catch (ReportDeleteException e) {
+				e.printStackTrace();
+			}
+		}
 		LibrBean libraryBean = (LibrBean)request.getSession().getAttribute("libraryBean");
 		StudentBean studentBean = (StudentBean)(request.getSession().getAttribute("studentBean"));
 		superviseController.increaseReportingCounter(studentBean.getMail(), libraryBean.getMail(), "infoAccount");

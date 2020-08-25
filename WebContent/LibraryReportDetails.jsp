@@ -38,7 +38,8 @@
               </form>
             </li>
              <li class="nav-link">
-             <a class="btn btn-success mx-auto" href="ReportListLibrarY.jsp">Reports</a></li>
+             <a class="btn btn-success mx-auto" href="ReportListLibrary.jsp">Reports</a>
+            </li>
             <li class="nav-link">
               <a class="btn btn-secondary" href="librarianStatistics.html">Statistics</a>
             </li>
@@ -64,7 +65,7 @@
 		</div>
 
 		<div class="container" id="Report details:">
-			<form action="${pageContext.request.contextPath}/ReportDetailsLibraryServlet" name="reportLibraryDetails" method="POST">
+			
 			<label for="reportTitle">Title</label> 
 			<input
 				readonly class="form-control" id="reportLibraryDetailsTitle" name="reportLibraryDetailsTitle" type="text"
@@ -75,15 +76,18 @@
 				 <textarea readonly
 				 class="form-control" id="reportLibraryDetailsDescription" name="reportLibraryDetailsDescription"><%=((ReportBean)request.getSession().getAttribute("selectedReport")).getDescription()%></textarea>
 			</div> 
-			<div id="divLibraryDetailsButtons">
-				<input class="btn btn-success mx-auto" role="button" name="btnSolve" type="submit"
+			
+			<div class="container" id="divLibraryDetailsButtons" style=" text-align: center; vertical-align: top;">
+			<form action="${pageContext.request.contextPath}/ReportDetailsLibraryServlet" name="reportLibraryDetails" method="POST">
+				<input style="float:right;" class="btn btn-success mx-auto" role="button" name="btnSolve" type="submit"
                id="btnSolve" value="Solve">
+              </form>
                <form action="${pageContext.request.contextPath}/SuperviseServlet" name="reportUserForm" method="POST">
-               <input class="btn btn-success mx-auto" role="button" name="btnReportUser" type="submit"
-               id="btnReportUser" value="Report user">
+               <input style="float:left;" class="btn btn-success mx-auto" role="button" name="btnReportUser" type="submit"
+               id="btnReportUser" value="Report feedback">
                </form>
 			</div>
-			</form>
+		
 		</div>
 		
 
