@@ -39,7 +39,7 @@ public class StudentSearchResultFxmlGUI extends FxmlGUI {
 		this.library = library;
 		this.studentSearchFxmlGUI = studentSearchFxmlGUI;
 		this.bookSeatBean = new BookSeatBean();
-		this.bookSeatController = new BookSeatController(student, library, bookSeatBean);
+		this.bookSeatController = new BookSeatController(library);
 	}
 
 	
