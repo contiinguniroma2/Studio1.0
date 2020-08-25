@@ -2,7 +2,6 @@ package logic.control;
 
 import java.sql.SQLException;
 import java.util.logging.Logger;
-import logic.bean.BookSeatBean;
 import logic.dao.PrenotazioneDao;
 import logic.entity.Library;
 import logic.entity.Prenotazione;
@@ -15,7 +14,7 @@ public class BookSeatController {
 	private Prenotazione prenotazione;
 	static Logger myLogger = Logger.getLogger("logger");
 	
-	public BookSeatController(Student student, Library library, BookSeatBean bookSeatBean) {
+	public BookSeatController(Library library) {
 		this.library = library;
 		this.prenotazioneDao = new PrenotazioneDao();
 	}
