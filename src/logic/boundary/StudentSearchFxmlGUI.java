@@ -53,7 +53,6 @@ public class StudentSearchFxmlGUI extends FxmlGUI {
 	 */
 	@FXML
 	public void searchSeat() {
-		myLogger.info("Digit: " + tfSearchSeat.getText().toString());
 		searchLibrariesFromCity(tfSearchSeat.getText().toString());	//chiamo metodo controller
 		librariesResult = searchBean.getResultLibraries();
 		updateListView();

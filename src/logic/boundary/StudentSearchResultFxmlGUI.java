@@ -50,10 +50,8 @@ public class StudentSearchResultFxmlGUI extends FxmlGUI {
 	
 	@FXML
 	private void bookSeat(ActionEvent event) {
-		myLogger.info("Book");
 		bookSeatController.bookSeat(student, library);
 		prenotazione = bookSeatBean.getPrenotazione();
-		myLogger.info("Book: " + prenotazione.getNumero() + " - " + prenotazione.getOrarioPrenotazione() + " - " + prenotazione.getBiblioteca() + " - " + prenotazione.getUsernameStud());
 	}
 	
 	@FXML
@@ -73,7 +71,6 @@ public class StudentSearchResultFxmlGUI extends FxmlGUI {
 	
 	@FXML
 	private void backPressed(ActionEvent event) throws IOException {
-		myLogger.info("Back");
 		// passa a vista search
 		guiLoader(FxmlConstants.STUDENT_SEARCH_GUI, studentSearchFxmlGUI,event);
 				

@@ -3,7 +3,6 @@ package logic.boundary;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class FxmlGUI implements Initializable {
-	protected static Logger myLogger = Logger.getLogger("logger");
 
 	public void guiLoader(String path, Object guiController, ActionEvent event) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
