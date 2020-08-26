@@ -57,9 +57,11 @@ public class SuperviseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		StudentBean studentBean = (StudentBean)(request.getSession().getAttribute("studentBean"));
 		if (request.getParameter("btnReportUser")!=null) {
 			ReportIssueController reportIssueController=(ReportIssueController)request.getSession().getAttribute("reportIssueController");
-			superviseController.increaseReportingCounter(reportIssueController.getReportBean().getStudentId(), reportIssueController.getSessionUser().getMail(), "feedback");
+			superviseController.getStudent(studentBean.getMail());
+			superviseController.increaseReportingCounter(reportIssueController.getSessionUser().getMail(), "feedback");
 			try {
 				reportIssueController.deleteReport(reportIssueController.getReportBean().getReportId());
 				response.sendRedirect("LibraryReportDetails.jsp");
@@ -69,8 +71,7 @@ public class SuperviseServlet extends HttpServlet {
 			}
 		}
 		LibrBean libraryBean = (LibrBean)request.getSession().getAttribute("libraryBean");
-		StudentBean studentBean = (StudentBean)(request.getSession().getAttribute("studentBean"));
-		superviseController.increaseReportingCounter(studentBean.getMail(), libraryBean.getMail(), "infoAccount");
+		superviseController.increaseReportingCounter(libraryBean.getMail(), "infoAccount");
 		doGet(request,response);
 	}
 	

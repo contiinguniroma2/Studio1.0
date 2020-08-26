@@ -68,7 +68,7 @@ public class InfoAccountSelectedGUI {
 				alert.setHeaderText("Warning!");
 				alert.setContentText("Are you sure you want to report account?");
 				if (alert.showAndWait().get() == ButtonType.OK) {
-					superviseGUI.getSuperviseController().increaseReportingCounter(studentBean.getMail(), superviseGUI.libraryBean.getMail(), "infoAccount");
+					superviseGUI.getSuperviseController().increaseReportingCounter(superviseGUI.libraryBean.getMail(), "infoAccount");
 					superviseGUI.getRoot().setCenter(superviseGUI.getGui());
 				}
 			} catch (NoSuchElementException e) {

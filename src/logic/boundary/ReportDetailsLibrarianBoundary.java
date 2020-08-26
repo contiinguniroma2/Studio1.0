@@ -51,7 +51,8 @@ public class ReportDetailsLibrarianBoundary extends ReportDetailsBoundary {
 			alert.setHeaderText("Warning!");
 			alert.setContentText("Are you sure you want to report account?");
 			if (alert.showAndWait().get() == ButtonType.OK) {
-				superviseController.increaseReportingCounter(this.reportIssueController.getReportBean().getStudentId(), this.reportIssueController.getSessionUser().getMail(), "feedback");
+				superviseController.getStudent(this.reportIssueController.getReportBean().getStudentId());
+				superviseController.increaseReportingCounter(this.reportIssueController.getSessionUser().getMail(), "feedback");
 				this.reportIssueController.deleteReport(this.reportIssueController.getReportBean().getReportId());
 			}
 			this.backClicked(event);

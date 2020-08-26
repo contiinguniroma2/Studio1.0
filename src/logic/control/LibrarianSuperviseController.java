@@ -11,6 +11,7 @@ import logic.bean.StudentBean;
 public interface LibrarianSuperviseController {
 	public List<String> fillSupervisePage(String biblioId);
 	public StudentBean getInfoStudent(String username);
-	public void increaseReportingCounter(String username, String libraryId, String reason);
+	public void increaseReportingCounter(String libraryId, String reason);
 	public void sendMessage(MessageBean messageBean);
+	public void getStudent(String studentId);
 }

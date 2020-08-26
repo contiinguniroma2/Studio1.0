@@ -9,7 +9,7 @@ public interface StudentSuperviseController {
 	public void sendMessageInteraction(String studentId);
 
 	List<MessageBean> getMessages(String idStud);
-
+    
 	public void deleteMessage(long id);
 	public void deleteAllUploadedMessages();
 }
